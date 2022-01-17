@@ -1,0 +1,40 @@
+
+<body>
+
+  <form action="./index.hbs" method="POST">
+
+    <fieldset>
+      <div class="form">
+
+        <!-- TITLE -->
+        <p>
+          <label for="review-title">{{this.title}}</label>
+          <input type="text" id="review-title" />
+        </p>
+
+        <!-- DESCRIPTION -->
+        <p>
+          <label for="description-text">Description</label>
+          <textarea
+            id="description-text"
+            name="description"
+            cols="30"
+            rows="10"
+          >Write your description here</textarea>
+        </p>
+        <!-- RATING-->
+        <p>
+          <label for="rating">Rates:</label>
+          <input type="number" min="1" max="5" />
+        </p>
+        <!-- BUTTON -->
+        <p>
+          <button type="submit" id="btn-submit">Submit Review</button>
+        </p>
+      </div>
+
+    </fieldset>
+
+  </form>
+
+</body>
