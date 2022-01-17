@@ -69,4 +69,38 @@ document.addEventListener(
 // searchbarBtn.onclick = getAuthor;
 
 
-// Retrieving data by subject. 
+// Manipulation des boutons sur oneBook. 
+
+const oneBook = document.getElementById("one-book");
+
+const wishlistBtn = document.getElementById("add-wishlist");
+const redBtn = document.getElementById("add-red");
+const reviewBtn = document.getElementById("add-review");
+
+const fetchOneBook = () => axios.get("/oneBook/:key");
+
+
+function wishlistHandler() {
+
+}
+
+
+function redHandler() {
+
+}
+
+
+wishlistBtn.onclick = wishlistHandler;
+redBtn.onclick = redHandler;
+
+
+
+// bon une fois que j'ai fait ça je récupère ce qu'il y a dans la div.
+
+// Font-awesome.
+// Bon, je fais un tableau avec ce que les utilisateurs ont fait.
+// La question, c'est comment je les mets.
+// Est-ce que user a une ref. 
+// Oui, donc j'ajoute tout ça à book Model. 
+// Et après je mets une ref dans utilisateur. 
+
