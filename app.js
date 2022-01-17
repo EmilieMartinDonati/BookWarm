@@ -29,6 +29,11 @@ const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowe
 
 // app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
 
+//INITIALIZE BODY-PARSER 
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 // 👇 Start handling routes here
 const index = require("./routes/index");
 app.use("/", index);
@@ -41,6 +46,10 @@ require("./error-handling")(app);
 
 //Retrieving data by author.
 
+//REVIEWS 
+app.get('/',(req,res) => {
+    res.render('index',{ reviews:reviews});
+})
 
 
 // Retrieving data by subject. 
