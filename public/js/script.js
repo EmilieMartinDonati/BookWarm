@@ -3,6 +3,8 @@
 // The searchbar can have either 10 either 20 authors on display.
 // It needs a next 10 or next 20 to display the next author :-) 
 
+const { default: axios } = require("axios");
+
 
 document.addEventListener(
   "DOMContentLoaded",
@@ -69,4 +71,67 @@ document.addEventListener(
 // searchbarBtn.onclick = getAuthor;
 
 
-// Retrieving data by subject. 
+// Manipulation des boutons sur oneBook. 
+
+// const oneBook = document.getElementById("one-book");
+
+// const bookBtn = document.querySelectorAll("#one-book a button");
+
+// const titleElem = document.getElementById("title");
+// const authorElem = document.getElementById("author");
+// const firstSentenceElem = document.getElementById("first-sentence");
+// const subjectElem = document.getElementById("subject");
+// const pagesElem = document.getElementById("number-of-pages");
+
+
+
+// const addToWishlist = (payload) => axios.get("/oneBook/:key/wishlist", payload);
+
+// const addToRedList = (payload) => axios.get("/oneBook/:key/redlist", payload);
+
+
+// function addBookHandler (event) {
+//   const btn = event.target;
+//   const id = btn.getAttribute("id");
+//   switch (id) {
+//     case 'add-wishlist':
+//       addToWishlist({
+//         title: titleElem.innerHTML,
+//         author_name: authorElem.innerHTML,
+//         first_sentence: firstSentenceElem.innerHTML,
+//         subject: subjectElem.innerHTML,
+//         number_of_pages_median: pagesElem.innerHTML
+//       });
+//       break;
+//     case 'add-red':
+//       addToRedList(
+//         {title: titleElem.innerHTML,
+//           author_name: authorElem.innerHTML,
+//           first_sentence: firstSentenceElem.innerHTML,
+//           subject: subjectElem.innerHTML,
+//           number_of_pages_median: pagesElem.innerHTML
+//         }
+//       );
+//       break;
+//     case 'add-review':
+//       console.log('too soon');
+//       break;
+//     default:
+//       console.log(`Sorry, ${id} not found.`);
+//   }
+// }
+
+
+// [...bookBtn].forEach((btn) => (btn.onClick = addBookHandler))
+
+
+
+// bon une fois que j'ai fait ça je récupère ce qu'il y a dans la div.
+
+// Font-awesome.
+// Bon, je fais un tableau avec ce que les utilisateurs ont fait.
+// La question, c'est comment je les mets.
+// Est-ce que user a une ref. 
+// Oui, donc j'ajoute tout ça à book Model. 
+// Et après je mets une ref dans utilisateur. 
+
