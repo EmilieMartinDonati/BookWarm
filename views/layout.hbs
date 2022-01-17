@@ -19,9 +19,13 @@
     </span>
     <nav class="w-100">
       <a href="/" class="link">home</a>
-      <a href="#" class="link">Sign in</a> 
-      {{!-- <a href="#" class="link">Log out</a> --}}
-      <a href="" class="link">Sign up</a> 
+      <a href="/login" class="link">Sign in</a> 
+         {{#if isLoggedIn}}
+
+      <a href="/logout"class="link">Sign out</a>
+      {{/if}}
+     
+      <a href="/signup" class="link">Sign up</a> 
     </nav>
   </header>
 

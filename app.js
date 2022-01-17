@@ -29,9 +29,53 @@ const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowe
 
 // app.locals.title = `${capitalized(projectName)} created with IronLauncher`;
 
+//Express-session is used to handle sessions, connect-mongo is to store the data sessions inside the database
+//It has to be placed before the routes
+
+const session = require("express-session");
+const MongoStore = require("connect-mongo")
+
+
+//use session
+app.use(
+    session({
+        secret: 'story book',
+        resave: false,
+        saveUninitialized: false,
+        store: MongoStore.create({
+            mongoUrl: 'mongodb://127.0.0.1/test-API'
+        })
+    })
+);
+
+  
+
 // 👇 Start handling routes here
 const index = require("./routes/index");
 app.use("/", index);
+
+//Link with auth.js
+const auth = require("./routes/auth")
+//make the app use auth.js
+app.use("/", auth)
+
+const login = require("./routes/login")
+app.use("/", login)
+
+const logout = require("./routes/logout")
+app.use("/", logout)
+
+
+// app.use(require("./middlewares/loginstatus"));
+
+// app.use(function (req, res, next) {
+//     res.locals.session = req.session;
+//     next();
+// });
+
+
+
+
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
@@ -44,6 +88,7 @@ require("./error-handling")(app);
 
 
 // Retrieving data by subject. 
+ 
 
 
 module.exports = app;
