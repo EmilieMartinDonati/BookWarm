@@ -33,6 +33,9 @@ const capitalized = (string) => string[0].toUpperCase() + string.slice(1).toLowe
 const index = require("./routes/index");
 app.use("/", index);
 
+const personalspace = require("./routes/personalspace")
+app.use("/personalspace", personalspace);
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 

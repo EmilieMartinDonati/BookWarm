@@ -1,6 +1,6 @@
 const { Schema, model } = require("mongoose");
 
-const authorSchema = new Schema ({
+const bookReviewedSchema = new Schema ({
     key: String,
     title: String, 
     first_publish_year: Number,
@@ -17,15 +17,7 @@ const authorSchema = new Schema ({
     author_name :  [String],
     })
 
-const authorModel = model("author", authorSchema);
+const bookReviewedModel = model("book reviewed", bookReviewedSchema);
 
-// Model for the genre
 
-const genreSchema = newSchema({
-// subject_facet: [String] = (les genres généraux)
-subject_facet: [String]
-})
-
-const genreModel = model("genre", genreSchema)
-
-module.exports = {authorModel, genreModel};
+module.exports = bookReviewedModel;

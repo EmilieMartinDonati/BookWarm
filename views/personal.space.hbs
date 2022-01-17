@@ -1,0 +1,21 @@
+<h1>YOUR PERSONAL SPACE</h1>
+<div>
+    {{#each wishlist}}
+    <div class="card" id="author-card" style="width: 18rem;">
+  {{!-- <img src="..." class="card-img-top" alt="..."> --}}
+  <div class="card-body">
+    <h5 class="card-title">{{this.title}}</h5>
+    <p class="card-text" id="author-card-name">{{this.author_name}}</p>
+  </div>
+</div>
+{{/each}}
+{{#each red}}
+    <div class="card" id="author-card" style="width: 18rem;">
+  {{!-- <img src="..." class="card-img-top" alt="..."> --}}
+  <div class="card-body">
+    <h5 class="card-title">{{this.title}}</h5>
+    <p class="card-text" id="author-card-name">{{this.author_name}}</p>
+  </div>
+</div>
+{{/each}}
+</div>

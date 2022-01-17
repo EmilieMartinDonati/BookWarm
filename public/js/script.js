@@ -3,6 +3,8 @@
 // The searchbar can have either 10 either 20 authors on display.
 // It needs a next 10 or next 20 to display the next author :-) 
 
+const { default: axios } = require("axios");
+
 
 document.addEventListener(
   "DOMContentLoaded",
@@ -71,27 +73,56 @@ document.addEventListener(
 
 // Manipulation des boutons sur oneBook. 
 
-const oneBook = document.getElementById("one-book");
+// const oneBook = document.getElementById("one-book");
 
-const wishlistBtn = document.getElementById("add-wishlist");
-const redBtn = document.getElementById("add-red");
-const reviewBtn = document.getElementById("add-review");
+// const bookBtn = document.querySelectorAll("#one-book a button");
 
-const fetchOneBook = () => axios.get("/oneBook/:key");
-
-
-function wishlistHandler() {
-
-}
+// const titleElem = document.getElementById("title");
+// const authorElem = document.getElementById("author");
+// const firstSentenceElem = document.getElementById("first-sentence");
+// const subjectElem = document.getElementById("subject");
+// const pagesElem = document.getElementById("number-of-pages");
 
 
-function redHandler() {
 
-}
+// const addToWishlist = (payload) => axios.get("/oneBook/:key/wishlist", payload);
+
+// const addToRedList = (payload) => axios.get("/oneBook/:key/redlist", payload);
 
 
-wishlistBtn.onclick = wishlistHandler;
-redBtn.onclick = redHandler;
+// function addBookHandler (event) {
+//   const btn = event.target;
+//   const id = btn.getAttribute("id");
+//   switch (id) {
+//     case 'add-wishlist':
+//       addToWishlist({
+//         title: titleElem.innerHTML,
+//         author_name: authorElem.innerHTML,
+//         first_sentence: firstSentenceElem.innerHTML,
+//         subject: subjectElem.innerHTML,
+//         number_of_pages_median: pagesElem.innerHTML
+//       });
+//       break;
+//     case 'add-red':
+//       addToRedList(
+//         {title: titleElem.innerHTML,
+//           author_name: authorElem.innerHTML,
+//           first_sentence: firstSentenceElem.innerHTML,
+//           subject: subjectElem.innerHTML,
+//           number_of_pages_median: pagesElem.innerHTML
+//         }
+//       );
+//       break;
+//     case 'add-review':
+//       console.log('too soon');
+//       break;
+//     default:
+//       console.log(`Sorry, ${id} not found.`);
+//   }
+// }
+
+
+// [...bookBtn].forEach((btn) => (btn.onClick = addBookHandler))
 
 
 
