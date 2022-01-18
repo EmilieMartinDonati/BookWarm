@@ -2,6 +2,8 @@ const router = require("express").Router();
 const bookRedModel = require("../models/Bookred.model");
 const bookWishlistModel = require("../models/Bookwishlist.model")
 const genreModel = require("../models/genre.Model");
+const UsercreateModel = require("./../models/User-create-book");
+const fileUploader = require("./../config/cloudinary");
 
 // Première API. Le search général. 
 
@@ -158,6 +160,31 @@ router.get("/oneBook/redlist/:key", async (req, res, next) => {
     })
 })
 
+// GET - CREATE A BOOK 
+
+router.get("/", async (req,res,next) => { 
+  const newBook=  await bookRedModel.find()
+  .then((newbook) =>{
+    res.render("/bookpage",{newBook});
+  })
+  .catch(err); 
+});
+
+//POST- CREATE A BOOK 
+
+router.post("/addbook", fileUploader.single("picture"), async (req, res, next) => {
+  const newBook = { ...req.body };
+
+  if (!req.file) newBook.cover = undefined;
+  else newBook.picture = req.file.path;
+
+  try {
+    const newCreatedBook = await UsercreateModel.create(newBook);
+    res.render("user-create-book", {newCreatedBook});
+  } catch (err) {
+    next(err);
+  }
+});
 
 module.exports = router;
 
