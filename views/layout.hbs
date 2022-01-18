@@ -18,12 +18,11 @@
     <span id="logo-main">
       <a href="/">test-API</a>
     </span>
-    <nav class="col-8 flex-row">
-      <a href="/" >home</a>
-      <a href="/login" >Sign in</a> 
-         {{#if isLoggedIn}}
-
-      <a href="/logout">Sign out</a>
+    <nav class="w-100">
+      <a href="/" class="link">home</a>
+      <a href="/login" class="link">Sign in</a> 
+         {{#if isLoggedIn}}       
+      <a href="/logout"class="link">Sign out</a>
       {{/if}}
      
       <a href="/signup">Sign up</a> 
