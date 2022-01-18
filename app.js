@@ -13,12 +13,18 @@ const express = require("express");
 // Handles the handlebars
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
+require("./helpers/hbs"); // utils for hbs templates
+
 
 const app = express();
 const path = require("path");
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "hbs");
 hbs.registerPartials(path.join(__dirname, "views/partials")); 
+
+
+
+// HELPERS TO CHECK THE REVIEWS.
 
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
@@ -68,6 +74,12 @@ app.use("/", login)
 
 const logout = require("./routes/logout")
 app.use("/", logout)
+
+
+// COSTUM MIDDLEWARES
+
+// app.use(require("./middlewares/devMode")); // active le mode dev pour éviter les deconnexions
+//   app.use(require("./middlewares/debugSessionInfos")); // affiche le contenu de la session
 
 app.use(require("./middlewares/protectRoute"))
 app.use(require("./middlewares/loginstatus"));

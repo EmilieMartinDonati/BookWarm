@@ -6,7 +6,8 @@ const bookRedSchema = new Schema ({
     first_publish_year: Number,
     publish_year: [Number],
     number_of_pages_median: Number,
-    ISBN : [String] || String,
+    isbn: [String],
+    lccn: [String],
     publisher: [String],
     author_name: [String], 
     subject: [String],
@@ -17,6 +18,7 @@ const bookRedSchema = new Schema ({
     author_name :  [String],
     rating: Number,
     reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
+    image: String
     })
 
 const bookRedModel = model("book red", bookRedSchema);

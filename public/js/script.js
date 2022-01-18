@@ -136,7 +136,7 @@ document.addEventListener(
 // Et après je mets une ref dans utilisateur. 
 
 function reviewHandler() {
-  document.getElementById("collapseExample").classList.remove("collapse");
+  document.getElementById("collapseExample").classList.toggle("collapse");
   console.log("yeah")
 }
 
