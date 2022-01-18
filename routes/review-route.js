@@ -36,7 +36,7 @@ router.post("/oneBook/:key", async (req, res, next) => {
 //   })
 // })
 
-//DELETE REVIEWS DESTROY - /REVIEWS/:ID
+//DELETE REVIEWS DELETE - /REVIEWS/:ID
 
 router.use(require("../middlewares/userIdentity"));
 
