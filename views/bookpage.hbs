@@ -1,19 +1,83 @@
-
 <div class="container" id="one-book">
     <div class="row">
-        <div class="col-12">
-            <h2 class="row" id="title">{{titleFound.title}}</h2>
+        <div class="col-7">
+            <h1 class="row" id="title">{{titleFound.title}}</h1>
             <h4 class="row" id="author">{{titleFound.author_name}}</h4>
             <h5 class="row" id="first-sentence">{{titleFound.first_sentence}}</h5>
             <div class="row">
                 <div class="col-9" id="subject">{{titleFound.subject}}</div>
                 <div class="col-3" id="number-of-pages">{{titleFound.number_of_pages_median}}</div>
             </div>
+            <hr>
+            <div class="row">
+                <div class="col-6">
+                    <i class="fas fa-heart"></i>
+                    <a href="/oneBook/wishlist/{{titleFound.key}}"> <button id="add-wishlist">Add to
+                            wishlist</button></a>
+                </div>
+                <div class="col-6">
+                    <a href="/oneBook/redlist/{{titleFound.key}}"> <button id="add-red">🚀 Add to books already
+                            red</button></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-4">
+            <h3>REVIEWS</h3>
+          {{#each reviews}}
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text" id="review">{{this.review}}</p>
+                    <p>{{this.user.username}}</p>
+                    <p>{{@root.user}}</p>
+                </div>
+                 {{#compare @root.user this.user.username}}
+                <div class="row">
+                    <div class="col-6">
+                <button class="btn"><p>EDIT ✏️</p></button>
+                </div>
+                <div class="col-6">
+                <button class="btn"><p>DELETE 💣</p></button>
+                </div>
+                </div>
+                {{/compare}}
+            </div>
+            {{/each}}
+            <div>
+                <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                    aria-expanded="false" aria-controls="collapseExample" id="reviewBtn">
+                    WRITE A REVIEW
+                </button>
+                </p>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body" id="form">
+                        <div class="text-center pt-4">
+                            <form action="/oneBook/{{titleFound.key}}" method="POST">
+                                {{!-- <label for='username'>Username</label>
+                                <input type="text"name="{{req.session.currentUser.username}}" required> --}}
+                                <label for="review-title">TITLE</label>
+                                <input type="text" value="{{titleFound.title}}" name="bookTitle" />
+                                <hr>
+                                <label for="review-title">AUTHOR</label>
+                                <input type="text" value="{{titleFound.author_name}}" name="authorBook" />
+                                <hr>
+                                <label for="description-text">REVIEW</label>
+                                <textarea id="description-text" name="review" cols="30"
+                                    rows="10">Write your description here</textarea>
+                                    <hr>
+                                <label for="rating">Ratings on 5</label>
+                                <input type="number" min="1" max="5" />
+                                <button>SUBMIT REVIEW</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    <a href="/oneBook/wishlist/{{titleFound.key}}"> <button id="add-wishlist">Add to wishlist</button></a>
-    <a href="/oneBook/redlist/{{titleFound.key}}"> <button id="add-red">Add to books already red</button></a>
-    <a href="/oneBook/review/{{titleFound.key}}"> <button id="add-review">Leave a review</button></a>
+
+
+
+
 </div>
-
-

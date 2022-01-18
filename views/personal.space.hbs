@@ -6,7 +6,10 @@
 </form>
 </div>
 
-<div>
+
+<div class="row">
+  <div class="col-5">
+    <h3>Your wishlist</h3>
     {{#each wishlist}}
     <div class="card" id="author-card" style="width: 18rem;">
   {{!-- <img src="..." class="card-img-top" alt="..."> --}}
@@ -14,8 +17,13 @@
     <h5 class="card-title">{{this.title}}</h5>
     <p class="card-text" id="author-card-name">{{this.author_name}}</p>
   </div>
+  <form method="POST" action="personalspace/{{this._id}}">
+  <button>DELETE FROM WISHLIST</button></form>
 </div>
 {{/each}}
+</div>
+<div class="col-5">
+  <h3>You already read those ! Did you like them ?</h3>
 {{#each red}}
     <div class="card" id="author-card" style="width: 18rem;">
   {{!-- <img src="..." class="card-img-top" alt="..."> --}}
@@ -26,3 +34,30 @@
 </div>
 {{/each}}
 </div>
+<div class="col-2">
+  <h3>Your reviews</h3>
+  {{#each reviews}}
+    <div class="card" id="author-card" style="width: 18rem;">
+  {{!-- <img src="..." class="card-img-top" alt="..."> --}}
+  <div class="card-body">
+    <h5 class="card-title">{{this.bookTitle}}</h5>
+    <p class="card-text" id="author-card-name">{{this.review}}</p>
+  </div>
+  <div class="row">
+  <div id="delete" class="col-6">
+    <form method="POST" action="personalspace/delete/{{this._id}}">
+      <button>DELETE</button>
+    </form>
+  </div>
+  <div id="edit" class="col-6">
+    <form method="POST" action="personalspace/edit/{{this._id}}">
+      <button>EDIT</button>
+    </form>
+  </div>
+  </div>
+</div>
+{{/each}}
+  </div>
+</div>
+
+
