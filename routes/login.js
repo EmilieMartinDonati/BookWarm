@@ -5,8 +5,8 @@ const User = require('./../models/User.model')
 const bcrypt = require('bcrypt')
 
 router.get('/login', (req, res) => {
-    res.render('auth/login');
-  });
+  res.render('auth/login');
+});
 
  
 
@@ -20,7 +20,7 @@ router.get('/login', (req, res) => {
       return;
     }
   
-    User.findOne({ "username": username })
+    User.findOne({userName: username})
     .then(user => {
         if (!user) {
           res.render("auth/login", {errorMessage: 'This username doesn\'t exist.' });
@@ -28,6 +28,7 @@ router.get('/login', (req, res) => {
         }
       
           const rightPassword = bcrypt.compareSync(password, user.password);
+          // console.log(username, user)
         
           if (rightPassword) {  
           
