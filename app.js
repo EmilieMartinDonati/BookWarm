@@ -69,8 +69,8 @@ app.use("/", login)
 const logout = require("./routes/logout")
 app.use("/", logout)
 
-
-// app.use(require("./middlewares/loginstatus"));
+app.use(require("./middlewares/protectRoute"))
+app.use(require("./middlewares/loginstatus"));
 
 // app.use(function (req, res, next) {
 //     res.locals.session = req.session;

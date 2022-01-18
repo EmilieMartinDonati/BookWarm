@@ -33,6 +33,7 @@ router.get('/login', (req, res) => {
           
           req.session.currentUser = user;
           res.redirect("/");
+          
         } 
           else res.render("auth/login", {errorMessage: 'Incorrect password' });
     })
