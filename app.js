@@ -43,7 +43,8 @@ app.use(
         resave: false,
         saveUninitialized: false,
         store: MongoStore.create({
-            mongoUrl: 'mongodb://127.0.0.1/test-API'
+            mongoUrl: 'mongodb://127.0.0.1/test-API',
+            ttl: 1000 * 60 * 60 * 6,
         })
     })
 );
@@ -51,8 +52,10 @@ app.use(
   
 //INITIALIZE BODY-PARSER 
 const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
 
+
+
+app.use(require("./middlewares/loginstatus"));
 
 // 👇 Start handling routes here
 const index = require("./routes/index");
@@ -68,17 +71,6 @@ app.use("/", login)
 
 const logout = require("./routes/logout")
 app.use("/", logout)
-
-app.use(require("./middlewares/protectRoute"))
-app.use(require("./middlewares/loginstatus"));
-
-// app.use(function (req, res, next) {
-//     res.locals.session = req.session;
-//     next();
-// });
-
-
-
 
 const personalspace = require("./routes/personalspace")
 app.use("/personalspace", personalspace);

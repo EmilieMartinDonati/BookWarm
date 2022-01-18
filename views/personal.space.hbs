@@ -1,5 +1,12 @@
 <h1>YOUR PERSONAL SPACE</h1>
 <div>
+  <form action="/uploadimage" method="post" enctype="multipart/form-data">
+  <input type='file' name='image' />
+  <button type="submit">Upload your image</button>
+</form>
+</div>
+
+<div>
     {{#each wishlist}}
     <div class="card" id="author-card" style="width: 18rem;">
   {{!-- <img src="..." class="card-img-top" alt="..."> --}}
