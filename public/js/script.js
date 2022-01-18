@@ -3,7 +3,7 @@
 // The searchbar can have either 10 either 20 authors on display.
 // It needs a next 10 or next 20 to display the next author :-) 
 
-const { default: axios } = require("axios");
+// const axios = require("axios");
 
 
 document.addEventListener(
@@ -135,3 +135,10 @@ document.addEventListener(
 // Oui, donc j'ajoute tout ça à book Model. 
 // Et après je mets une ref dans utilisateur. 
 
+function reviewHandler() {
+  document.getElementById("collapseExample").classList.remove("collapse");
+  console.log("yeah")
+}
+
+const reviewBtn = document.getElementById("reviewBtn");
+reviewBtn.onclick = reviewHandler;

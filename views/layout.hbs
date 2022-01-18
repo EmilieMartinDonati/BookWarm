@@ -13,25 +13,33 @@
 
    <body>
 
-       <header id="header-main w-100">
+       <header id="header-main">
+          <div class="row bg-dark text-white flex-col">
     <span id="logo-main">
       <a href="/">test-API</a>
     </span>
-    <nav class="w-100">
-      <a href="/" class="link">home</a>
-      <a href="/login" class="link">Sign in</a> 
+    <nav class="col-8 flex-row">
+      <a href="/" >home</a>
+      <a href="/login" >Sign in</a> 
          {{#if isLoggedIn}}
 
-      <a href="/logout"class="link">Sign out</a>
+      <a href="/logout">Sign out</a>
       {{/if}}
      
-      <a href="/signup" class="link">Sign up</a> 
+      <a href="/signup">Sign up</a> 
     </nav>
+    <div class="col-4">
+    <h3 class="text-uppercase text-justify">Your personal space</h3>
+    <a href="/personalspace">VISIT</a>
+</div> 
+</div>
+
   </header>
 
       {{{body}}}
 
-      {{!-- {{> footer}} --}}
+
+      {{> footer}}
 
       <script type="module" src="/js/script.js"></script>
    </body>

@@ -24,6 +24,10 @@ const apiKey = axios.create({
   baseURL: `http://openlibrary.org`
 })
 
+const apiCover = axios.create({
+  baseURL: `https://covers.openlibrary.org/b/$key/$value-$size.jpg`
+})
+
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -34,6 +38,11 @@ router.get("/", (req, res, next) => {
 // Le post sur la home page qui permet d'afficher les résultats de la recherche. 
 
 router.post("/", (req, res, next) => {
+ 
+  // const personal authors doit être le résultat du find({title || author_name }) dans la database des livres créés par l'utilsateur.
+  // Passer personalAuthors à la vue.
+
+
   const number = Number(req.body.number);
   api
     .get(`${req.body.name}&fields=*,availability&limit=${number}`)
@@ -48,7 +57,7 @@ router.post("/", (req, res, next) => {
 
       }
       // console.log(typeof (authorsSearched[1].key), authorsSearched[1].key);
-      res.render("index", { authorsSearched })
+      res.render("index", { authorsSearched})
     })
     .catch(error => console.log(error));
 })
@@ -105,7 +114,8 @@ router.get("/oneBook/wishlist/:key", async (req, res, next) => {
         });
         genreModel.create({
           subject: response.data.docs[0].subject
-        })
+        });
+        res.redirect("/");
       })
     })
     })
@@ -140,7 +150,8 @@ router.get("/oneBook/redlist/:key", async (req, res, next) => {
         });
         genreModel.create({
           subject: response.data.docs[0].subject
-        })
+        });
+        res.redirect("/");
       })
     
       // res.send("foo");
