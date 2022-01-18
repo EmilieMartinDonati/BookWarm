@@ -32,7 +32,7 @@ router.get('/reviews/:id/edit', (req, res) => {
     })
   })
 
-//DELETE REVIEWS DESTROY - /REVIEWS/:ID
+//DELETE REVIEWS DELETE - /REVIEWS/:ID
 
 router.delete("/reviews/:id", function (req, res) {
   console.log("DELETE review");
