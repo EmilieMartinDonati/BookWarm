@@ -69,8 +69,8 @@ app.use("/", login)
 const logout = require("./routes/logout")
 app.use("/", logout)
 
-
-// app.use(require("./middlewares/loginstatus"));
+app.use(require("./middlewares/protectRoute"))
+app.use(require("./middlewares/loginstatus"));
 
 // app.use(function (req, res, next) {
 //     res.locals.session = req.session;
@@ -82,6 +82,9 @@ app.use("/", logout)
 
 const personalspace = require("./routes/personalspace")
 app.use("/personalspace", personalspace);
+
+const reviews = require("./routes/review-route");
+app.use("/", reviews)
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);

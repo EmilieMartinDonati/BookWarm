@@ -1,18 +1,18 @@
 const { Schema, model } = require("mongoose");
 
-
-const reviewSchema = Schema({
-    title: String,
+const reviewSchema = new Schema({
+    key: String,
     bookTitle: String,
-    authorBook:String,
+    authorBook: String,
+    review: String,
   });
   
-const review = mongoose.model('Review', {
-  title: String,
-  bookTitle: String
-});
+// const review = mongoose.model('Review', {
+//   title: String,
+//   bookTitle: String
+// });
 
-const Review = mongoose.model("review", reviewSchema);
+const Review = model("reviews", reviewSchema);
 
 
 module.exports = Review;
