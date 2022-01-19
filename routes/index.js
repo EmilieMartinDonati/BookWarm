@@ -72,7 +72,7 @@ router.post("/", async (req, res, next) => {
 
 router.get("/oneBook/works/:key", async (req, res, next) => {
   try {
-    const booksRead = await bookRedModel.findOne({ key: `/works/${req.params.key}` });
+    const booksRead = await bookRedModel.findOne({ key: `works/${req.params.key}` });
     if (booksRead) booksRead.otherKey = booksRead.key.slice(7).toString();
     let number = 1;
 
@@ -94,9 +94,9 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
     }
     console.log(response4.data.volumeInfo.imageLinks, typeof response4);
     const user = req.session.currentUser.username;
-    const reviewsOneBook = await Review.find({ key: `/works/${req.params.key}` });
+    const reviewsOneBook = await Review.find({ key: `works/${req.params.key}` });
     // const reviewWriter = reviewsOneBook[0].user._id;
-    res.render("bookpage.hbs", { titleFound, user, reviews: await Review.find({ key: `/works/${req.params.key}` }).populate("user"), booksRead, image});
+    res.render("bookpage.hbs", { titleFound, user, reviews: await Review.find({ key: `works/${req.params.key}` }).populate("user"), booksRead, image});
   }
   catch (err) {
     next(err)

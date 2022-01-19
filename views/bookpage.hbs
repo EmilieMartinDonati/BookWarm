@@ -33,8 +33,8 @@
             <div class="card">
                 <div class="card-body">
                     <p class="card-text" id="review">{{this.review}}</p>
-                    {{!-- <p>{{this.user.username}}</p>
-                    <p>{{@root.user}}</p> --}}
+                    <p>{{this.user.username}}</p>
+                    <p>{{@root.user}}</p>
                     <div class="row">
                 <form action="/oneBook/like/{{this._id}}" method="POST">
                 <button class="btn"><p>👍</p></button>
@@ -72,7 +72,7 @@
                 <div class="collapse" id="collapseExample">
                     <div class="card card-body" id="form">
                         <div class="text-center pt-4">
-                            <form action="/oneBook/{{titleFound.key}}" method="POST">
+                            <form action="/oneBook/works/{{titleFound.key}}" method="POST">
                                 {{!-- <label for='username'>Username</label>
                                 <input type="text"name="{{req.session.currentUser.username}}" required> --}}
                                 <label for="review-title">TITLE</label>
@@ -104,19 +104,3 @@
 </div>
 
 <hr>
-
-
-{{!-- CHAT INSTANTANE --}}
-
-{{!-- <h1> CHAT</h1>
-<br>
-<hr>
-<form action=" ">
-
-{{>chat}}
-
-</form>
-
-<div>   
-</div>
-{{!-- </div> --}}
