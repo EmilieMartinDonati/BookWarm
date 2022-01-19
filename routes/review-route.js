@@ -7,18 +7,20 @@ const UserModel = require("../models/User.model");
 
 
 //POST REVIEWS NEW/CREATE - /REVIEWS/NEW
-router.post("/oneBook/:key", async (req, res, next) => {
+router.post("/oneBook/works/:key", async (req, res, next) => {
+  console.log("🔥", req.params.key)
   const { bookTitle, authorBook, review, rating } = { ...req.body };
-  const key = `/works/${req.params.key}`;
+  const key = `works/${req.params.key}`;
   try {
-    const bookOnDisplay = await bookRedModel.update(
+    const bookOnDisplay = await bookRedModel.updateOne(
       {key: key },
       {rating: rating },
       {new: true}
     );
 
     await Review.create({ bookTitle, authorBook, review, key, user: req.session.currentUser._id, book: bookOnDisplay._id });
-    res.redirect(`/oneBook/${req.params.key}`);
+    res.redirect(`/oneBook/works/${req.params.key}`);
+    // res.send("foo");
   }
   catch (err) {
     next(err)

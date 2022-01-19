@@ -1,5 +1,6 @@
 <div class="container" id="one-book">
     <div class="row">
+        <hr>
         <div class="col-7">
             <img src='{{image}}'/>
             <h1 class="row" id="title">{{titleFound.title}} </h1>
@@ -32,8 +33,8 @@
             <div class="card">
                 <div class="card-body">
                     <p class="card-text" id="review">{{this.review}}</p>
-                   <!--  <p>{{this.user.username}}</p>
-                    <p>{{@root.user}}</p>  -->
+                    <p>{{this.user.username}}</p>
+                    <p>{{@root.user}}</p>
                     <div class="row">
                 <form action="/oneBook/like/{{this._id}}" method="POST">
                 <button class="btn"><p>👍</p></button>
@@ -59,11 +60,11 @@
             </div>
             {{/each}}
 
-     <!--     <p>{{booksRead.otherKey}}</p>
-            <p>{{titleFound.key}}</p>       -->   
-
-<!--             {{#compare booksRead.otherKey titleFound.key}}
- -->            <div>
+            {{!-- <p>{{booksRead.otherKey}}</p>
+            <p>{{titleFound.key}}</p>         --}}
+            {{!-- {{#compare booksRead.key titleFound.key}} --}}
+            
+            <div>
                 <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
                     aria-expanded="false" aria-controls="collapseExample" id="reviewBtn">
                     WRITE A REVIEW
@@ -72,7 +73,7 @@
                 <div class="collapse" id="collapseExample">
                     <div class="card card-body" id="form">
                         <div class="text-center pt-4">
-                            <form action="/oneBook/{{titleFound.key}}" method="POST">
+                            <form action="/oneBook/works/{{titleFound.key}}" method="POST">
                                 {{!-- <label for='username'>Username</label>
                                 <input type="text"name="{{req.session.currentUser.username}}" required> --}}
                                 <label for="review-title">TITLE</label>
@@ -89,6 +90,7 @@
                                 <textarea id="description-text" name="review" cols="30"
                                     rows="10">Write your description here</textarea>
                                     <hr>
+                                    <p>{{titleFound.key}}</p>
                                 <button>SUBMIT REVIEW</button>
                             </form>
                         </div>
@@ -96,28 +98,12 @@
                 </div>
             </div>
 <!--             {{/compare}}
- -->            </div>
+ -->           
+ 
+  </div>
         </div>
     </div>
 
-
-<hr>
-<!-- 
-
-{{!-- CHAT INSTANTANE --}}
-
-<h1> CHAT</h1>
-<br>
-<hr>
-<form action="">
-
-{{!-- {{>chat}} --}}
- 
-</form>
-
-
-<div>  
-
-</div> -->
-
 </div>
+
+<hr>

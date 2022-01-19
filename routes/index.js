@@ -6,7 +6,7 @@ const Review = require("../models/reviews-model");
 const User = require("../models/User.model");
 const UsercreateModel = require("../models/User-create-book-model.js");
 const fileUploader = require("./../config/cloudinary");
-const protectRoute = require("./../middlewares/protectRoute");
+// const protectRoute = require("./../middlewares/protectRoute");
 
 
 // Première API. Le search général. 
@@ -72,7 +72,7 @@ router.post("/", async (req, res, next) => {
 
 router.get("/oneBook/works/:key", async (req, res, next) => {
   try {
-    const booksRead = await bookRedModel.findOne({ key: `/works/${req.params.key}` });
+    const booksRead = await bookRedModel.findOne({ key: `works/${req.params.key}` });
     if (booksRead) booksRead.otherKey = booksRead.key.slice(7).toString();
     let number = 1;
 
@@ -94,9 +94,9 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
     }
     console.log(response4.data.volumeInfo.imageLinks, typeof response4);
     const user = req.session.currentUser.username;
-    const reviewsOneBook = await Review.find({ key: `/works/${req.params.key}` });
+    const reviewsOneBook = await Review.find({ key: `works/${req.params.key}` });
     // const reviewWriter = reviewsOneBook[0].user._id;
-    res.render("bookpage.hbs", { titleFound, user, reviews: await Review.find({ key: `/works/${req.params.key}` }).populate("user"), booksRead, image});
+    res.render("bookpage.hbs", { titleFound, user, reviews: await Review.find({ key: `works/${req.params.key}` }).populate("user"), booksRead, image});
   }
   catch (err) {
     next(err)
@@ -116,11 +116,11 @@ router.get("/oneBook/wishlist/:key", async (req, res, next) => {
     if (response4.data.volumeInfo.imageLinks.medium) image = response4.data.volumeInfo.imageLinks.medium;
     else if (response4.data.volumeInfo.imageLinks.large) image = response4.data.volumeInfo.imageLinks.large;
     else if (response4.data.volumeInfo.imageLinks.small) image = response4.data.volumeInfo.imageLinks.small;
-    else image = `https://www.publishersweekly.com/images/cached/ARTICLE_PHOTO/photo/000/000/073/73607-v1-600x.JPG`;
+    else {image = `https://www.publishersweekly.com/images/cached/ARTICLE_PHOTO/photo/000/000/073/73607-v1-600x.JPG`};
   }
-  else (
+  else {
     image = `https://www.publishersweekly.com/images/cached/ARTICLE_PHOTO/photo/000/000/073/73607-v1-600x.JPG`
-  )
+  }
 
 
   await bookWishlistModel.create({

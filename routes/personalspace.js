@@ -6,6 +6,10 @@ const fileUploader = require('./../config/cloudinary');
 const picModel = require('../models/Pic.model')
 const Review = require('../models/reviews-model');
 const UsercreateModel = require("./../models/User-create-book-model");
+<<<<<<< HEAD
+=======
+
+>>>>>>> 14761e7069b24a09e1dbd56e15dd4eba2f9e9812
 
 router.get("/personalspace/", async (req, res, next) => {
     const wishlist = await bookWishlistModel.find();
@@ -27,6 +31,9 @@ router.get("/personalspace/", async (req, res, next) => {
       next(err);
     }
   })
+
+
+
 router.post("/personalspace/:id", async (req, res, next) => {
   const wishlist = await bookWishlistModel.findByIdAndRemove(req.params.id);
   res.redirect("/personalspace");
