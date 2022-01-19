@@ -30,10 +30,6 @@ router.post("/:id", async (req, res, next) => {
 
 
 
-  
-
-
-
 router.post("/personalspace/:id", async (req, res, next) => {
   const wishlist = await bookWishlistModel.findByIdAndRemove(req.params.id);
   res.redirect("/personalspace");

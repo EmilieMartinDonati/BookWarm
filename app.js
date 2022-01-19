@@ -61,7 +61,6 @@ const bodyParser = require('body-parser');
 
 app.use(require("./middlewares/loginstatus"));
 
-app.use(require("./middlewares/protectRoute"))
 
 
 // 👇 Start handling routes here
@@ -73,6 +72,7 @@ const auth = require("./routes/auth")
 //make the app use auth.js
 app.use("/", auth)
 
+// app.use(require("./middlewares/protectRoute"))
 const login = require("./routes/login")
 app.use("/", login)
 
