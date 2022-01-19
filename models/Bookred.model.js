@@ -2,6 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const bookRedSchema = new Schema ({
     key: String,
+    otherKey: String,
     title: String, 
     first_publish_year: Number,
     publish_year: [Number],
@@ -18,7 +19,9 @@ const bookRedSchema = new Schema ({
     author_name :  [String],
     rating: Number,
     reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
-    image: String
+    image: String,
+    user: { type: Schema.Types.ObjectId, ref: "User"},
+    date: Date,
     })
 
 const bookRedModel = model("book red", bookRedSchema);

@@ -93,7 +93,7 @@ app.use(require("./middlewares/loginstatus"));
 
 
 const personalspace = require("./routes/personalspace")
-app.use("/personalspace", personalspace);
+app.use("/", personalspace);
 
 const reviews = require("./routes/review-route");
 app.use("/", reviews)
