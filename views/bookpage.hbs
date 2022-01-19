@@ -1,5 +1,6 @@
 <div class="container" id="one-book">
     <div class="row">
+        <hr>
         <div class="col-7">
             <img src='{{image}}'/>
             <h1 class="row" id="title">{{titleFound.title}}</h1>
@@ -60,7 +61,7 @@
 
             {{!-- <p>{{booksRead.otherKey}}</p>
             <p>{{titleFound.key}}</p>         --}}
-            {{#compare booksRead.otherKey titleFound.key}}
+            {{!-- {{#compare booksRead.key titleFound.key}} --}}
             <div>
                 <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
                     aria-expanded="false" aria-controls="collapseExample" id="reviewBtn">
@@ -87,24 +88,26 @@
                                 <textarea id="description-text" name="review" cols="30"
                                     rows="10">Write your description here</textarea>
                                     <hr>
+                                    <p>{{titleFound.key}}</p>
                                 <button>SUBMIT REVIEW</button>
                             </form>
                         </div>
                     </div>
                 </div>
             </div>
-            {{/compare}}
+            {{!-- {{/compare}} --}}
             </div>
         </div>
     </div>
 
+</div>
 
 <hr>
 
 
 {{!-- CHAT INSTANTANE --}}
 
-<h1> CHAT</h1>
+{{!-- <h1> CHAT</h1>
 <br>
 <hr>
 <form action=" ">
@@ -115,4 +118,4 @@
 
 <div>   
 </div>
-</div>
+{{!-- </div> --}}
