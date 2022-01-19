@@ -8,8 +8,9 @@ const UserModel = require("../models/User.model");
 
 //POST REVIEWS NEW/CREATE - /REVIEWS/NEW
 router.post("/oneBook/:key", async (req, res, next) => {
+  console.log("🔥", req.params.key)
   const { bookTitle, authorBook, review, rating } = { ...req.body };
-  const key = `/works/${req.params.key}`;
+  const key = `works/${req.params.key}`;
   try {
     const bookOnDisplay = await bookRedModel.update(
       {key: key },
