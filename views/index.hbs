@@ -40,11 +40,11 @@
     <form method="POST" action="/addbook" enctype="multipart/form-data">
     <label for="title">TITLE</label>
     <br>
-    <input type="text" name="title" required />
+    <input type="text" name="title"  placeholder="Stupeur et tremblements" required />
     <hr>
-    <label for="title">AUTHOR NAME</label>
+    <label for="title" >AUTHOR NAME</label>
     <br>
-    <input type="text" name="author_name" required />
+    <input type="text" name="author_name" placeholder="Amelie Nothomb" required />
     <hr>
         <label for="picture" class="label"> <i class="icon fas fa-cloud-upload-alt fa-1x">choose a picture </i> </label>
         <br>
@@ -52,7 +52,7 @@
     <br>
     <label for="summary" class="label">Summary</label>
     <br>
-    <textarea type="text" class="input" id="description" name="description">Write your book summary here </textarea>
+    <textarea type="text" class="input" id="description" name="description" placeholder="Write your book summary here" rows="" cols=""> </textarea>
     <br>
     <button>ADD A NEW BOOK </button>
     </form>
