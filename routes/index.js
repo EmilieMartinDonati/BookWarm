@@ -273,7 +273,7 @@ router.get("/oneBook/redlist/:key", async (req, res, next) => {
 
 // GET - CREATE A BOOK 
 
-router.get("/", async (req, res, next) => {
+router.get("/",protectRoute, async (req, res, next) => {
   const newBook = await bookRedModel.find()
     .then((newbook) => {
       res.render("/createdBooks", { newBook });

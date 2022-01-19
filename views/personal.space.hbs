@@ -51,7 +51,13 @@
         <h5 class="card-title">{{this.bookTitle}}</h5>
         <p class="card-text" id="author-card-name">{{this.review}}</p>
       </div>
-      <div class="row">
+      
+
+{{!-- TESTER ET ESSAYER AVEC REVIEWED KEY SI CA S'AFFICHE QUAND MEME 
+ --}}
+ 
+ {{#compare booksReviewed.reviews this.user.username}}
+<div class="row"> 
         <div id="delete" class="col-6">
           <form method="POST" action="personalspace/delete/{{this._id}}">
           <hr>
@@ -65,6 +71,8 @@
           </form>
         </div>
       </div>
+{{/compare}}
+
     </div>
     <div><a href="/oneBook/{{this.key}}">📖</a></div>
     {{/each}}
