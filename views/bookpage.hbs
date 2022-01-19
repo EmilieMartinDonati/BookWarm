@@ -2,11 +2,11 @@
     <div class="row">
         <div class="col-7">
             <img src='{{image}}'/>
-            <h1 class="row" id="title">{{titleFound.title}}</h1>
+            <h1 class="row" id="title">{{titleFound.title}} </h1>
             <h4 class="row" id="author">{{titleFound.author_name}}</h4>
             <h5 class="row" id="first-sentence">{{titleFound.first_sentence}}</h5>
             <div class="row">
-                {{!-- <div class="col-9" id="subject">{{titleFound.subject}}</div> --}}
+                <div class="col-9" id="subject">{{titleFound.subject}}</div>
                 <div class="col-3" id="number-of-pages">{{titleFound.number_of_pages_median}}</div>
             </div>
             <hr>
@@ -32,15 +32,15 @@
             <div class="card">
                 <div class="card-body">
                     <p class="card-text" id="review">{{this.review}}</p>
-                    {{!-- <p>{{this.user.username}}</p>
-                    <p>{{@root.user}}</p> --}}
+                   <!--  <p>{{this.user.username}}</p>
+                    <p>{{@root.user}}</p>  -->
                     <div class="row">
                 <form action="/oneBook/like/{{this._id}}" method="POST">
                 <button class="btn"><p>👍</p></button>
                 </form>
                 </div>
-                 {{#compare @root.user this.user.username}}
-                <div class="row">
+<!--                  {{#compare @root.user this.user.username}}
+ -->                <div class="row">
                     <div class="col-6">
                         <form action="/oneBook/edit/{{this._id}}" method="POST">
                         <label for="review">Updated review</label>
@@ -54,20 +54,21 @@
                 </form>
                 </div>
                 </div>
-                {{/compare}}
-                
+<!--                 {{/compare}}
+ -->
             </div>
             {{/each}}
 
-            {{!-- <p>{{booksRead.otherKey}}</p>
-            <p>{{titleFound.key}}</p>         --}}
-            {{#compare booksRead.otherKey titleFound.key}}
-            <div>
+     <!--     <p>{{booksRead.otherKey}}</p>
+            <p>{{titleFound.key}}</p>       -->   
+
+<!--             {{#compare booksRead.otherKey titleFound.key}}
+ -->            <div>
                 <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
                     aria-expanded="false" aria-controls="collapseExample" id="reviewBtn">
                     WRITE A REVIEW
                 </button>
-                </p>
+            
                 <div class="collapse" id="collapseExample">
                     <div class="card card-body" id="form">
                         <div class="text-center pt-4">
@@ -94,26 +95,29 @@
                     </div>
                 </div>
             </div>
-            {{/compare}}
-            </div>
+<!--             {{/compare}}
+ -->            </div>
         </div>
     </div>
 
 
 <hr>
-
+<!-- 
 
 {{!-- CHAT INSTANTANE --}}
 
 <h1> CHAT</h1>
 <br>
 <hr>
-<form action=" ">
+<form action="">
 
-{{>chat}}
-
+{{!-- {{>chat}} --}}
+ 
 </form>
 
-<div>   
-</div>
+
+<div>  
+
+</div> -->
+
 </div>

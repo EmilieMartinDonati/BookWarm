@@ -6,8 +6,6 @@ const fileUploader = require('./../config/cloudinary');
 const picModel = require('../models/Pic.model')
 const Review = require('../models/reviews-model');
 const UsercreateModel = require("./../models/User-create-book-model");
-const UsercreateModel = require("../models/User-create-book-model.js");
-
 
 router.get("/personalspace/", async (req, res, next) => {
     const wishlist = await bookWishlistModel.find();
@@ -41,6 +39,7 @@ router.post("/personalspace/edit/:id", async (req, res, next) => {
   await Review.findByIdAndUpdate(req.params.id, req.body, {new: true})
   res.redirect("/personalspace");
 })
+
 router.get("/oneBook/works/:key", async (req, res, next) => {
   try {
   console.log(":feu:", `/works/${req.params.key}`);
