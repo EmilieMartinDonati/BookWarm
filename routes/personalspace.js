@@ -6,7 +6,6 @@ const fileUploader = require('./../config/cloudinary');
 const picModel = require('../models/Pic.model')
 const Review = require('../models/reviews-model');
 const UsercreateModel = require("./../models/User-create-book-model");
-const UsercreateModel = require("../models/User-create-book-model.js");
 
 
 router.get("/personalspace/", async (req, res, next) => {
