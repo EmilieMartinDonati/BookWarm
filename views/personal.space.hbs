@@ -1,11 +1,12 @@
 <h1>YOUR PERSONAL SPACE</h1>
-<div>
-  <form action="/uploadimage" method="POST" enctype="multipart/form-data">
+<hr>
+<div class="row">
+  <form action="/uploadimage" method="post" enctype="multipart/form-data">
   <input type='file' name='image' />
   <button type="submit">Upload your image</button>
 </form>
 </div>
-
+<hr>
 
 <div class="row">
   <div class="col-3">
@@ -26,11 +27,13 @@
     </div>
     {{/each}}
   </div>
-  <div class="col-5">
+  <div class="col-3">
     <h3 class="text-uppercase">Last books you read. Don't hesitate to write a review!</h3>
     {{#each red}}
     <div class="card" id="author-card" style="width: 18rem;">
-      {{!-- <img src="..." class="card-img-top" alt="..."> --}}
+      {{#if this.image}}
+      <img src="{{this.image}}" class="card-img-top" alt="...">
+      {{/if}}
       <div class="card-body">
         <h5 class="card-title">{{this.title}}</h5>
         <p class="card-text" id="author-card-name">{{this.author_name}}</p>
@@ -39,7 +42,7 @@
     </div>
     {{/each}}
   </div>
-  <div class="col-2">
+  <div class="col-3">
     <h3 class="text-uppercase">Your reviews</h3>
     {{#each reviews}}
     <div class="card" id="author-card" style="width: 18rem;">
@@ -48,7 +51,13 @@
         <h5 class="card-title">{{this.bookTitle}}</h5>
         <p class="card-text" id="author-card-name">{{this.review}}</p>
       </div>
-      <div class="row">
+      
+
+{{!-- TESTER ET ESSAYER AVEC REVIEWED KEY SI CA S'AFFICHE QUAND MEME 
+ --}}
+ 
+ {{#compare booksReviewed.reviews this.user.username}}
+<div class="row"> 
         <div id="delete" class="col-6">
           <form method="POST" action="personalspace/delete/{{this._id}}">
           <hr>
@@ -62,11 +71,13 @@
           </form>
         </div>
       </div>
+{{/compare}}
+
     </div>
     <div><a href="/">📖</a></div>
     {{/each}}
   </div>
-  <div class="col-2">
+  <div class="col-3">
     <h3>YOUR ADDED BOOKS</h3>
     {{#each createdBooks}}
     <div class="card" id="author-card" style="width: 18rem;">

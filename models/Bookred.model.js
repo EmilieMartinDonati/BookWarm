@@ -19,7 +19,9 @@ const bookRedSchema = new Schema ({
     author_name :  [String],
     rating: Number,
     reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
-    image: String,
+    image: {
+        type: String,
+        default: `https://www.publishersweekly.com/images/cached/ARTICLE_PHOTO/photo/000/000/073/73607-v1-600x.JPG`},
     user: { type: Schema.Types.ObjectId, ref: "User"},
     date: Date,
     })

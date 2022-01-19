@@ -33,29 +33,32 @@
   </div>
 {{#if isLoggedIn}}
   <div class="col-4 d-flex flex-row flex-wrap">
-    <h2 class="row">ADD A BOOK</h2>
+    <h2>Add a book</h2>
     <hr>
-    <form class="row" method="POST" action="/createdBooks" enctype="multipart/form-data">
-      <label for="title">TITLE</label>
-      <hr>
-      <input type="text" name="title" required />
-      <hr>
-      <label for="title">AUTHOR NAME</label>
-      <hr>
-      <input type="text" name="author_name" required />
-      <hr>
-      <label for="picture" class="label"> <i class="icon fas fa-cloud-upload-alt fa-1x">choose a picture </i> </label>
-      <hr>
-      <input class="is-hidden" type="file" id="picture" name="picture" , required>
-      <hr>
-      <label for="summary" class="label">Summary</label>
-      <hr>
-      <textarea type="text" class="input" id="description" name="description">Write your book summary here </textarea>
-      <hr>
-      <button>ADD A NEW BOOK </button>
+    <form method="POST" action="/createdBooks" enctype="multipart/form-data" class="row">
+    <label for="title">TITLE</label>
+    <br>
+    <input type="text" name="title"  placeholder="Stupeur et tremblements" required />
+    <hr>
+    <label for="title" >AUTHOR NAME</label>
+    <br>
+    <input type="text" name="author_name" placeholder="Amelie Nothomb" required />
+    <hr>
+        <label for="picture" class="label"> <i class="icon fas fa-cloud-upload-alt fa-1x">choose a picture </i> </label>
+        <br>
+    <input class="is-hidden" type="file" id="picture" name="picture", required>
+    <br>
+    <label for="summary" class="label">Summary</label>
+    <br>
+    <textarea type="text" class="input" id="description" name="description" placeholder="Write your book summary here" rows="" cols=""> </textarea>
+    <br>
+    <button>ADD A NEW BOOK </button>
     </form>
   </div>
   {{/if}}
+
+
+
 
 </div>
 
