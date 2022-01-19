@@ -1,62 +1,92 @@
-
-
 {{! <div id="display-author">
-    <div></div>
+  <div></div>
 </div> }}
 
 <div class="row">
 
   <hr>
 
-    <form method="POST" action="/">
-      <label for="name">Enter name</label>
-      <input type="text" name="name" placeholder="enter name" />
-      <input type="number" name="number" max="30" min="1" value="3" />
-      <button>Search</button>
-    </form>
+  <form method="POST" action="/">
+    <label for="name">Enter name</label>
+    <input type="text" name="name" placeholder="enter name" />
+    <input type="number" name="number" max="30" min="1" value="3" />
+    <button>Search</button>
+  </form>
 
-  </div>
+</div>
 
-  <hr>
+<hr>
 
-  <div class="row">
+<div class="row">
 
   <div class="col-8 d-flex flex-row flex-wrap">
     {{#each authorsSearched}}
-      <div class="card" id="author-card" style="width: 18rem;">
-        {{! <img src="..." class="card-img-top" alt="..."> }}
-        <div class="card-body">
-          <h5 class="card-title">{{this.title}}</h5>
-          <p class="card-text" id="author-card-name">{{this.author_name}}</p>
-          <a href="/oneBook/{{this.key}}" class="btn btn-primary">Learn more</a>
-        </div>
+    <div class="card" id="author-card" style="width: 18rem;">
+      {{! <img src="..." class="card-img-top" alt="..."> }}
+      <div class="card-body">
+        <h5 class="card-title">{{this.title}}</h5>
+        <p class="card-text" id="author-card-name">{{this.author_name}}</p>
+        <a href="/oneBook/works/{{this.key}}" class="btn btn-primary">Learn more</a>
       </div>
+    </div>
     {{/each}}
   </div>
 
   <div class="col-4 d-flex flex-row flex-wrap">
-    <h2>Add a book</h2>
+    <h2 class="row">ADD A BOOK</h2>
     <hr>
-    <form method="POST" action="/addbook" enctype="multipart/form-data">
-    <label for="title">TITLE</label>
-    <br>
-    <input type="text" name="title" required />
-    <hr>
-    <label for="title">AUTHOR NAME</label>
-    <br>
-    <input type="text" name="author_name" required />
-    <hr>
-        <label for="picture" class="label"> <i class="icon fas fa-cloud-upload-alt fa-1x">choose a picture </i> </label>
-        <br>
-    <input class="is-hidden" type="file" id="picture" name="picture", required>
-    <br>
-    <label for="summary" class="label">Summary</label>
-    <br>
-    <textarea type="text" class="input" id="description" name="description">Write your book summary here </textarea>
-    <br>
-    <button>ADD A NEW BOOK </button>
+    <form class="row" method="POST" action="/createdBooks" enctype="multipart/form-data">
+      <label for="title">TITLE</label>
+      <hr>
+      <input type="text" name="title" required />
+      <hr>
+      <label for="title">AUTHOR NAME</label>
+      <hr>
+      <input type="text" name="author_name" required />
+      <hr>
+      <label for="picture" class="label"> <i class="icon fas fa-cloud-upload-alt fa-1x">choose a picture </i> </label>
+      <hr>
+      <input class="is-hidden" type="file" id="picture" name="picture" , required>
+      <hr>
+      <label for="summary" class="label">Summary</label>
+      <hr>
+      <textarea type="text" class="input" id="description" name="description">Write your book summary here </textarea>
+      <hr>
+      <button>ADD A NEW BOOK </button>
     </form>
   </div>
 
 </div>
 
+<div class="row">
+  <div class="col-12 d-flex flex-row flex-wrap">
+    {{#each personalBooks}}
+    <div class="card" id="author-card" style="width: 18rem;">
+      <img src="{{this.picture}}" class="card-img-top" alt="{{this.picture}}">
+      <div class="card-body">
+        <h5 class="card-title">{{this.title}}</h5>
+        <p class="card-text" id="author-card-name">{{this.author_name}}</p>
+        <a href="/oneBook/{{this._title}}" class="btn btn-primary">Learn more</a>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>
+
+
+<div class="row">
+  <h2>BEST RATED</h2>
+  <div class="col-12 d-flex flex-row flex-wrap">
+    {{#each booksRead}}
+    <div class="card" id="author-card" style="width: 18rem;">
+      {{!-- <img src="{{this.picture}}" class="card-img-top" alt="{{this.picture}}"> --}}
+      <div class="card-body">
+        <h5 class="card-title">{{this.title}}</h5>
+        <p class="card-text" id="author-card-name">{{this.author_name}}</p>
+        <p class="card-text" id="author-card-name">{{this.rating}}</p>
+        <a href="/oneBook/{{this._title}}" class="btn btn-primary">Learn more</a>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</div>

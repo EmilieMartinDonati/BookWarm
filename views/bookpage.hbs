@@ -29,21 +29,35 @@
             <div class="card">
                 <div class="card-body">
                     <p class="card-text" id="review">{{this.review}}</p>
-                    <p>{{this.user.username}}</p>
-                    <p>{{@root.user}}</p>
+                    {{!-- <p>{{this.user.username}}</p>
+                    <p>{{@root.user}}</p> --}}
+                    <div class="row">
+                <form action="/oneBook/like/{{this._id}}" method="POST">
+                <button class="btn"><p>👍</p></button>
+                </form>
                 </div>
                  {{#compare @root.user this.user.username}}
                 <div class="row">
                     <div class="col-6">
+                        <form action="/oneBook/edit/{{this._id}}" method="POST">
+                        <label for="review">Updated review</label>
+                        <input type="text" name="review" />
                 <button class="btn"><p>EDIT ✏️</p></button>
+                </form>
                 </div>
                 <div class="col-6">
+                    <form action="/oneBook/delete/{{this._id}}" method="POST">
                 <button class="btn"><p>DELETE 💣</p></button>
+                </form>
                 </div>
                 </div>
                 {{/compare}}
             </div>
             {{/each}}
+
+            {{!-- <p>{{booksRead.otherKey}}</p>
+            <p>{{titleFound.key}}</p>         --}}
+            {{#compare booksRead.otherKey titleFound.key}}
             <div>
                 <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
                     aria-expanded="false" aria-controls="collapseExample" id="reviewBtn">
@@ -62,17 +76,21 @@
                                 <label for="review-title">AUTHOR</label>
                                 <input type="text" value="{{titleFound.author_name}}" name="authorBook" />
                                 <hr>
+                                <hr>
+                                <label for="review-title">YOUR RATING ON 5</label>
+                                <input type="text" value="5" min="1" max="5" name="rating" />
+                                <hr>
                                 <label for="description-text">REVIEW</label>
                                 <textarea id="description-text" name="review" cols="30"
                                     rows="10">Write your description here</textarea>
                                     <hr>
-                                <label for="rating">Ratings on 5</label>
-                                <input type="number" min="1" max="5" />
                                 <button>SUBMIT REVIEW</button>
                             </form>
                         </div>
                     </div>
                 </div>
+            </div>
+            {{/compare}}
             </div>
         </div>
     </div>

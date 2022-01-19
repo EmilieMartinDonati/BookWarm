@@ -17,6 +17,8 @@ const bookWishlistSchema = new Schema ({
     author_key: [String],
     image: String,
     author_name:  [String],
+    user: { type: Schema.Types.ObjectId, ref: "User"},
+    reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
     })
 
 const bookWishlistModel = model("wishlist", bookWishlistSchema);

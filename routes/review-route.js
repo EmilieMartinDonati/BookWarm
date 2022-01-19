@@ -5,51 +5,55 @@ const Review = require('../models/reviews-model');
 const bookRedModel = require("../models/Bookred.model");
 const UserModel = require("../models/User.model");
 
-//GET REVIEWS - INDEX/REVIEWS/
-/* router.get('/',req,res,next) =>{
-} */
 
 //POST REVIEWS NEW/CREATE - /REVIEWS/NEW
 router.post("/oneBook/:key", async (req, res, next) => {
-  const {bookTitle, authorBook, review} = {...req.body};
+  const { bookTitle, authorBook, review, rating } = { ...req.body };
   const key = `/works/${req.params.key}`;
   try {
-    const bookOnDisplay = await bookRedModel.findOne({key: key});
-    await Review.create({bookTitle, authorBook, review, key, user: req.session.currentUser._id, book: bookOnDisplay._id});
+    const bookOnDisplay = await bookRedModel.update(
+      {key: key },
+      {rating: rating },
+      {new: true}
+    );
+
+    await Review.create({ bookTitle, authorBook, review, key, user: req.session.currentUser._id, book: bookOnDisplay._id });
     res.redirect(`/oneBook/${req.params.key}`);
-    }
+  }
   catch (err) {
     next(err)
   }
 })
 
 
-// //REVIEW  REVIEWS - CREATE/REVIEWS
-// router.get('/reviews', (req, res) => {
-//   res.render('reviews/:id', {});
-// })
+router.post("/oneBook/delete/:id", async (req, res, next) => {
+  await Review.findByIdAndDelete(req.params.id);
+  res.redirect("/personalspace");
+})
 
-//GET REVIEWS EDIT - /REVIEWS/:ID/EDIT
-// router.get('/oneBook/:key/', (req, res) => {
-//   Review.findById(req.params.id, function (err, review) {
-//     res.render('reviews-edit', { review: review });
-//   })
-// })
+router.post("/oneBook/edit/:id", async (req, res, next) => {
+  try {
+    await Review.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    res.redirect("/personalspace");
+  }
+  catch (err) {
+    next(err)
+  }
+})
 
-//DELETE REVIEWS DELETE - /REVIEWS/:ID
+router.post("/oneBook//like/:id", async (req, res, next) => {
+  try {
+    await Review.findByIdAndRemove(req.params.id);
+    res.redirect(`/oneBook/${req.params.titleFound.key}`);
+  }
+  catch (err) {
+    next(err)
+  }
+})
 
-router.use(require("../middlewares/userIdentity"));
 
-router.delete("/oneBook/:key/delete/:id", function (req, res, next) {
-  console.log("DELETE review");
-  Review.findByIdAndRemove(req.params.id)
-    .then((review) => {
-      res.redirect(`/oneBook/${req.params.key}`);
-    })
-    .catch((err) => {
-      next(err)
-    });
-});
+
+
 
 
 module.exports = router;

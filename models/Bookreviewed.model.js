@@ -17,7 +17,8 @@ const bookReviewedSchema = new Schema ({
     author_key : [String],
     author_name :  [String],
     rating: Number,
-    reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }]
+    reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
+    user: { type: Schema.Types.ObjectId, ref: "User"},
     })
 
 const bookReviewedModel = model("book reviewed", bookReviewedSchema);
