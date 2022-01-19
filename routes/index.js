@@ -4,7 +4,7 @@ const bookWishlistModel = require("../models/Bookwishlist.model")
 const genreModel = require("../models/genre.Model");
 const Review = require("../models/reviews-model");
 const User = require("../models/User.model");
-const UsercreateModel = require("../models/User-create-book.-modeljs");
+const UsercreateModel = require("../models/User-create-book-model.js");
 const fileUploader = require("./../config/cloudinary");
 const protectRoute = require("./../middlewares/protectRoute");
 

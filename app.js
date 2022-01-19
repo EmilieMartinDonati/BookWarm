@@ -73,6 +73,7 @@ const auth = require("./routes/auth")
 //make the app use auth.js
 app.use("/", auth)
 
+
 const login = require("./routes/login")
 app.use("/", login)
 
