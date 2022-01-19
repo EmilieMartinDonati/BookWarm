@@ -6,7 +6,7 @@ const Review = require("../models/reviews-model");
 const User = require("../models/User.model");
 const UsercreateModel = require("../models/User-create-book-model.js");
 const fileUploader = require("./../config/cloudinary");
-const protectRoute = require("./../middlewares/protectRoute");
+// const protectRoute = require("./../middlewares/protectRoute");
 
 
 // Première API. Le search général. 
@@ -273,7 +273,7 @@ router.get("/oneBook/redlist/:key", async (req, res, next) => {
 
 // GET - CREATE A BOOK 
 
-router.get("/",protectRoute, async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   const newBook = await bookRedModel.find()
     .then((newbook) => {
       res.render("/createdBooks", { newBook });
