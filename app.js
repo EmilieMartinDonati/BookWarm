@@ -59,9 +59,10 @@ app.use(
 //INITIALIZE BODY-PARSER 
 const bodyParser = require('body-parser');
 
-
-
 app.use(require("./middlewares/loginstatus"));
+
+app.use(require("./middlewares/protectRoute"))
+
 
 // 👇 Start handling routes here
 const index = require("./routes/index");
@@ -84,8 +85,7 @@ app.use("/", logout)
 // app.use(require("./middlewares/devMode")); // active le mode dev pour éviter les deconnexions
 //   app.use(require("./middlewares/debugSessionInfos")); // affiche le contenu de la session
 
-app.use(require("./middlewares/protectRoute"))
-app.use(require("./middlewares/loginstatus"));
+// app.use(require("./middlewares/loginstatus"));
 
 // app.use(function (req, res, next) {
 //     res.locals.session = req.session;
