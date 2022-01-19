@@ -52,6 +52,7 @@ const login = require("./routes/login")
 app.use("/", login)
 const logout = require("./routes/logout")
 app.use("/", logout)
+
 // COSTUM MIDDLEWARES
 // app.use(require("./middlewares/devMode")); // active le mode dev pour éviter les deconnexions
 //   app.use(require("./middlewares/debugSessionInfos")); // affiche le contenu de la session

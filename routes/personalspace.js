@@ -7,7 +7,6 @@ const picModel = require('../models/Pic.model')
 const Review = require('../models/reviews-model');
 const UsercreateModel = require("./../models/User-create-book-model");
 
-
 router.get("/personalspace/", async (req, res, next) => {
     const wishlist = await bookWishlistModel.find();
     const red = await bookRedModel.find().sort({ date: -1 }).limit(5);
@@ -19,11 +18,16 @@ router.get("/personalspace/", async (req, res, next) => {
   });
   router.post("/uploadimage", fileUploader.single("image"), async (req, res, next) => {
     const updatedPicture = { ...req.body };
+    console.log(updatedPicture);
     if (!req.file) updatedPicture.image = undefined;
     else updatedPicture.image = req.file.path;
     try {
+      const wishlist = await bookWishlistModel.find();
+      const red = await bookRedModel.find().sort({ date: -1 }).limit(5);
+      const reviews = await Review.find();
+      const createdBooks = await UsercreateModel.find();
       const newPic = await picModel.create(updatedPicture);
-      res.render("personal.space",{newPic})
+      res.render("personal.space.hbs", {newPic, wishlist, red, reviews, createdBooks} )
     } catch (err) {
       next(err);
     }
@@ -43,6 +47,7 @@ router.post("/personalspace/edit/:id", async (req, res, next) => {
   await Review.findByIdAndUpdate(req.params.id, req.body, {new: true})
   res.redirect("/personalspace");
 })
+
 router.get("/oneBook/works/:key", async (req, res, next) => {
   try {
   console.log(":feu:", `/works/${req.params.key}`);
