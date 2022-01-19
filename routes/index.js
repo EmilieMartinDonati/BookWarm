@@ -6,6 +6,8 @@ const Review = require("../models/reviews-model");
 const User = require("../models/User.model");
 const UsercreateModel = require("./../models/User-create-book");
 const fileUploader = require("./../config/cloudinary");
+const protectRoute = require("./../middlewares/protectRoute");
+
 
 // Première API. Le search général. 
 
