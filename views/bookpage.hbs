@@ -1,11 +1,12 @@
 <div class="container" id="one-book">
     <div class="row">
         <div class="col-7">
+            <img src='{{image}}'/>
             <h1 class="row" id="title">{{titleFound.title}}</h1>
             <h4 class="row" id="author">{{titleFound.author_name}}</h4>
             <h5 class="row" id="first-sentence">{{titleFound.first_sentence}}</h5>
             <div class="row">
-                <div class="col-9" id="subject">{{titleFound.subject}}</div>
+                {{!-- <div class="col-9" id="subject">{{titleFound.subject}}</div> --}}
                 <div class="col-3" id="number-of-pages">{{titleFound.number_of_pages_median}}</div>
             </div>
             <hr>
