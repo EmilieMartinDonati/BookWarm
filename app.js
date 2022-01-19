@@ -49,7 +49,8 @@ app.use(
         resave: false,
         saveUninitialized: false,
         store: MongoStore.create({
-            mongoUrl: 'mongodb://127.0.0.1/test-API'
+            mongoUrl: 'mongodb://127.0.0.1/test-API',
+            ttl: 1000 * 60 * 60 * 6,
         })
     })
 );
@@ -57,8 +58,10 @@ app.use(
   
 //INITIALIZE BODY-PARSER 
 const bodyParser = require('body-parser');
-app.use(bodyParser.urlencoded({ extended: true }));
 
+
+
+app.use(require("./middlewares/loginstatus"));
 
 // 👇 Start handling routes here
 const index = require("./routes/index");

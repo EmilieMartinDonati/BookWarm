@@ -2,6 +2,8 @@ const router = require("express").Router();
 const bookRedModel = require("../models/Bookred.model");
 const bookWishlistModel = require("../models/Bookwishlist.model")
 const genreModel = require("../models/genre.Model");
+const fileUploader = require('./../config/cloudinary');
+const picModel = require('../models/Pic.model')
 const Review = require('../models/reviews-model');
 const UsercreateModel = require("./../models/User-create-book");
 
@@ -15,6 +17,24 @@ router.get("/personalspace/", async (req, res, next) => {
     res.render("personal.space.hbs", {wishlist, red, reviews, createdBooks}
     )
   });
+
+  router.post("/uploadimage", fileUploader.single("image"), async (req, res, next) => {
+    const updatedPicture = { ...req.body };
+    if (!req.file) updatedPicture.image = undefined;
+    else updatedPicture.image = req.file.path;
+  
+    try {
+      const newPic = await picModel.create(updatedPicture);
+      res.render("personal.space",{newPic})
+    } catch (err) {
+      next(err);
+    }
+  })
+
+
+
+  
+
 
 
 router.post("/personalspace/:id", async (req, res, next) => {

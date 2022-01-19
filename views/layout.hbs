@@ -18,7 +18,7 @@
     <span id="logo-main">
       <a href="/">test-API</a>
     </span>
-    <nav class="w-100">
+    {{!-- <nav class="w-100">
       <a href="/" class="link">home</a>
       <a href="/login" class="link">Sign in</a> 
          {{#if isLoggedIn}}       
@@ -26,7 +26,18 @@
       {{/if}}
      
       <a href="/signup">Sign up</a> 
-    </nav>
+    </nav> --}}
+<nav class="w-100">
+         <a href="/" class="link">home</a>
+         {{#if isLoggedIn}}
+         <a href="/logout" class="link">Sign out</a>
+         {{else}}
+         <a href="/login" class="link">Sign in</a>
+         <a href="/signup" class="link">Sign up</a>
+         {{/if}}
+
+      </nav>
+
     <div class="col-4">
     <h3 class="text-uppercase text-justify">Your personal space</h3>
     <a href="/personalspace">VISIT</a>
