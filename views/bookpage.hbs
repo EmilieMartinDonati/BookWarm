@@ -70,9 +70,15 @@
                     {{#compare @root.user this.user.username}}
                     <div class="row">
                         <form action="/oneBook/like/{{this._id}}" method="POST">
-                            <button class="btn">
+
+                            <div class="row">
+
+                            <button class="btn" onclick="actOnLike(event);"  name="{{this.reviews.id }}"  >Like
                                 <i class="far fa-heart"></i>
                             </button>
+                            <span id="User-{{ this.id }}">{{ this.like_count}}</span>
+
+                            </div>
                         </form>
                     </div>
 
@@ -83,12 +89,12 @@
     {{#each like }}
         <div class="likecount">
 
-                {{!-- {{#compare likeModel.user this.user.id} --}}
+                {{!-- {{#compare likeModel.user this.user.userName} --}}
 
 
             <div class="row">
                 <button onclick="actOnLike(event);"
-                        data-post-id="{{ this.id }}">👍 Like
+                        data-like-id="{{ this.id }}">👍 Like
                 </button>
                 <span id="User-{{ this.id }}">{{ this.like_count}}</span>
             </div>

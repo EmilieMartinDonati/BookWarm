@@ -45,7 +45,7 @@ app.use(require("./middlewares/loginstatus"));
 //INITIALIZE BODY-PARSER
 const bodyParser = require("body-parser");
 // :index_vers_le_bas: Start handling routes here
-const index = require("./routes/index");
+const index = require("/routes/index");
 app.use("/", index);
 //Link with auth.js
 const auth = require("./routes/auth");

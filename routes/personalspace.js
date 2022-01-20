@@ -7,6 +7,10 @@ const picModel = require("../models/Pic.model");
 const Review = require("../models/reviews-model");
 const UsercreateModel = require("./../models/User-create-book-model");
 
+
+
+
+
 router.get("/personalspace/", async (req, res, next) => {
   const wishlist = await bookWishlistModel.find();
   const red = await bookRedModel.find().sort({ date: -1 }).limit(5);
@@ -16,6 +20,9 @@ router.get("/personalspace/", async (req, res, next) => {
   res.render("personal.space.hbs", { wishlist, red, reviews, createdBooks }
   )
 });
+
+
+// ROUTE POUR ULPODER L IMAGE DU PROFIL
 router.post(
   "/uploadimage",
   fileUploader.single("image"),
