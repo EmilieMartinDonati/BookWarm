@@ -1,0 +1,17 @@
+<div class="row p-3 m-1 flex-wrap">
+    {{#each createdBooks}}
+    <div class="card" style="width: 18rem;">
+        <img src={{this.picture}} class="card-img-top" alt={{this.title}}>
+        <div class="card-body">
+            <p class="card-text" id="review">{{this.title}}</p>
+            <p>{{this.author_name}}</p>
+            <p>{{this.first_sentence}}</p>
+        </div>
+        <div class="card-text">
+            <form method="POST" action="/oneBook/wishlist/{{this._id}}/delete">
+                <button>DELETE BOOK</button>
+            </form>
+        </div>
+    </div>
+    {{/each}}
+</div>

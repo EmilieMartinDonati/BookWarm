@@ -61,9 +61,35 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
     key = `works/${req.params.key}`;
     const clickedBooks = await bookWishlistModel.findOne({ key: key });
     const clickedBooks2 = await bookRedModel.findOne({ key: key });
-    res.render("user-create-book.hbs", { clickedBooks, clickedBooks2 });
+    res.render("user-create-book.hbs", { clickedBooks, clickedBooks2 })
+  }
+  catch (err) {
+    next(err)
+  }
+})
+
+
+router.get("/personalbooks", async (req, res, next) => {
+  try {
+    const createdBooks = await UsercreateModel.find();
+    res.render("personalbooks.hbs", { createdBooks });
   } catch (err) {
     next(err);
   }
-});
+})
 module.exports = router;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

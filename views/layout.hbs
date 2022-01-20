@@ -1,58 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      <title>{{title}}</title>
-      <link rel="stylesheet" href="/stylesheets/style.css" />
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-   </head>
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>{{title}}</title>
+   <link rel="stylesheet" href="/stylesheets/style.css" />
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+</head>
 
-   <body>
+{{!-- <body> --}}
 
-       <header id="header-main">
-          <div class="row bg-dark text-white flex-col">
-    <span id="logo-main">
-      <a href="/">test-API</a>
-    </span>
-    {{!-- <nav class="w-100">
-      <a href="/" class="link">home</a>
-      <a href="/login" class="link">Sign in</a> 
-         {{#if isLoggedIn}}       
-      <a href="/logout"class="link">Sign out</a>
-      
-      <a href="/signup">Sign up</a> 
-    </nav> --}}
-<nav class="w-100">
-         <a href="/" class="link">home</a>
-         {{#if isLoggedIn}}
-         <a href="/logout" class="link">Sign out</a>
-         {{else}}
-         <a href="/login" class="link">Sign in</a>
-         <a href="/signup" class="link">Sign up</a>
-         {{/if}}
+   <header id="header-main">
+      <div class="row bg-dark text-white flex-col p-3 m-1">
+         <span id="logo-main" class="col-9">
+            <h1>BOOKWARM</h1>
+         </span>
+         <div class="col-3">
+            {{#if isLoggedIn}}
+            <h3 class="text-uppercase text-justify mr-1"><a href="/personalspace">Your personal space</a></h3>
+            {{/if}}
+         </div>
+         <nav class="row">
+            <div class="col-1">
+               <a href="/" class="link">home</a>
+            </div>
+            <div class="col-1">
+               <a href="/personalspace" class="link">personal space</a>
+            </div>
+            <div class="col-1">
+               {{#if isLoggedIn}}
+               <a href="/logout" class="link">Sign out</a>
+            </div>
+            {{else}}
+            <div class="col-1">
+               <a href="/login" class="link">Sign in</a>
+            </div>
+            <div class="col-1">
+               <a href="/signup" class="link">Sign up</a>
+            </div>
+            {{/if}}
+         </nav>
+      </div>
 
-      </nav>
+   </header>
 
-    <div class="col-4">
-    <h3 class="text-uppercase text-justify">Your personal space</h3>
-    {{#if isLoggedIn}}
-    <a href="/personalspace">VISIT</a>
-    {{/if}}
-</div> 
-</div>
-
-  </header>
-
-      {{{body}}}
+   {{{body}}}
 
 
-      {{> footer}}
+   {{> footer}}
 
-      <script type="module" src="/js/script.js"></script>
-   </body>
+   <script type="module" src="/js/script.js"></script>
+{{!-- </body> --}}
 
 </html>
