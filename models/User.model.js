@@ -5,9 +5,8 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema({
   userName: String,
   password: String,
-  // timestamps: true,
-}
-)
+  profilePicture: String,
+})
  
 
 const User = model("User", userSchema);

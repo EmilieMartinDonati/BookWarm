@@ -141,13 +141,32 @@ router.get("/oneBook/wishlist/:key", async (req, res, next) => {
     author_name: response2.data.docs[0].author_name,
     image: image,
   });
-  genreModel.create({
+  await genreModel.create({
     subject: response2.data.docs[0].subject
   });
-  res.redirect("/personalspace");
+  const addedBooks = await bookWishlistModel.find();
+  res.render("wishlist.hbs", {addedBooks});
 })
 
+router.get("/oneBook/wishlist", async (req, res, next) => {
+  try {
+    const addedBooks = await bookWishlistModel.find();
+    res.render("wishlist.hbs", {addedBooks});
+  }
+  catch (err) {
+   next(err)
+  }
+})
 
+router.post("/oneBook/wishlist/:id/delete", async (req, res, next) => {
+try {
+  await bookWishlistModel.findByIdAndDelete(req.params.id);
+  res.redirect("/personalspace");
+}
+catch (err) {
+next(err);
+}
+})
 
 // apiKey
 //   .get(`/works/${req.params.key}.json`)
@@ -291,15 +310,16 @@ router.post("/createdBooks", fileUploader.single("picture"), async (req, res, ne
 
   try {
     await UsercreateModel.create(newBook);
-    const wishlist = await bookWishlistModel.find();
-    const red = await bookRedModel.find();
-    const reviews = await Review.find();
+    // const wishlist = await bookWishlistModel.find();
+    // const red = await bookRedModel.find();
+    // const reviews = await Review.find();
     const createdBooks = await UsercreateModel.find();
-    res.render("personal.space.hbs", { wishlist, red, reviews, createdBooks });
+    res.render("personalbooks.hbs", {createdBooks });
   } catch (err) {
     next(err);
   }
 });
+
 
 module.exports = router;
 
