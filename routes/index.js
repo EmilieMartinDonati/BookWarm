@@ -289,8 +289,8 @@ router.get("/", async (req, res, next) => {
     .then((newbook) => {
       res.render("/createdBooks", { newBook });
     })
-    .catch(err);
-});
+  
+    });
 
 //POST- CREATE A BOOK 
 
