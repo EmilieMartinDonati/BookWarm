@@ -8,7 +8,7 @@ const UserModel = require("../models/User.model");
 
 //POST REVIEWS NEW/CREATE - /REVIEWS/NEW
 router.post("/oneBook/works/:key", async (req, res, next) => {
-  console.log("🔥", req.params.key)
+  // console.log("🔥", req.params.key)
   const { bookTitle, authorBook, review, rating } = { ...req.body };
   const key = `works/${req.params.key}`;
   try {
@@ -28,8 +28,14 @@ router.post("/oneBook/works/:key", async (req, res, next) => {
 })
 
 
+
+
 router.post("/oneBook/delete/:id", async (req, res, next) => {
   await Review.findByIdAndDelete(req.params.id);
+  const key = await Review.find({id: req.params.id}, 'key');
+  console.log("🏓", key, typeof key);
+ const keyAmended = key[0].key.slice(6).toString();
+  console.log("🏓", keyAmended);
   res.redirect("/personalspace");
 })
 

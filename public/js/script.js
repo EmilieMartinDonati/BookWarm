@@ -137,7 +137,6 @@ document.addEventListener(
 
 function reviewHandler() {
   document.getElementById("collapseExample").classList.toggle("collapse");
-  console.log("yeah")
 }
 
 const reviewBtn = document.getElementById("reviewBtn");
