@@ -17,7 +17,7 @@ router.get("/personalspace/", async (req, res, next) => {
       user: req.session.currentUser._id,
     });
     const red = await bookRedModel
-      .find({ user: req.session.currentUser._id })
+      .find()
       .sort({ date: -1 })
       .limit(5);
     const reviews = await Review.find({
