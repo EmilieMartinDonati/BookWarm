@@ -124,6 +124,8 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
     else {
       image = `https://www.publishersweekly.com/images/cached/ARTICLE_PHOTO/photo/000/000/073/73607-v1-600x.JPG`
     }
+
+    console.log(response4.data.volumeInfo.imageLinks, typeof response4);
     const user = req.session.currentUser ? req.session.currentUser.username : "Bogus";
     const reviewsOneBook = await Review.find({ key: `works/${req.params.key}` });
     // const reviewWriter = reviewsOneBook[0].user._id;
@@ -133,6 +135,12 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
     next(err)
   }
 })
+
+
+
+
+
+
 
 router.get("/oneBook/wishlist/:key", async (req, res, next) => {
   let number = 1;
@@ -317,8 +325,8 @@ router.get("/", async (req, res, next) => {
     .then((newbook) => {
       res.render("/createdBooks", { newBook });
     })
-    .catch(err);
-});
+  
+    });
 
 //POST- CREATE A BOOK 
 
@@ -348,6 +356,30 @@ router.get("/oneBook/wishlist", async (req, res, next) => {
 })
 
 
+
+//ROUTE POUR LES LIKES 
+
+/* router.get("/", async (req, res, next) => {
+  try {
+    res.redirect("/oneBook/works/:key", {
+      likes: await likeModel.find().populate("reviews User"),
+    });
+  } catch (err) {
+    next(err);
+  }
+}); 
+
+router.post('/oneBook/works/:key', (req, res, next) => {
+  const action = {...req.body}
+  const counter = action === 'Like' ? 1 : -1;
+  likeModel.updateOne({_id: req.params.id}, {$inc: {type: counter}}, {}, (err, numberAffected) => {
+ 
+
+      let payload = { action: action, postId: req.params.id };
+     pusher.trigger('post-events', 'postAction', payload, req.body.socketId);
+
+      res.send('/oneBook/works/:key');  */ 
+ 
 module.exports = router;
 
 

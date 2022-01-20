@@ -9,4 +9,34 @@
         </div>
     </div>
     {{/each}}
+
+<div class="row">
+  <div class="col-4">
+<h2>Add a book</h2>
+<hr>
+<form method="POST" action="/createdBooks" enctype="multipart/form-data" class="row">
+  <label for="title">TITLE</label>
+  <br>
+  <input type="text" name="title" placeholder="Stupeur et tremblements" required />
+  <hr>
+  <label for="title">AUTHOR NAME</label>
+  <br>
+  <input type="text" name="author_name" placeholder="Amelie Nothomb" required />
+  <hr>
+  <label for="picture" class="label"> <i class="icon fas fa-cloud-upload-alt fa-1x">choose a picture </i> </label>
+  <br>
+  <input class="is-hidden" type="file" id="picture" name="picture" , required>
+  <br>
+  <label for="summary" class="label">Summary</label>
+  <br>
+  <textarea type="text" class="input" id="description" name="description" placeholder="Write your book summary here"
+    rows="" cols=""> </textarea>
+  <br>
+  <button>ADD A NEW BOOK </button>
+</form>
+</div>
+</div>
+
+
+
 </div>
