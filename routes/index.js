@@ -62,7 +62,8 @@ router.post("/", async (req, res, next) => {
   const authorsSearched = [];
   for (let i = 0; i < number; i++) {
     response.data.docs[i].key = response.data.docs[i].key.slice(7);
-    authorsSearched.push(response.data.docs[i])
+    authorsSearched.push(response.data.docs[i]);
+    res.locals.search = authorsSearched;
     res.render("index", { authorsSearched, personalBooks, booksRead })
   }
 })
