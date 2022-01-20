@@ -6,6 +6,7 @@ const Review = require("../models/reviews-model");
 const User = require("../models/User.model");
 const UsercreateModel = require("../models/User-create-book-model.js");
 const fileUploader = require("./../config/cloudinary");
+const likeModel = require("./../models/like.model")
 // const protectRoute = require("./../middlewares/protectRoute");
 
 
@@ -63,9 +64,8 @@ router.post("/", async (req, res, next) => {
   for (let i = 0; i < number; i++) {
     response.data.docs[i].key = response.data.docs[i].key.slice(7);
     authorsSearched.push(response.data.docs[i]);
-    res.locals.search = authorsSearched;
-    res.render("index", { authorsSearched, personalBooks, booksRead })
-  }
+  };
+  res.render("index", { authorsSearched, personalBooks, booksRead })
 })
 
 
@@ -320,6 +320,35 @@ router.post("/createdBooks", fileUploader.single("picture"), async (req, res, ne
   } catch (err) {
     next(err);
   }
+});
+
+
+
+//ROUTE POUR LES LIKES 
+
+/* router.get("/", async (req, res, next) => {
+  try {
+    res.render("/reviews", {
+      likes: await likeModel.find().populate("reviews User"),
+    });
+  } catch (err) {
+    next(err);
+  }
+}); */
+
+
+router.post('/reviews/:id', (req, res, next) => {
+  const action = {...req.body}
+  const counter = action === 'Like' ? 1 : -1;
+  likeModel.updateOne({_id: req.params.id}, {$inc: {type: counter}}, {}, (err, numberAffected) => {
+ 
+
+/*       let payload = { action: action, postId: req.params.id };
+ *       pusher.trigger('post-events', 'postAction', payload, req.body.socketId);
+ */
+      res.send('../views/bookpage.hbs');
+  });
+
 });
 
 

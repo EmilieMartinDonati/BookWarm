@@ -61,9 +61,35 @@
                 <p>{{@root.user}}</p>
                 <div class="row">
                     <form action="/oneBook/like/{{this._id}}" method="POST">
-                        <button class="btn">
-                            <p>👍</p>
-                        </button>
+
+
+
+
+<!-- <div class="container-fluid text-center">
+
+    {{#each like }}
+        <div class="likecount">
+
+                {{!-- {{#compare likeModel.user this.user.id} --}}
+
+
+            <div class="row">
+                <button onclick="actOnLike(event);"
+                        data-post-id="{{ this.id }}">👍 Like
+                </button>
+                <span id="User-{{ this.id }}">{{ this.like_count}}</span>
+            </div>
+        </div>
+                {{!-- {{/compare}} --}}
+
+    {{/each}}
+
+</div> -->
+
+
+
+
+
                     </form>
                 </div>
                 {{!-- {{#compare @root.user this.user.username}} --}}
@@ -138,3 +164,19 @@
 </div>
 
 <hr>
+
+<!-- 
+<script>   
+
+
+var toggleButtonText = {
+        Like: function(button) {
+            button.textContent = "Unlike";
+        },
+
+        Unlike: function(button) {
+            button.textContent = "Like";
+        }
+    };
+
+</script> -->
