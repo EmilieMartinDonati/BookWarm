@@ -76,7 +76,6 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
     const booksRead = await bookRedModel.findOne({ key: `works/${req.params.key}` });
     if (booksRead) booksRead.otherKey = booksRead.key.slice(7).toString();
     let number = 1;
-
     const response = await apiKey.get(`/works/${req.params.key}.json`);
     const response2 = await api.get(`${response.data.title}&fields=*,availability&limit=${number}`);
     response2.data.docs[0].key = response2.data.docs[0].key.slice(7)
@@ -94,17 +93,21 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
       image = `https://www.publishersweekly.com/images/cached/ARTICLE_PHOTO/photo/000/000/073/73607-v1-600x.JPG`
     }
     console.log(response4.data.volumeInfo.imageLinks, typeof response4);
-    const user = req.session.currentUser ? req.session.currentUser.username : "no-user"
-  
+    const user = req.session.currentUser ? req.session.currentUser.username : "Bogus";
     const reviewsOneBook = await Review.find({ key: `works/${req.params.key}` });
     // const reviewWriter = reviewsOneBook[0].user._id;
-
-    res.render("bookpage.hbs", { titleFound, user, reviews: reviewsOneBook, booksRead, image});
-  }}
+    res.render("bookpage.hbs", { titleFound, user, reviews: await Review.find({ key: `works/${req.params.key}` }).populate("user"), booksRead, image});
+  }
   catch (err) {
     next(err)
   }
 })
+
+
+
+
+
+
 
 router.get("/oneBook/wishlist/:key", async (req, res, next) => {
   let number = 1;
