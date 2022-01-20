@@ -13,8 +13,31 @@
       </form>
     </div>
     <hr>
+    <p>
+      <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
+        aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#multiCollapseExample2"
+        aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target=".multi-collapse"
+        aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle both elements</button>
+    </p>
     <div class="row">
-      <h4>SEARCH BY GENRES</h4>
+      <div class="col">
+        <div class="collapse multi-collapse" id="multiCollapseExample1">
+          <div class="card card-body">
+            Some placeholder content for the first collapse component of this multi-collapse example. This panel is
+            hidden by default but revealed when the user activates the relevant trigger.
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="collapse multi-collapse" id="multiCollapseExample2">
+          <div class="card card-body">
+            Some placeholder content for the second collapse component of this multi-collapse example. This panel is
+            hidden by default but revealed when the user activates the relevant trigger.
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -75,7 +98,8 @@
         <input type="text" name="username" placeholder="Your username"><br>
         <label for="password">Password</label><br>
         <input type="password" name="password" placeholder="********"><br>
-        <label for="picture" class="label"> <i class="icon fas fa-cloud-upload-alt fa-1x"> Choose a picture </i> </label>
+        <label for="picture" class="label"> <i class="icon fas fa-cloud-upload-alt fa-1x"> Choose a picture </i>
+        </label>
         <input type="file" name="image" />
         <button type="submit">Create account</button>
       </form>
@@ -101,7 +125,7 @@
       </form>
     </div>
     {{/if}}
-    
+
 
   </div>
 
@@ -134,28 +158,28 @@
 {{#if isLoggedIn}}
 <div class="row">
   <div class="col-4">
-<h2>Add a book</h2>
-<hr>
-<form method="POST" action="/createdBooks" enctype="multipart/form-data" class="row">
-  <label for="title">TITLE</label>
-  <br>
-  <input type="text" name="title" placeholder="Stupeur et tremblements" required />
-  <hr>
-  <label for="title">AUTHOR NAME</label>
-  <br>
-  <input type="text" name="author_name" placeholder="Amelie Nothomb" required />
-  <hr>
-  <label for="picture" class="label"> <i class="icon fas fa-cloud-upload-alt fa-1x">choose a picture </i> </label>
-  <br>
-  <input class="is-hidden" type="file" id="picture" name="picture" , required>
-  <br>
-  <label for="summary" class="label">Summary</label>
-  <br>
-  <textarea type="text" class="input" id="description" name="description" placeholder="Write your book summary here"
-    rows="" cols=""> </textarea>
-  <br>
-  <button>ADD A NEW BOOK </button>
-</form>
-</div>
+    <h2>Add a book</h2>
+    <hr>
+    <form method="POST" action="/createdBooks" enctype="multipart/form-data" class="row">
+      <label for="title">TITLE</label>
+      <br>
+      <input type="text" name="title" placeholder="Stupeur et tremblements" required />
+      <hr>
+      <label for="title">AUTHOR NAME</label>
+      <br>
+      <input type="text" name="author_name" placeholder="Amelie Nothomb" required />
+      <hr>
+      <label for="picture" class="label"> <i class="icon fas fa-cloud-upload-alt fa-1x">choose a picture </i> </label>
+      <br>
+      <input class="is-hidden" type="file" id="picture" name="picture" , required>
+      <br>
+      <label for="summary" class="label">Summary</label>
+      <br>
+      <textarea type="text" class="input" id="description" name="description" placeholder="Write your book summary here"
+        rows="" cols=""> </textarea>
+      <br>
+      <button>ADD A NEW BOOK </button>
+    </form>
+  </div>
 </div>
 {{/if}}

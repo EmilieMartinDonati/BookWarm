@@ -6,6 +6,7 @@ const Review = require("../models/reviews-model");
 const User = require("../models/User.model");
 const UsercreateModel = require("../models/User-create-book-model.js");
 const fileUploader = require("./../config/cloudinary");
+const likeModel = require("../models/like.model");
 // const protectRoute = require("./../middlewares/protectRoute");
 
 
@@ -72,15 +73,43 @@ router.post("/", async (req, res, next) => {
 
 router.get("/oneBook/works/:key", async (req, res, next) => {
   try {
+
+    let mid1 = 0;
+
+    const crashTest = await Review.find({ key: `works/${req.params.key}` }, {review: 1});
+    console.log("🏓", crashTest);
+
+    if (crashTest !== []) mid1 = crashTest[0];
+    let mid2 = 0;
+
+    if (mid1 === crashTest[0]) mid2 = crashTest[0]?.review;
+
+    console.log("🏓", mid2);
+
+    let likeToDisplay;
+
+    if (mid2 === crashTest[0]?.review) {
+      likeToDisplay = await likeModel.find({ review: crashTest[0]?.review })
+    };
+    console.log("🏓", likeToDisplay);
+
+    let numberOfLikes;
+
+    if (likeToDisplay !== []) {
+      numberOfLikes = likeToDisplay.length > 0 ? likeToDisplay.length : 'reviews but no likes';
+    }
+    else {
+      numberOfLikes = "no reviews and no likes";
+    }
+
     const booksRead = await bookRedModel.findOne({ key: `works/${req.params.key}` });
     if (booksRead) booksRead.otherKey = booksRead.key.slice(7).toString();
     const booksWished = await bookWishlistModel.findOne({ key: `works/${req.params.key}` });
     let number = 1;
-
     const response = await apiKey.get(`/works/${req.params.key}.json`);
     const response2 = await api.get(`${response.data.title}&fields=*,availability&limit=${number}`);
     response2.data.docs[0].key = response2.data.docs[0].key.slice(7)
-    console.log("🏓", response2.data.docs[0].key);
+    // console.log("🏓", response2.data.docs[0].key);
     const keyForCompare = `works/${response2.data.docs[0].key}`;
     const titleFound = response2.data.docs[0];
     const response3 = await apiGoogle.get(`${response2.data.docs[0].title}${response2.data.docs[0].author_name[0]}&key=AIzaSyAU4_7l55akAv2nS3YqqWvQFN_fPEMfgvk`);
@@ -98,7 +127,7 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
     const user = req.session.currentUser ? req.session.currentUser.username : "Bogus";
     const reviewsOneBook = await Review.find({ key: `works/${req.params.key}` });
     // const reviewWriter = reviewsOneBook[0].user._id;
-    res.render("bookpage.hbs", { titleFound, keyForCompare, booksWished, user, keyreviews: await Review.find({ key: `works/${req.params.key}` }).populate("user"), booksRead, image });
+    res.render("bookpage.hbs", { numberOfLikes, titleFound, keyForCompare, booksWished, user, reviews: await Review.find({ key: `works/${req.params.key}` }).populate("user"), booksRead, image });
   }
   catch (err) {
     next(err)

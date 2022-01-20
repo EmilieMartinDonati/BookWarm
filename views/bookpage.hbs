@@ -40,13 +40,13 @@
                         <div class="col-6">
                             <i class="fas fa-heart"></i>
                             <a href="/oneBook/wishlist/{{titleFound.key}}">Add to
-                                wishlist</a>       
+                                wishlist</a>
                         </div>
 
                         {{/compare}}
                         {{#compare keyForCompare booksRead.key operator="!="}}
-                    {{!-- <p>{{keyForCompare}}</p>
-                    <p>{{booksRead.key}}</p> --}}
+                        {{!-- <p>{{keyForCompare}}</p>
+                        <p>{{booksRead.key}}</p> --}}
                         <div class="col-6">
                             <i class="fas fa-space-shuttle"></i><a href="/oneBook/redlist/{{titleFound.key}}">Add to
                                 books already
@@ -61,88 +61,92 @@
 
 
         <div class="col-4">
+            <div class="row">
             <h3>REVIEWS</h3>
             {{#each reviews}}
             <div class="card">
                 <div class="card-body">
                     <p class="card-text" id="review">{{this.review}}</p>
-                    {{!-- {{#if reviews}} --}}
-                    {{#compare @root.user this.user.username}}
                     <div class="row">
-                        <form action="/oneBook/like/{{this._id}}" method="POST">
-                            <button class="btn">
-                                <i class="far fa-heart"></i>
-                            </button>
+                <form action="/oneBook/like/{{this._id}}" method="POST">
+                    <p class="text-danger">{{this.review}}</p>
+                    <input class="hidden" type="text" name="review" value="{{this.review}}" />
+                    <button class="btn">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </form>
+            </div>
+                </div>
+            </div>
+            {{#compare @root.user this.user.username}}
+
+
+            <div class="row"><div class="row text-danger text-uppercase">{{@root.numberOfLikes}} LIKES</div></div>
+
+            <div class="row">
+                <div class="col-6">
+                    <form action="/oneBook/edit/{{this._id}}" method="POST">
+                        <label for="review">Updated review</label>
+                        <input type="text" name="review" required />
+                        <input class="is-hidden" type="text" name="key" value={{this.key}}>
+                        <button class="btn">
+                            <i class="fas fa-edit">EDIT</i>
+                        </button>
+                    </form>
+                </div>
+                <div class="col-6">
+                    <form action="/oneBook/delete/{{this._id}}" method="POST">
+                        <input class="is-hidden" type="text" name="key" value={{this.key}}>
+                        <button class="btn"><i class="fas fa-trash-alt">DELETE</i></p>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            {{/compare}}
+            {{/each}}
+            </div>
+
+            {{#if isLoggedIn}}
+        <div>
+            <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                aria-expanded="false" aria-controls="collapseExample" id="reviewBtn">
+                WRITE A REVIEW
+            </button>
+
+            <div class="collapse" id="collapseExample">
+                <div class="card card-body" id="form">
+                    <div class="text-center pt-4">
+                        <form action="/oneBook/works/{{titleFound.key}}" method="POST">
+                            {{!-- <label for='username'>Username</label>
+                            <input type="text" name="{{req.session.currentUser.username}}" required> --}}
+                            <label for="review-title">TITLE</label>
+                            <input type="text" value="{{titleFound.title}}" name="bookTitle" />
+                            <hr>
+                            <label for="review-title">AUTHOR</label>
+                            <input type="text" value="{{titleFound.author_name}}" name="authorBook" />
+                            <hr>
+                            <hr>
+                            <label for="review-title">YOUR RATING ON 5</label>
+                            <input type="text" value="5" min="1" max="5" name="rating" />
+                            <hr>
+                            <label for="description-text">REVIEW</label>
+                            <textarea id="description-text" name="review" cols="30"
+                                rows="10">Write your description here</textarea>
+                            <hr>
+                            <button>SUBMIT REVIEW</button>
                         </form>
                     </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <form action="/oneBook/edit/{{this._id}}" method="POST">
-                                <label for="review">Updated review</label>
-                                <input type="text" name="review" required />
-                                <input class="is-hidden" type="text" name="key" value={{this.key}}>
-                                <button class="btn">
-                                    <i class="fas fa-edit">EDIT</i>
-                                </button>
-                            </form>
-                        </div>
-                        <div class="col-6">
-                            <form action="/oneBook/delete/{{this._id}}" method="POST">
-                                <input class="is-hidden" type="text" name="key" value={{this.key}}>
-                                <button class="btn"><i class="fas fa-trash-alt">DELETE</i></p>
-                                </button>
-                            </form>
-                        </div>
-                    </div>
-                    {{/compare}}
-                    {{!-- {{/if}} --}}
-
                 </div>
-                {{/each}}
-
-                {{#if isLoggedIn}}
-                <div>
-                    <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                        aria-expanded="false" aria-controls="collapseExample" id="reviewBtn">
-                        WRITE A REVIEW
-                    </button>
-
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body" id="form">
-                            <div class="text-center pt-4">
-                                <form action="/oneBook/works/{{titleFound.key}}" method="POST">
-                                    {{!-- <label for='username'>Username</label>
-                                    <input type="text" name="{{req.session.currentUser.username}}" required> --}}
-                                    <label for="review-title">TITLE</label>
-                                    <input type="text" value="{{titleFound.title}}" name="bookTitle" />
-                                    <hr>
-                                    <label for="review-title">AUTHOR</label>
-                                    <input type="text" value="{{titleFound.author_name}}" name="authorBook" />
-                                    <hr>
-                                    <hr>
-                                    <label for="review-title">YOUR RATING ON 5</label>
-                                    <input type="text" value="5" min="1" max="5" name="rating" />
-                                    <hr>
-                                    <label for="description-text">REVIEW</label>
-                                    <textarea id="description-text" name="review" cols="30"
-                                        rows="10">Write your description here</textarea>
-                                    <hr>
-                                    <button>SUBMIT REVIEW</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{/if}}
-                {{!--
-                <!--             {{/compare}}
- --> --}}
-
             </div>
         </div>
+        {{/if}}
+        </div>
+
+
+
+
+        
+
     </div>
-</div>
 
-</div>
-
-<hr>
+    <hr>
