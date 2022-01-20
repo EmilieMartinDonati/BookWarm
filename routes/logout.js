@@ -8,7 +8,7 @@ const loginstatus = require("./../middlewares/loginstatus")
 
 router.get('/logout', protectRoute, (req, res, next) => {
     req.session.destroy((err) => {
-      res.redirect("/login");
+      res.redirect("/");
     });
   });
 

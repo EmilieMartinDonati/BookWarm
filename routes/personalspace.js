@@ -14,7 +14,7 @@ router.get("/personalspace/", async (req, res, next) => {
   const createdBooks = await UsercreateModel.find();
   // const newPic = await picModel.find().limit(1);
   console.log("---createdBooks----------------", createdBooks);
-  res.render("personal.space.hbs", { wishlist, red, reviews, createdBooks, newPic }
+  res.render("personal.space.hbs", { wishlist, red, reviews, createdBooks }
   )
 });
 

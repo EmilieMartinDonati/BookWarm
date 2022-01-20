@@ -7,11 +7,6 @@
             <p>{{this.author_name}}</p>
             <p>{{this.first_sentence}}</p>
         </div>
-        <div class="card-text">
-            <form method="POST" action="/oneBook/wishlist/{{this._id}}/delete">
-                <button>DELETE BOOK</button>
-            </form>
-        </div>
     </div>
     {{/each}}
 </div>
