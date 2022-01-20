@@ -91,13 +91,14 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
     }
     else {
       image = `https://www.publishersweekly.com/images/cached/ARTICLE_PHOTO/photo/000/000/073/73607-v1-600x.JPG`
-    }
-    console.log(response4.data.volumeInfo.imageLinks, typeof response4);
+
+    console.log("🐤",response4.data.volumeInfo.imageLinks, typeof response4);
     const user = req.session.currentUser.username;
-    const reviewsOneBook = await Review.find({ key: `works/${req.params.key}` });
+    const reviewsOneBook = await Review.find({ key: `works/${req.params.key}` }).populate("user")
     // const reviewWriter = reviewsOneBook[0].user._id;
-    res.render("bookpage.hbs", { titleFound, user, reviews: await Review.find({ key: `works/${req.params.key}` }).populate("user"), booksRead, image});
-  }
+
+    res.render("bookpage.hbs", { titleFound, user, reviews: reviewsOneBook, booksRead, image});
+  }}
   catch (err) {
     next(err)
   }
