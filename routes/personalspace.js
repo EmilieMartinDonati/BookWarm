@@ -13,7 +13,8 @@ router.get("/personalspace/", async (req, res, next) => {
   const reviews = await Review.find();
   const createdBooks = await UsercreateModel.find();
   console.log("---createdBooks----------------", createdBooks);
-  res.render("personal.space.hbs", { wishlist, red, reviews, createdBooks });
+  res.render("personal.space.hbs", { wishlist, red, reviews, createdBooks }
+  )
 });
 router.post(
   "/uploadimage",
