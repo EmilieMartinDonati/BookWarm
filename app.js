@@ -1,4 +1,4 @@
-// :information: Gets access to environment variables/settings
+// information: Gets access to environment variables/settings
 // https://www.npmjs.com/package/dotenv
 require("dotenv").config();
 // :information: Connects to the database

@@ -6,7 +6,7 @@ module.exports = function loginStatus(req, res, next) {
       console.log(res.locals.currentUser)
       res.locals.currentUser = req.session.currentUser;
       res.locals.isLoggedIn = true;
-      console.log(res.locals)
+      console.log(res.locals);
     }
     next();
   };

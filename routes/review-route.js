@@ -31,18 +31,22 @@ router.post("/oneBook/works/:key", async (req, res, next) => {
 
 
 router.post("/oneBook/delete/:id", async (req, res, next) => {
+  const {key} = {...req.body};
+  console.log("🏓", key);
   await Review.findByIdAndDelete(req.params.id);
-  const key = await Review.find({id: req.params.id}, 'key');
-  console.log("🏓", key, typeof key);
- const keyAmended = key[0].key.slice(6).toString();
-  console.log("🏓", keyAmended);
-  res.redirect("/personalspace");
+  // const key = await Review.find({id: req.params.id}, 'key');
+//   console.log("🏓", key, typeof key);
+//  const keyAmended = key[0].key.slice(6).toString();
+//   console.log("🏓", keyAmended);
+  res.redirect(`/oneBook/${key}`);
 })
 
 router.post("/oneBook/edit/:id", async (req, res, next) => {
   try {
+    const {key} = {...req.body};
+     console.log("🏓", key);
     await Review.findByIdAndUpdate(req.params.id, req.body, { new: true });
-    res.redirect("/personalspace");
+    res.redirect(`/oneBook/${key}`);
   }
   catch (err) {
     next(err)
