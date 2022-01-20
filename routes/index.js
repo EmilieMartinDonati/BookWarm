@@ -98,8 +98,9 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
   
     const reviewsOneBook = await Review.find({ key: `works/${req.params.key}` });
     // const reviewWriter = reviewsOneBook[0].user._id;
-    res.render("bookpage.hbs", { titleFound, user, reviews: await Review.find({ key: `works/${req.params.key}` }).populate("user"), booksRead, image});
-  }
+
+    res.render("bookpage.hbs", { titleFound, user, reviews: reviewsOneBook, booksRead, image});
+  }}
   catch (err) {
     next(err)
   }
