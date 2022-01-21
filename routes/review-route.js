@@ -45,7 +45,7 @@ router.post("/oneBook/delete/:id", async (req, res, next) => {
 router.post("/oneBook/edit/:id", async (req, res, next) => {
   try {
     const { key } = { ...req.body };
-    console.log("🏓", key);
+    // console.log("🏓", key);
     await Review.findByIdAndUpdate(req.params.id, req.body, { new: true });
     res.redirect(`/oneBook/${key}`);
   }
@@ -55,6 +55,11 @@ router.post("/oneBook/edit/:id", async (req, res, next) => {
 })
 
 router.post("/oneBook/like/:id", async (req, res, next) => {
+
+  const book = await bookRedModel.findOne({id: req.params.id}, {key: 1});
+  console.log("🏓", book.key.slice(6));
+  const key = book.key.slice(6);
+
   try {
 
     const review = req.body.review;
@@ -62,7 +67,7 @@ router.post("/oneBook/like/:id", async (req, res, next) => {
     await likeModel.create({
       review: review,
     });
-    res.send("foo");
+    res.redirect(`/oneBook/works/${key}`);
   }
   catch (err) {
     next(err)
