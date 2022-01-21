@@ -1,32 +1,32 @@
 <div class="container" id="one-book">
     <div class="row">
         <hr>
-            {{!-- <img src='{{image}}' />
-            <h1 class="row" id="title">{{titleFound.title}} </h1>
-            <h4 class="row" id="author">{{titleFound.author_name}}</h4>
-            <h5 class="row" id="first-sentence">{{titleFound.first_sentence}}</h5>
-            <div class="row">
-                <div class="col-9" id="subject">{{titleFound.subject}}</div>
-                <div class="col-3" id="number-of-pages">{{titleFound.number_of_pages_median}}</div>
+        {{!-- <img src='{{image}}' />
+        <h1 class="row" id="title">{{titleFound.title}} </h1>
+        <h4 class="row" id="author">{{titleFound.author_name}}</h4>
+        <h5 class="row" id="first-sentence">{{titleFound.first_sentence}}</h5>
+        <div class="row">
+            <div class="col-9" id="subject">{{titleFound.subject}}</div>
+            <div class="col-3" id="number-of-pages">{{titleFound.number_of_pages_median}}</div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-6">
+                <i class="fas fa-heart"></i>
+                <a href="/oneBook/wishlist/{{titleFound.key}}"> <button id="add-wishlist">Add to
+                        wishlist</button></a>
             </div>
-            <hr>
-            <div class="row">
-                <div class="col-6">
-                    <i class="fas fa-heart"></i>
-                    <a href="/oneBook/wishlist/{{titleFound.key}}"> <button id="add-wishlist">Add to
-                            wishlist</button></a>
-                </div>
-                <div class="col-6">
-                    <a href="/oneBook/redlist/{{titleFound.key}}"> <button id="add-red">🚀 Add to books already
-                            red</button></a>
-                </div>
-            </div> --}}
+            <div class="col-6">
+                <a href="/oneBook/redlist/{{titleFound.key}}"> <button id="add-red">🚀 Add to books already
+                        red</button></a>
+            </div>
+        </div> --}}
 
 
         <div class="col-8">
             <div class="card">
                 <div class="card-body">
-                    <img class="img-card" src={{image}} alt=""/>
+                    <img class="img-card" src={{image}} alt="" style="width: 20rem;" />
                     <h1 class="card-text" id="review">{{titleFound.title}}</h1>
                     <p>{{titleFound.author_name}}</p>
                     <p>{{titleFound.first_sentence}}</p>
@@ -60,51 +60,55 @@
 
         <div class="col-4">
             <div class="row">
-            <h3>REVIEWS</h3>
-            {{#each reviews}}
-            <div class="card">
-                <div class="card-body">
-                    <p class="card-text" id="review">{{this.review}}</p>
-                    <div class="row">
-                <form action="/oneBook/like/{{this._id}}" method="POST">
-                    <p class="text-danger">{{this.review}}</p>
-                    <input class="hidden" type="text" name="review" value="{{this.review}}" />
-                    <button class="btn">
-                        <i class="far fa-heart"></i>
-                    </button>
-                </form>
-            </div>
+                <h3>REVIEWS</h3>
+                {{#each reviews}}
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text" id="review">{{this.review}}</p>
+                        <div class="row">
+                            <form action="/oneBook/like/{{this._id}}" method="POST">
+                                <input class="hidden" type="text" name="review" value="{{this.review}}" />
+                                <button class="btn">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            {{#compare @root.user this.user.username}}
+                {{#compare @root.user this.user.username}}
 
 
-            <div class="row"><div class="row text-danger text-uppercase">{{@root.numberOfLikes}} LIKES</div></div>
-
-            <div class="row">
-                <div class="col-6">
-                    <form action="/oneBook/edit/{{this._id}}" method="POST">
-                        <label for="review">Updated review</label>
-                        <input type="text" name="review" required />
-                        <input class="is-hidden" type="text" name="key" value={{this.key}}>
-                        <button class="btn">
-                            <i class="fas fa-edit">EDIT</i>
-                        </button>
-                    </form>
-                </div>
-                <div class="col-6">
-                    <form action="/oneBook/delete/{{this._id}}" method="POST">
-                        <input class="is-hidden" type="text" name="key" value={{this.key}}>
-                        <button class="btn"><i class="fas fa-trash-alt">DELETE</i></p>
-                        </button>
-                    </form>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="row text-uppercase" id="likes">{{@root.numberOfLikes}} LIKE</div>
+                            </div>
+                            <div class="col-6">
+                            <form action="/oneBook/edit/{{this._id}}" method="POST">
+                                <label for="review"></label>
+                                <input type="text" name="review" required />
+                                <input class="hidden" type="text" name="key" value={{this.key}}>
+                                <button class="btn">
+                                    <i class="fas fa-edit">EDIT</i>
+                                </button>
+                            </form>
+                        <hr>
+                        <div class="col-6">
+                            <form action="/oneBook/delete/{{this._id}}" method="POST">
+                                <input class="hidden" type="text" name="key" value={{this.key}}>
+                                <button class="btn"><i class="fas fa-trash-alt">DELETE</i></p>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             {{/compare}}
             {{/each}}
-            </div>
+        </div>
 
-            {{#if isLoggedIn}}
+        {{#if isLoggedIn}}
         <div>
             <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
                 aria-expanded="false" aria-controls="collapseExample" id="reviewBtn">
@@ -131,20 +135,20 @@
                             <textarea id="description-text" name="review" cols="30"
                                 rows="10">Write your description here</textarea>
                             <hr>
-                            <button>SUBMIT REVIEW</button>
+                            <button class="btn">SUBMIT REVIEW</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
         {{/if}}
-        </div>
-
-
-
-
-        
-
     </div>
 
-    <hr>
+
+
+
+
+
+</div>
+
+<hr>
