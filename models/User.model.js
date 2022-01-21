@@ -5,12 +5,10 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema({
   userName: String,
   password: String,
-  profilePicture: String,
-})
- 
+  image: String,
+  // timestamps: true,
+});
 
 const User = model("User", userSchema);
-
-
 
 module.exports = User;
