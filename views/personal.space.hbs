@@ -43,7 +43,7 @@
           <h6 class="card-title">{{this.title}}</h6>
           <p class="card-text" id="author-card-name">{{this.author_name}}</p>
         </div>
-        <div><a href="/oneBook/{{this.key}}">📖</a></div>
+        <div><a href="/oneBook/{{this.key}}" class="fatlinks">...</a></div>
       </div>
       {{/each}}
     </div>
@@ -86,8 +86,8 @@
 
 
   <div class="row p-3 m-1">
-    <div class="col-8" id="fatlinks"><a href="/personalbooks">SEE THE BOOKS YOU ADDED TO OUR COLLECTION</a></div>
-    <div class="col-4" id="fatlinks"><a href="/oneBook/wishlist">SEE WISHLIST</a></div>
+    <div class="col-8"><a href="/personalbooks" class="wishcol">SEE THE BOOKS YOU ADDED TO OUR COLLECTION</a></div>
+    <div class="col-4"><a href="/oneBook/wishlist" class="wishcol">SEE WISHLIST</a></div>
   </div>
 
 

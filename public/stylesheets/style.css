@@ -10,3 +10,28 @@ a {
 h1 {
   color: 15px;
 }
+
+#fatLinks {
+  font-size: xx-large;
+}
+
+#contest {
+  background-color: #291B25;
+}
+
+#contest a {
+  text-decoration: none;
+  color: #ED5B2D;
+}
+
+.fatlinks {
+  text-decoration: none;
+  font-size: xx-large;
+  color: #291B25;
+}
+
+.wishcol {
+  color: #ED5B2D;
+  font-size: x-large;
+  text-decoration: none;
+}
