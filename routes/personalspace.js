@@ -13,6 +13,8 @@ const UserModel = require("../models/User.model");
 
 router.get("/personalspace/", async (req, res, next) => {
   try {
+    const username = req.session.currentUser.userName;
+    console.log("🏓", username);
     const wishlist = await bookWishlistModel.find({
       user: req.session.currentUser._id,
     });
@@ -36,6 +38,7 @@ router.get("/personalspace/", async (req, res, next) => {
     // });
     // const profilePic = await picModel.findById(req.params.id).populate("User");
     res.render("personal.space.hbs", {
+      username,
       wishlist,
       red,
       reviews,

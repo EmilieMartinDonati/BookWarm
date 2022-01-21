@@ -126,7 +126,8 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
     }
 
     console.log(response4.data.volumeInfo.imageLinks, typeof response4);
-    const user = req.session.currentUser ? req.session.currentUser.username : "Bogus";
+    const user = req.session.currentUser ? req.session.currentUser.userName : "Bogus";
+    console.log("❤️‍🔥", user);
     const reviewsOneBook = await Review.find({ key: `works/${req.params.key}` });
     // const reviewWriter = reviewsOneBook[0].user._id;
     res.render("bookpage.hbs", { numberOfLikes, titleFound, keyForCompare, booksWished, user, reviews: await Review.find({ key: `works/${req.params.key}` }).populate("user"), booksRead, image });

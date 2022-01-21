@@ -3,34 +3,42 @@
     <h3 class="text-uppercase" id="personalspace">PERSONAL SPACE</h3>
   </div>
   <div class="col-4">
-    <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false"
-      aria-controls="collapseExample" id="reviewBtn">
-      <h5>UPDATE YOUR PICTURE</h5>
-    </button>
+    <div class="row">
+      <div class="col-6">
+        <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+          aria-expanded="false" aria-controls="collapseExample" id="reviewBtn">
+          <h5>UPDATE YOUR PICTURE</h5>
+        </button>
 
-    <div class="collapse" id="collapseExample">
-      <div class="card card-body" id="form">
-        <div class="text-center pt-4">
-          <form action="/uploadimage" method="post" enctype="multipart/form-data">
-           <hr>
-            <input type='file' name='image' />
-            <hr>
-            <button class="btn btn-info" type="submit">Upload your image</button>
-          </form>
-          </form>
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body" id="form">
+            <div class="text-center pt-4">
+              <form action="/uploadimage" method="post" enctype="multipart/form-data">
+                <hr>
+                <input type='file' name='image' />
+                <hr>
+                <button class="btn btn-info" type="submit">Upload your image</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <hr>
+      </div>
+      <div class="col-6">
+         <div class="row p-3 m-1 flex-wrap">
+          <div class="card" style="width: 18rem;">
+            <img src={{newPic.image}} class="card-img-top" alt="{{newPic.image}}">
+          </div>
+        </div>
+        <div class="row p-3 m-1 flex-wrap">
+          <h4 class="text-center text-uppercase">{{username}}</h4>
         </div>
       </div>
     </div>
-
-    <hr>
-
-    <div class="row p-3 m-1 flex-wrap">
-      <div class="card" style="width: 18rem;">
-        <img src={{newPic.image}} class="card-img-top" alt="{{newPic.image}}">
-      </div>
-    </div>
-
   </div>
+
+
   <div class="col-8 flex-row">
     <h5 class="text-uppercase">Last books you read. Don't hesitate to write a review!</h5>
     <hr>
@@ -59,6 +67,7 @@
       <div class="card-body">
         <h6 class="card-title">{{this.bookTitle}}</h6>
         <p class="card-text" id="author-card-name">{{this.review}}</p>
+        <div><a href="/oneBook/{{this.key}}" class="fatlinks">...</a></div>
       </div>
 
 
