@@ -7,6 +7,60 @@ a {
   color: #00b7ff;
 }
 
-h1 {
-  color: 15px;
+#fatLinks {
+  font-size: xx-large;
+}
+
+#contest {
+  background-color: #291B25;
+}
+
+#contest a {
+  text-decoration: none;
+  color: #ED5B2D;
+}
+
+.fatlinks {
+  text-decoration: none;
+  font-size: xx-large;
+  color: #291B25;
+}
+
+.wishcol {
+  color: #ED5B2D;
+  font-size: x-large;
+  text-decoration: none;
+}
+
+.hidden {
+visibility: hidden;
+}
+
+#likes {
+  color: #ED5B2D;
+}
+
+#reviews {
+  padding: 1rem;
+  background-color: #00b7ff;
+  color: white;
+}
+
+#pictureBtn {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: white;
+  color: #291B25;
+}
+
+#personalspace {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #291B25;
+  color: white;
+}
+
+#footer {
+  margin: 0;
+  color: #291B25;
 }

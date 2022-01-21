@@ -1,25 +1,28 @@
 
 
 <div class="row m-1 p-3">
+
+
   <div class="col-3">
+      <br>
     <div class="row flex-col">
       <h4 class="col-12">SEARCH ALL</h4>
     </div>
     <hr>
+
+
     <div class="row flex-col">
       <form method="POST" action="/">
-        <label for="name">FIELD</label>
+        <label for="name"></label>
         <input type="text" name="name" placeholder="enter name" />
+        <hr>
         <input type="number" name="number" max="30" min="1" value="3" />
         <button class="btn btn-outline-success">Search</button>
         
         
       </form>
     </div>
-    <hr>
-    <div class="row">
-      <h4>SEARCH BY GENRES</h4>
-    </div>
+
   </div>
 
   <div class="col-7 d-flex flex-row flex-wrap">
@@ -30,35 +33,52 @@
         <div class="card-body">
           <h5 class="card-title">{{this.title}}</h5>
           <p class="card-text" id="author-card-name">{{this.author_name}}</p>
-          <a href="/oneBook/works/{{this.key}}" class="btn btn-primary">Learn more</a>
+          <a href="/oneBook/works/{{this.key}}" class="btn" id="fatLinks"> ... </a>
         </div>
       </div>
       {{/each}}
     </div>
     <div class="row">
-      <h2>BEST BOOKS</h2>
       <div class="col-12 d-flex flex-row flex-wrap">
-        {{#each booksRead}}
+        {{#each personalBooks}}
         <div class="card" id="author-card" style="width: 18rem;">
-          {{!-- <img src="{{this.picture}}" class="card-img-top" alt="{{this.picture}}"> --}}
+          <img src="{{this.picture}}" class="card-img-top" alt="{{this.picture}}">
           <div class="card-body">
             <h5 class="card-title">{{this.title}}</h5>
             <p class="card-text" id="author-card-name">{{this.author_name}}</p>
-            <p class="card-text" id="author-card-name">{{this.rating}}</p>
-            <a href="/oneBook/{{this._title}}" class="btn btn-primary">Learn more</a>
+            <a href="#"" class="btn" id="fatLinks">...</a>
           </div>
         </div>
         {{/each}}
+      </div>
+
+    <hr>
+      <div class="row">
+        <br>
+        <h2>BEST BOOKS</h2>
+        <div class="col-12 d-flex flex-row flex-wrap">
+          {{#each booksRead}}
+          <div class="card" id="author-card" style="width: 18rem;">
+            {{!-- <img src="{{this.picture}}" class="card-img-top" alt="{{this.picture}}"> --}}
+            <div class="card-body">
+              <h5 class="card-title">{{this.title}}</h5>
+              <p class="card-text" id="author-card-name">{{this.author_name}}</p>
+              <p class="card-text" id="author-card-name">{{this.rating}} / 5</p>
+              <a href="/oneBook/{{this.key}}" class="btn" id="fatLinks"> ...</a>
+            </div>
+          </div>
+          {{/each}}
+        </div>
       </div>
     </div>
     <hr>
-    <div class="row">
-      <h2>MOST COMMENTED BOOKS</h2>
+    {{!-- <div class="row"> --}}
+      {{!-- <h2>MOST COMMENTED BOOKS</h2>
       <div class="col-12 d-flex flex-row flex-wrap">
         {{#each booksRead}}
         <div class="card" id="author-card" style="width: 18rem;">
-          {{!-- <img src="{{this.picture}}" class="card-img-top" alt="{{this.picture}}"> --}}
-          <div class="card-body">
+          {{!-- <img src="{{this.picture}}" class="card-img-top" alt="{{this.picture}}">
+          {{!-- <div class="card-body">
             <h5 class="card-title">{{this.title}}</h5>
             <p class="card-text" id="author-card-name">{{this.author_name}}</p>
             <p class="card-text" id="author-card-name">{{this.rating}}</p>
@@ -67,69 +87,60 @@
         </div>
         {{/each}}
       </div>
-    </div>
+    </div> --}}
+    {{!--
+  </div> --}}
   </div>
 
   <div class="col-2 d-flex flex-row flex-wrap">
 
-    <div class="row">
-      {{!-- {{#if isLoggedOut}} --}}
-      <form id="form" action="signup" method="POST" enctype="multipart/form-data">
-        <label for="username">Username</label><br>
-        <input type="text" name="username" placeholder="Your username"><br>
-        <label for="password">Password</label><br>
-        <input type="password" name="password" placeholder="********"><br>
-        <label for="picture" class="label"> <i class="icon fas fa-cloud-upload-alt fa-1x"> Choose a picture </i> </label>
-        <input type="file" name="image" />
-        <button type="submit">Create account</button>
-      </form>
+    <div class="row text-white mt-2 h-5" id="contest">
+      <h4 class="col-12 text-center p-5"><a href="#">PARTICIPATE TO OUR REVIEWS CONTEST</a></h4>
+    </div>
+  </div>
+
+  {{!-- <div class="row">
+    {{!-- {{#if isLoggedOut}} --}}
+    {{!-- <form id="form" action="signup" method="POST" enctype="multipart/form-data">
+      <label for="username">Username</label><br>
+      <input type="text" name="username" placeholder="Your username"><br>
+      <label for="password">Password</label><br>
+      <input type="password" name="password" placeholder="********"><br>
+      <label for="picture" class="label"> <i class="icon fas fa-cloud-upload-alt fa-1x"> Choose a picture </i>
+      </label>
+      <input type="file" name="image" />
+      <button type="submit">Create account</button>
+    </form>
 
 
-      {{#if errorMessage}}
+    {{#if errorMessage}}
+    <div>{{ errorMessage }}</div>
+    {{/if}}
+  </div> --}}
+
+  {{!-- {{#if isLoggedOut}}
+  <div class="row">
+    <form id="form" action="/login" method="POST">
+      <label for="username">Username</label>
+      <input type="text" name="username" placeholder="Your username" value="gladys"><br>
+      <label for="password">Password</label>
+      <input type="password" name="password" placeholder="********" value="Ngatchani1"><br>
+      {{#if errorMessage }}
       <div>{{ errorMessage }}</div>
       {{/if}}
-      {{!-- {{/if}} --}}
-    </div>
-
-    {{#if isLoggedOut}}
-    <div class="row">
-      <form id="form" action="/login" method="POST">
-        <label for="username">Username</label>
-        <input type="text" name="username" placeholder="Your username" value="gladys"><br>
-        <label for="password">Password</label>
-        <input type="password" name="password" placeholder="********" value="Ngatchani1"><br>
-        {{#if errorMessage }}
-        <div>{{ errorMessage }}</div>
-        {{/if}}
-        <button type="submit">Login</button>
-      </form>
-    </div>
-    {{/if}}
-    
-
+      <button type="submit">Login</button>
+    </form>
   </div>
-
-  {{#if isLoggedOut}}
-
-  <div class="row">
-    <div class="col-12 d-flex flex-row flex-wrap">
-      {{#each personalBooks}}
-      <div class="card" id="author-card" style="width: 18rem;">
-        <img src="{{this.picture}}" class="card-img-top" alt="{{this.picture}}">
-        <div class="card-body">
-          <h5 class="card-title">{{this.title}}</h5>
-          <p class="card-text" id="author-card-name">{{this.author_name}}</p>
-          <a href="/oneBook/{{this._title}}" class="btn btn-primary">Learn more</a>
-        </div>
-      </div>
-      {{/each}}
-    </div>
-  </div>
-
   {{/if}}
+
 
 </div>
 
-<div class="row bg-danger text-white mt-2">
-  <h1 class="col-12 text-center p-5"><a href="#">PARTICIPATE TO OUR REVIEWS CONTEST</a></h1>
+{{#if isLoggedOut}} --}}
+
+
+
+{{!-- {{/if}} --}}
+
+</div>
 </div>
