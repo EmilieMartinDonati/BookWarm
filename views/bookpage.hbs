@@ -32,6 +32,9 @@
                     <p>{{titleFound.first_sentence}}</p>
                     <div class="col-3" id="number-of-pages">{{titleFound.number_of_pages_median}} PAGES</div>
                     <hr>
+
+
+                    {{#if isLoggedIn}}
                     {{#compare keyForCompare booksWished.key operator="!="}}
                     <div class="row">
                         <div class="col-6">
@@ -50,6 +53,7 @@
                         </div>
                     </div>
                     {{/compare}}
+                    {{/if}}
                 </div>
             </div>
         </div>
@@ -63,6 +67,9 @@
                         <p class="card-text" id="review">{{this.review}}</p>
                         <p class="card-text">By {{this.user.userName}}</p>
                         {{#compare @root.user this.user.userName}}
+                        <p class="card-text">{{@root.numberOfLikes}} LIKES</p>
+
+                        
                         <div class="row">
                             <form action="/oneBook/like/{{this._id}}" method="POST">
                                 <input class="hidden" type="text" name="review" value="{{this.review}}" />
@@ -73,13 +80,14 @@
                         </div>
                     </div>
                 </div>
+                   
+                   {{#compare @root.user this.user.userName}}
+
+
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-6">
-                                <div class="row text-uppercase" id="likes">{{@root.numberOfLikes}} LIKE</div>
-                            </div>
-                            <div class="col-6">
+                            <div class="col-12">
                                 <form action="/oneBook/edit/{{this._id}}" method="POST">
                                     <label for="review"></label>
                                     <input type="text" name="review" required />
@@ -100,15 +108,20 @@
                         </div>
                     </div>
                 </div>
+
                 {{/compare}}
                 {{/each}}
-                <p>{{@root.user}}</p>
+
                 {{!-- <p>{{reviews.user.username}}</p> --}}
+            </div>
+
                 {{#if isLoggedIn}}
+
                 <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
                     aria-expanded="false" aria-controls="collapseExample" id="reviewBtn">
                     <h5>WRITE A REVIEW</h5>
                 </button>
+
                 <div class="collapse" id="collapseExample">
                     <div class="card card-body" id="form">
                         <div class="text-center pt-4">
@@ -133,5 +146,13 @@
                         </div>
                     </div>
                 </div>
+
                 {{/if}}
-            </div>
+
+
+
+
+
+        </div>
+    </div>
+</div>
