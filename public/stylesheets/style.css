@@ -56,3 +56,10 @@ visibility: hidden;
   background-color: #00b7ff;
   color: white;
 }
+
+#personalspace {
+  margin: 1rem;
+  padding: 1rem;
+  background-color: #291B25;
+  color: white;
+}
