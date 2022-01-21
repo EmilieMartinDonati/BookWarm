@@ -6,16 +6,16 @@
   <div class="col-3">
       <br>
     <div class="row flex-col">
-      <h4 class="col-12">SEARCH ALL</h4>
+      <h4 class="col-12 text-uppercase">Search and browse books</h4>
     </div>
     <hr>
 
 
     <div class="row flex-col">
       <form method="POST" action="/">
-        <label for="name"></label>
-        <input type="text" name="name" placeholder="enter name" />
-        <hr>
+        <label for="name">FIELD</label>
+        <input type="text" name="name" placeholder="enter title" />
+         <hr>
         <input type="number" name="number" max="30" min="1" value="3" />
         <hr>
         <button class="btn btn-outline-success">Search</button>
@@ -96,10 +96,10 @@
 
   <div class="row flex-row flex-wrap">
 
-    <div class="row text-white mt-2 h-5" id="contest">
+    {{!-- <div class="row text-white mt-2 h-5" id="contest">
       <h4 class="col-12 text-center p-5"><a href="#">PARTICIPATE TO OUR REVIEWS CONTEST</a></h4>
     </div>
-  </div>
+  </div> --}}
 
   {{!-- <div class="row">
     {{!-- {{#if isLoggedOut}} --}}
@@ -144,5 +144,15 @@
 
 {{!-- {{/if}} --}}
 
+<div class="col-sm-3">
+ <img src="./images/Concours.png" style="width: 1483px; height: 550px;" alt="">
+
+
+</div>
+
+
+  
+
+   
 </div>
 </div>
