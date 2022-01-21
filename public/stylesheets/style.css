@@ -7,10 +7,6 @@ a {
   color: #00b7ff;
 }
 
-h1 {
-  color: 15px;
-}
-
 #fatLinks {
   font-size: xx-large;
 }
@@ -50,11 +46,11 @@ visibility: hidden;
   color: white;
 }
 
-#reviewBtn {
+#pictureBtn {
   margin: 1rem;
   padding: 1rem;
-  background-color: #00b7ff;
-  color: white;
+  background-color: white;
+  color: #291B25;
 }
 
 #personalspace {
@@ -62,4 +58,9 @@ visibility: hidden;
   padding: 1rem;
   background-color: #291B25;
   color: white;
+}
+
+#footer {
+  margin: 0;
+  color: #291B25;
 }
