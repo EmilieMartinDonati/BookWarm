@@ -19,7 +19,9 @@ router.get("/personalspace/", async (req, res, next) => {
       user: req.session.currentUser._id,
     });
     const red = await bookRedModel
-      .find()
+      .find({
+        user: req.session.currentUser._id,
+      })
       .sort({ date: -1 })
       .limit(5);
     const reviews = await Review.find({
@@ -111,7 +113,9 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
 // CREATED BOOK ROUTE GET 
 router.get("/personalbooks", async (req, res, next) => {
   try {
-    const createdBooks = await UsercreateModel.find();
+    const createdBooks = await UsercreateModel.find({
+      user: req.session.currentUser._id,
+    });
     res.render("personalbooks.hbs", { createdBooks });
   } catch (err) {
     next(err);

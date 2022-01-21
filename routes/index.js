@@ -179,11 +179,16 @@ router.get("/oneBook/wishlist/:key", async (req, res, next) => {
     author_key: response2.data.docs[0].author_key,
     author_name: response2.data.docs[0].author_name,
     image: image,
+    user: req.session.currentUser._id,
   });
   await genreModel.create({
     subject: response2.data.docs[0].subject
   });
-  const addedBooks = await bookWishlistModel.find();
+  const addedBooks = await bookWishlistModel.find(
+    {
+      user: req.session.currentUser._id,
+    }
+  ).populate('user');
   res.render("wishlist.hbs", { addedBooks });
 })
 
@@ -311,6 +316,7 @@ router.get("/oneBook/redlist/:key", async (req, res, next) => {
     author_key: response2.data.docs[0].author_key,
     author_name: response2.data.docs[0].author_name,
     image: image,
+    user: req.session.currentUser._id
   });
   genreModel.create({
     subject: response2.data.docs[0].subject
@@ -332,14 +338,26 @@ router.get("/", async (req, res, next) => {
 //POST- CREATE A BOOK 
 
 router.post("/createdBooks", fileUploader.single("picture"), async (req, res, next) => {
-  const newBook = { ...req.body };
+  const {title, author_name, description} = { ...req.body };
 
-  if (!req.file) newBook.cover = undefined;
-  else newBook.picture = req.file.path;
+  if (!req.file) cover = undefined;
+  else cover = req.file.path;
 
   try {
-    await UsercreateModel.create(newBook);
-    const createdBooks = await UsercreateModel.find();
+    await UsercreateModel.create({
+      author_name: author_name,
+      description: description,
+      title: title,
+      picture: cover,
+      user: req.session.currentUser._id,
+    }
+    );
+    const createdBooks = await UsercreateModel.find(
+      {
+        user: req.session.currentUser._id,
+  
+      }
+    );
     res.render("personalbooks.hbs", { createdBooks });
   } catch (err) {
     next(err);
@@ -348,7 +366,9 @@ router.post("/createdBooks", fileUploader.single("picture"), async (req, res, ne
 
 router.get("/oneBook/wishlist", async (req, res, next) => {
   try {
-    const addedBooks = await bookWishlistModel.find();
+    const addedBooks = await bookWishlistModel.find({
+      user: req.session.currentUser._id,
+    });
     res.render("wishlist.hbs", { addedBooks });
   }
   catch (err) {
