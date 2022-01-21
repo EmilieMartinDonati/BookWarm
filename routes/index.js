@@ -77,21 +77,18 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
     let mid1 = 0;
 
     const crashTest = await Review.find({ key: `works/${req.params.key}` }, {review: 1});
-    console.log("🏓", crashTest);
 
-    if (crashTest !== []) mid1 = crashTest[0];
+    mid1 = crashTest !== [] ? crashTest[0] : null;
+    // if (crashTest !== []) mid1 = crashTest[0];
     let mid2 = 0;
-
-    if (mid1 === crashTest[0]) mid2 = crashTest[0]?.review;
-
-    console.log("🏓", mid2);
+    mid2 = mid1 ? mid1.review : null;
+    //if (mid1 === crashTest[0]) mid2 = crashTest[0]?.review;
 
     let likeToDisplay;
-
-    if (mid2 === crashTest[0]?.review) {
-      likeToDisplay = await likeModel.find({ review: crashTest[0]?.review })
-    };
-    console.log("🏓", likeToDisplay);
+    likeToDisplay = mid2 ? await likeModel.find({review: mid2}) : null;
+    //if (mid2 === crashTest[0]?.review) {
+     // likeToDisplay = await likeModel.find({ review: crashTest[0]?.review })
+    //};
 
     let numberOfLikes;
 
