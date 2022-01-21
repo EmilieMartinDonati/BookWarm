@@ -1,52 +1,48 @@
-<div class="container" id="one-book">
-    <div class="row">
+<div class=“container” id=“one-book”>
+    <div class=“row”>
         <hr>
-        {{!-- <img src='{{image}}' />
-        <h1 class="row" id="title">{{titleFound.title}} </h1>
-        <h4 class="row" id="author">{{titleFound.author_name}}</h4>
-        <h5 class="row" id="first-sentence">{{titleFound.first_sentence}}</h5>
-        <div class="row">
-            <div class="col-9" id="subject">{{titleFound.subject}}</div>
-            <div class="col-3" id="number-of-pages">{{titleFound.number_of_pages_median}}</div>
+        {{!-- <img src=‘{{image}}’ />
+        <h1 class=“row” id=“title”>{{titleFound.title}} </h1>
+        <h4 class=“row” id=“author”>{{titleFound.author_name}}</h4>
+        <h5 class=“row” id=“first-sentence”>{{titleFound.first_sentence}}</h5>
+        <div class=“row”>
+            <div class=“col-9” id=“subject”>{{titleFound.subject}}</div>
+            <div class=“col-3” id=“number-of-pages”>{{titleFound.number_of_pages_median}}</div>
         </div>
         <hr>
-        <div class="row">
-            <div class="col-6">
-                <i class="fas fa-heart"></i>
-                <a href="/oneBook/wishlist/{{titleFound.key}}"> <button id="add-wishlist">Add to
+        <div class=“row”>
+            <div class=“col-6">
+                <i class=“fas fa-heart”></i>
+                <a href=“/oneBook/wishlist/{{titleFound.key}}“> <button id=“add-wishlist”>Add to
                         wishlist</button></a>
             </div>
-            <div class="col-6">
-                <a href="/oneBook/redlist/{{titleFound.key}}"> <button id="add-red">🚀 Add to books already
+            <div class=“col-6">
+                <a href=“/oneBook/redlist/{{titleFound.key}}“> <button id=“add-red”>:fusée: Add to books already
                         red</button></a>
             </div>
         </div> --}}
-
-
-        <div class="col-8">
-            <div class="card">
-                <div class="card-body">
-                    <img class="img-card" src={{image}} alt="" />
-                    <h4 class="card-text" id="review">{{titleFound.title}}</h4>
+        <div class=“col-8">
+            <div class=“card”>
+                <div class=“card-body”>
+                    <img class=“img-card” src={{image}} alt=“” />
+                    <h4 class=“card-text” id=“review”>{{titleFound.title}}</h4>
                     <p>{{titleFound.author_name}}</p>
                     <p>{{titleFound.first_sentence}}</p>
-                    <div class="col-3" id="number-of-pages">{{titleFound.number_of_pages_median}} PAGES</div>
+                    <div class=“col-3” id=“number-of-pages”>{{titleFound.number_of_pages_median}} PAGES</div>
                     <hr>
-
-                    {{#compare keyForCompare booksWished.key operator="!="}}
-                    <div class="row">
-                        <div class="col-6">
-                            <i class="fas fa-heart"></i>
-                            <a href="/oneBook/wishlist/{{titleFound.key}}">Add to
+                    {{#compare keyForCompare booksWished.key operator=“!=“}}
+                    <div class=“row”>
+                        <div class=“col-6">
+                            <i class=“fas fa-heart”></i>
+                            <a href=“/oneBook/wishlist/{{titleFound.key}}“>Add to
                                 wishlist</a>
                         </div>
-
                         {{/compare}}
-                        {{#compare keyForCompare booksRead.key operator="!="}}
+                        {{#compare keyForCompare booksRead.key operator=“!=“}}
                         {{!-- <p>{{keyForCompare}}</p>
                         <p>{{booksRead.key}}</p> --}}
-                        <div class="col-6">
-                            <i class="fas fa-space-shuttle"></i><a href="/oneBook/redlist/{{titleFound.key}}">Add to
+                        <div class=“col-6”>
+                            <i class=“fas fa-space-shuttle”></i><a href=“/oneBook/redlist/{{titleFound.key}}“>Add to
                                 books already
                                 red</a>
                         </div>
@@ -55,89 +51,77 @@
                 </div>
             </div>
         </div>
-
-
-
-        <div class="col-4">
-            <div class="row">
-                <h3 id="reviews">REVIEWS</h3>
+        <div class=“col-4”>
+            <div class=“row”>
+                <h3 id=“reviews”>REVIEWS</h3>
                 <hr>
                 {{#each reviews}}
-                <div class="card">
-                    <div class="card-body">
-                        <p class="card-text" id="review">{{this.review}}</p>
-                        <div class="row">
-                            <form action="/oneBook/like/{{this._id}}" method="POST">
-                                <input class="hidden" type="text" name="review" value="{{this.review}}" />
-                                <button class="btn">
-                                    <i class="far fa-heart"></i>
+                <div class=“card”>
+                    <div class=“card-body”>
+                        <p class=“card-text” id=“review”>{{this.review}}</p>
+                        <div class=“row”>
+                            <form action=“/oneBook/like/{{this._id}}” method=“POST”>
+                                <input class=“hidden” type=“text” name=“review” value=“{{this.review}}” />
+                                <button class=“btn”>
+                                    <i class=“far fa-heart”></i>
                                 </button>
                             </form>
                         </div>
                     </div>
                 </div>
                 {{#compare @root.user this.user.username}}
-
-
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="row text-uppercase" id="likes">{{@root.numberOfLikes}} LIKE</div>
+                <div class=“card”>
+                    <div class=“card-body”>
+                        <div class=“row”>
+                            <div class=“col-6">
+                                <div class=“row text-uppercase” id=“likes”>{{@root.numberOfLikes}} LIKE</div>
                             </div>
-                            <div class="col-6">
-                                <form action="/oneBook/edit/{{this._id}}" method="POST">
-                                    <label for="review"></label>
-                                    <input type="text" name="review" required />
-                                    <input class="hidden" type="text" name="key" value={{this.key}}>
-                                    <button class="btn">
-                                        <i class="fas fa-edit">EDIT</i>
+                            <div class=“col-6”>
+                                <form action=“/oneBook/edit/{{this._id}}” method=“POST”>
+                                    <label for=“review”></label>
+                                    <input type=“text” name=“review” required />
+                                    <input class=“hidden” type=“text” name=“key” value={{this.key}}>
+                                    <button class=“btn”>
+                                        <i class=“fas fa-edit”>EDIT</i>
                                     </button>
                                 </form>
                                 <hr>
-                                <div class="col-6">
-                                    <form action="/oneBook/delete/{{this._id}}" method="POST">
-                                        <input class="hidden" type="text" name="key" value={{this.key}}>
-                                        <button class="btn"><i class="fas fa-trash-alt">DELETE</i></p>
+                                <div class=“col-6">
+                                    <form action=“/oneBook/delete/{{this._id}}” method=“POST”>
+                                        <input class=“hidden” type=“text” name=“key” value={{this.key}}>
+                                        <button class=“btn”><i class=“fas fa-trash-alt”>DELETE</i></p>
                                         </button>
                                     </form>
                                 </div>
                             </div>
                         </div>
-
                           {{/compare}}
                         {{/each}}
-
                         {{#if isLoggedIn}}
-
-
-                        <div class="mb-3">
-                            <form action="/oneBook/works/{{titleFound.key}}" method="POST" <label
-                                for="exampleFormControlInput1" class="form-label">Title</label>
-                                <input type="title" name="bookTitle" class="form-control" id="exampleFormControlInput1"
-                                    value="{{titleFound.title}}">
+                        <div class=“mb-3">
+                            <form action=“/oneBook/works/{{titleFound.key}}” method=“POST” <label
+                                for=“exampleFormControlInput1” class=“form-label”>Title</label>
+                                <input type=“title” name=“bookTitle” class=“form-control” id=“exampleFormControlInput1"
+                                    value=“{{titleFound.title}}“>
                         </div>
-                        <div class="mb-3">
-                            <label for="exampleFormControlInput1" class="form-label">Author</label>
-                            <input type="title" name="authorBook" class="form-control" id="exampleFormControlInput1"
-                                value="{{titleFound.author_name}}">
+                        <div class=“mb-3”>
+                            <label for=“exampleFormControlInput1" class=“form-label”>Author</label>
+                            <input type=“title” name=“authorBook” class=“form-control” id=“exampleFormControlInput1”
+                                value=“{{titleFound.author_name}}“>
                         </div>
-                        <div class="mb-3">
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Your rating on 5</label>
-                                <input type="number" name="rating" min="1" max="5" class="form-control"
-                                    id="exampleFormControlInput1">
+                        <div class=“mb-3”>
+                            <div class=“mb-3">
+                                <label for=“exampleFormControlInput1” class=“form-label”>Your rating on 5</label>
+                                <input type=“number” name=“rating” min=“1” max=“5" class=“form-control”
+                                    id=“exampleFormControlInput1">
                             </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">Review</label>
-                                <textarea class="form-control" id="exampleFormControlTextarea1"
-                                    rows="3">Write your description here</textarea>
-                                <div class="mb-3 justify-content-center"></div>
-                                <button class="btn btn-outline-success ">Submit</button>
+                            <div class=“mb-3”>
+                                <label for=“exampleFormControlTextarea1" class=“form-label”>Review</label>
+                                <textarea class=“form-control” id=“exampleFormControlTextarea1”
+                                    rows=“3">Write your description here</textarea>
+                                <div class=“mb-3 justify-content-center”></div>
+                                <button class=“btn btn-outline-success “>Submit</button>
                             </div>
                         </div>
-
                         {{/if}}
-
-
                     </div>
