@@ -1,10 +1,10 @@
 const router = require("express").Router();
 const bookRedModel = require("../models/Bookred.model");
 const bookWishlistModel = require("../models/Bookwishlist.model");
-const genreModel = require("../models/genre.model");
+const genreModel = require("../models/Genre.model");
 const fileUploader = require("./../config/cloudinary");
 const Review = require("../models/reviews-model");
-const UsercreateModel = require("./../models/User-create-book-model");
+const UsercreateModel = require("../models/User-create-book-model");
 const UserModel = require("../models/User.model");
 
 
