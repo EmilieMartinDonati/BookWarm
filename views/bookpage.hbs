@@ -132,38 +132,30 @@
                 {{/each}}
 
                 {{#if isLoggedIn}}
-                <div>
-                    <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                        aria-expanded="false" aria-controls="collapseExample" id="reviewBtn">
-                        WRITE A REVIEW
-                    </button>
+                
 
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body" id="form">
-                            <div class="text-center pt-4">
-                                <form action="/oneBook/works/{{titleFound.key}}" method="POST">
-                                    {{!-- <label for='username'>Username</label>
-                                    <input type="text" name="{{req.session.currentUser.username}}" required> --}}
-                                    <label for="review-title">TITLE</label>
-                                    <input type="text" value="{{titleFound.title}}" name="bookTitle" />
-                                    <hr>
-                                    <label for="review-title">AUTHOR</label>
-                                    <input type="text" value="{{titleFound.author_name}}" name="authorBook" />
-                                    <hr>
-                                    <hr>
-                                    <label for="review-title">YOUR RATING ON 5</label>
-                                    <input type="text" value="5" min="1" max="5" name="rating" />
-                                    <hr>
-                                    <label for="description-text">REVIEW</label>
-                                    <textarea id="description-text" name="review" cols="30"
-                                        rows="10">Write your description here</textarea>
-                                    <hr>
-                                    <button>SUBMIT REVIEW</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                  <div class="mb-3">
+    <form action="/oneBook/works/{{titleFound.key}}" method="POST"
+  <label for="exampleFormControlInput1" class="form-label">Title</label>
+  <input type="title" name="bookTitle" class="form-control" id="exampleFormControlInput1" value="{{titleFound.title}}" >
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Author</label>
+  <input type="title" name="authorBook"  class="form-control" id="exampleFormControlInput1" value="{{titleFound.author_name}}">
+</div>
+<div class="mb-3">
+    <div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Your rating on 5</label>
+  <input type="number" name="rating"  min="1" max="5" class="form-control" id="exampleFormControlInput1">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Review</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" >Write your description here</textarea>
+  <div class="mb-3 justify-content-center"></div>
+  <button class ="btn btn-outline-success ">submit review</button>
+  </div>
+</div>
+             
                 {{/if}}
                 {{!--
                 <!--             {{/compare}}
