@@ -7,7 +7,7 @@
     <div class="row flex-col">
       <form method="POST" action="/">
         <label for="name">FIELD</label>
-        <input type="text" name="name" placeholder="enter name" />
+        <input type="text" name="name" placeholder="write the title here" />
         <input type="number" name="number" max="30" min="1" value="3" />
         <button>Search</button>
       </form>
@@ -49,7 +49,7 @@
     </div>
     <hr>
     <div class="row">
-      <h2>MOST COMMENTED BOOKS</h2>
+      <nav>MOST COMMENTED BOOKS</nav>
       <div class="col-12 d-flex flex-row flex-wrap">
         {{#each booksRead}}
         <div class="card" id="author-card" style="width: 18rem;">

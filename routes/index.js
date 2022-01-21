@@ -320,29 +320,6 @@ router.get("/oneBook/wishlist", async (req, res, next) => {
 })
 
 
-
-//ROUTE POUR LES LIKES 
-
-/* router.get("/", async (req, res, next) => {
-  try {
-    res.redirect("/oneBook/works/:key", {
-      likes: await likeModel.find().populate("reviews User"),
-    });
-  } catch (err) {
-    next(err);
-  }
-}); 
-
-router.post('/oneBook/works/:key', (req, res, next) => {
-  const action = {...req.body}
-  const counter = action === 'Like' ? 1 : -1;
-  likeModel.updateOne({_id: req.params.id}, {$inc: {type: counter}}, {}, (err, numberAffected) => {
- 
-
-      let payload = { action: action, postId: req.params.id };
-     pusher.trigger('post-events', 'postAction', payload, req.body.socketId);
-
-      res.send('/oneBook/works/:key');  */ 
  
 module.exports = router;
 
