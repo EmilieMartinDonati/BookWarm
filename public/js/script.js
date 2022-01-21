@@ -141,3 +141,6 @@ function reviewHandler() {
 
 const reviewBtn = document.getElementById("reviewBtn");
 reviewBtn.onclick = reviewHandler;
+
+const profileBtn = document.getElementById("pictureBtn");
+profileBtn.onclick = reviewHandler;

@@ -1,6 +1,7 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background-color:#FFCE6D;
 }
 
 a {
@@ -46,7 +47,7 @@ visibility: hidden;
   color: white;
 }
 
-#pictureBtn {
+#reviewBtn {
   margin: 1rem;
   padding: 1rem;
   background-color: white;
@@ -56,8 +57,7 @@ visibility: hidden;
 #personalspace {
   margin: 1rem;
   padding: 1rem;
-  background-color: #291B25;
-  color: white;
+  color: #00b7ff;
 }
 
 #footer {
