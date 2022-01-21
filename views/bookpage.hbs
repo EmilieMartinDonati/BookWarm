@@ -17,12 +17,10 @@
                         wishlist</button></a>
             </div>
             <div class="col-6">
-                <a href="/oneBook/redlist/{{titleFound.key}}"> <button id="add-red">🚀 Add to books already
+                <a href="/oneBook/redlist/{{titleFound.key}}"> <button id="add-red">:fusée: Add to books already
                         red</button></a>
             </div>
         </div> --}}
-
-
         <div class="col-8">
             <div class="card">
                 <div class="card-body">
@@ -32,7 +30,6 @@
                     <p>{{titleFound.first_sentence}}</p>
                     <div class="col-3" id="number-of-pages">{{titleFound.number_of_pages_median}} PAGES</div>
                     <hr>
-
                     {{#compare keyForCompare booksWished.key operator="!="}}
                     <div class="row">
                         <div class="col-6">
@@ -40,7 +37,6 @@
                             <a href="/oneBook/wishlist/{{titleFound.key}}">Add to
                                 wishlist</a>
                         </div>
-
                         {{/compare}}
                         {{#compare keyForCompare booksRead.key operator="!="}}
                         {{!-- <p>{{keyForCompare}}</p>
@@ -55,9 +51,6 @@
                 </div>
             </div>
         </div>
-
-
-
         <div class="col-4">
             <div class="row">
                 <h3 id="reviews">REVIEWS</h3>
@@ -77,8 +70,6 @@
                     </div>
                 </div>
                 {{#compare @root.user this.user.username}}
-
-
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
@@ -86,66 +77,65 @@
                                 <div class="row text-uppercase" id="likes">{{@root.numberOfLikes}} LIKE</div>
                             </div>
                             <div class="col-6">
-                            <form action="/oneBook/edit/{{this._id}}" method="POST">
-                                <label for="review"></label>
-                                <input type="text" name="review" required />
-                                <input class="hidden" type="text" name="key" value={{this.key}}>
-                                <button class="btn">
-                                    <i class="fas fa-edit">EDIT</i>
-                                </button>
-                            </form>
-                        <hr>
-                        <div class="col-6">
-                            <form action="/oneBook/delete/{{this._id}}" method="POST">
-                                <input class="hidden" type="text" name="key" value={{this.key}}>
-                                <button class="btn"><i class="fas fa-trash-alt">DELETE</i></p>
-                                </button>
-                            </form>
+                                <form action="/oneBook/edit/{{this._id}}" method="POST">
+                                    <label for="review"></label>
+                                    <input type="text" name="review" required />
+                                    <input class="hidden" type="text" name="key" value={{this.key}}>
+                                    <button class="btn">
+                                        <i class="fas fa-edit">EDIT</i>
+                                    </button>
+                                </form>
+                                <hr>
+                                <div class="col-6">
+                                    <form action="/oneBook/delete/{{this._id}}" method="POST">
+                                        <input class="hidden" type="text" name="key" value={{this.key}}>
+                                        <button class="btn"><i class="fas fa-trash-alt">DELETE</i></p>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
+                          {{/compare}}
+                        {{/each}}
+                        {{#if isLoggedIn}}
+                        <div class="mb-3">
+                            <form action="/oneBook/works/{{titleFound.key}}" method="POST" <label
+                                for="exampleFormControlInput1" class="form-label">Title</label>
+                                <input type="title" name="bookTitle" class="form-control" id="exampleFormControlInput1"
+                                    value="{{titleFound.title}}">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleFormControlInput1" class="form-label">Author</label>
+                            <input type="title" name="authorBook" class="form-control" id="exampleFormControlInput1"
+                                value="{{titleFound.author_name}}">
+                        </div>
+                        <div class="mb-3">
+                            <div class="mb-3">
+                                <label for="exampleFormControlInput1" class="form-label">Your rating on 5</label>
+                                <input type="number" name="rating" min="1" max="5" class="form-control"
+                                    id="exampleFormControlInput1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleFormControlTextarea1" class="form-label">Review</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1"
+                                    rows="3">Write your description here</textarea>
+                                <div class="mb-3 justify-content-center"></div>
+                                <button class="btn btn-outline-success ">Submit</button>
+                            </div>
+                        </div>
+                        {{/if}}
                     </div>
-                </div>
-                {{/each}}
-
-                {{#if isLoggedIn}}
-                
-
-                  <div class="mb-3">
-    <form action="/oneBook/works/{{titleFound.key}}" method="POST"
-  <label for="exampleFormControlInput1" class="form-label">Title</label>
-  <input type="title" name="bookTitle" class="form-control" id="exampleFormControlInput1" value="{{titleFound.title}}" >
-</div>
-<div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Author</label>
-  <input type="title" name="authorBook"  class="form-control" id="exampleFormControlInput1" value="{{titleFound.author_name}}">
-</div>
-<div class="mb-3">
-    <div class="mb-3">
-  <label for="exampleFormControlInput1" class="form-label">Your rating on 5</label>
-  <input type="number" name="rating"  min="1" max="5" class="form-control" id="exampleFormControlInput1">
-</div>
-<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Review</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" >Write your description here</textarea>
-  <div class="mb-3 justify-content-center"></div>
-  <button class ="btn btn-outline-success ">submit review</button>
-  </div>
-</div>
-             
-                {{/if}}
-                {{!--
-                <!--             {{/compare}}
- --> --}}
-
-            </div>
-        </div>
-        {{/if}}
-    </div>
 
 
 
 
 
 
-</div>
 
-<hr>
+
+
+
+
+
+
+
