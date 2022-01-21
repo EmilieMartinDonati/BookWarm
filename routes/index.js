@@ -96,10 +96,10 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
     let numberOfLikes;
 
     if (likeToDisplay !== []) {
-      numberOfLikes = likeToDisplay.length > 0 ? likeToDisplay.length : 'reviews but no likes';
+      numberOfLikes = likeToDisplay.length > 0 ? likeToDisplay.length : 'no';
     }
     else {
-      numberOfLikes = "no reviews and no likes";
+      numberOfLikes = "no";
     }
 
     const booksRead = await bookRedModel.findOne({ key: `works/${req.params.key}` });
