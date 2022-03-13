@@ -1,17 +1,33 @@
-<form id="form" action="/login" method="POST" >
-  <label for="username" class="card">Username</label>
-  <input type="text" name="username" placeholder="Your username" value="gladys"><br>
 
-  <label for="password" class="card">Password</label>
-  <input type="password" name="password"placeholder="********" value="Ngatchani1"><br>
+<div id="login">
+
+
+<form id="login-form" action="/login" method="POST" >
+<div class="row align-items-center g-3">
+        <div class="col-auto">
+  <label for="username" class="visually-hidden">Username</label>
+  <input type="text" name="username" placeholder="Your username" value="gladys" class="form-control">
+  </div>
+
+
+<div class="col-auto">
+  <label for="password" class="visually-hidden">Password</label>
+  <input type="password" name="password" placeholder="********" value="Ngatchani1" class="form-control">
+  </div>
 
   {{#if errorMessage }}
     <div>{{ errorMessage }}</div>
   {{/if}}
 
-  <button type="submit">Login</button>
+<div class="col-auto">
+  <button type="submit" class="btn text-uppercase p-3" id="login-button">Login</button>
+  </div>
 
-  <p>
-    Don't have an account? <a href="/signup">Sign up</a>
+  <p class=" text-center mt-3" id="already-2">
+    <span class="grey"> Don't have an account? </span> <a href="/signup" id="link-signup">SIGNUP</a>
   </p>
 </form>
+
+
+</div>
+

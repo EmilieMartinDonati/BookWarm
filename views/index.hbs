@@ -1,53 +1,82 @@
-<div class="col-sm-3">
-   <img src="./images/follow us now for more.png" style="width: 1483px; height: 550px;">
+<div class="row">
+<div class="col">
+  <div>
+    <img class="img-fluid" alt="bookwarm" src="../images/follow us now for more.png" />
+  </div>
+</div>
 </div>
 
-<div class="row m-1 p-3">
 
+<div class="row mx-1" id="background-index">
 
-  <div class="col-3">
-      <br>
-    <div class="row flex-col">
-      <h4 class="col-12 text-uppercase">Search and browse books</h4>
+  <div class="col-4 p-5" id="browse">
+    <div class="row">
+      <h5 class="col-12 text-uppercase mb-4" id="search">Search for a book ...</h5>
     </div>
-    <hr>
-
-
-    <div class="row flex-col">
-      <form method="POST" action="/">
-        <label for="name">FIELD</label>
-        <input type="text" name="name" placeholder="enter title" />
-         <hr>
-        <input type="number" name="number" max="30" min="1" value="3" />
-        <hr>
-        <button class="btn btn-outline-success">Search</button>
-        
-        
+    <div class="row">
+      <form method="POST" action="/" class="col-12">
+        <label for="name" class="visually-hidden">FIELD</label>
+        <div class="row mb-3">
+        <input type="text" name="name" placeholder="enter title" class="form-control"/>
+        </div>
+        <div class="row mb-4">
+        <input type="number" name="number" max="30" min="1" value="3" class="form-control" />
+        </div>
+        <button class="btn" id="search-btn">SEARCH</button>
       </form>
     </div>
-
+    <div class="row">
+      <h5 class="col-12 text-uppercase mb-4 mt-3" id="categories">... Or browse by categories</h5>
+    </div>
+    <div class="d-flex justify-content-around flex-wrap">
+         <form>
+          <button class="btn btn-outline-danger p-3 m-1 cat">DRAMA</button>
+        </form>
+        <form>
+          <button class="btn btn-outline-warning p-3 m-1 cat">THEATER</button>
+        </form>
+         <form>
+          <button class="btn btn-outline-success p-3 m-1 cat">GORE</button>
+        </form>
+        <form>
+          <button class="btn btn-outline-info p-3 m-1 cat">HISTORICAL</button>
+        </form>
+          <form>
+          <button class="btn btn-outline-danger p-3 m-1 cat">BIOGRAPHY</button>
+        </form>
+        <form>
+          <button class="btn btn-outline-warning p-3 cat">MYSTERY</button>
+        </form>
+    </div>
   </div>
 
-  <div class="col-9 d-flex flex-row flex-wrap">
-    <div class="row">
+
+  <div class="col-8 p-3" id="booksdisplayed">
+    <div class="row mt-3">
+      {{#if authorsSearched}}
+      
+<div><h5 class="text-center text-uppercase" id="yoursearch">You may be interested in</h5></div>
+      {{/if}}
+      <div class="d-flex justify-content-around flex-wrap">
       {{#each authorsSearched}}
-      <div class="card" id="author-card" style="width: 18rem;">
+      <div class="card m-2 lagoon" id="author-card" style="width: 15rem;">
         {{! <img src="..." class="card-img-top" alt="..."> }}
         <div class="card-body">
-          <h5 class="card-title">{{this.title}}</h5>
+          <h5 class="card-title title text-uppercase">{{this.title}}</h5>
           <p class="card-text" id="author-card-name">{{this.author_name}}</p>
           <a href="/oneBook/works/{{this.key}}" class="btn" id="fatLinks"> ... </a>
         </div>
       </div>
       {{/each}}
+      </div>
     </div>
-    <div class="row">
-      <div class="col-12 d-flex flex-row flex-wrap">
+    <div class="row mt-3">
+      <div class="col-12 d-flex flex-row flex-wrap justify-content-around">
         {{#each personalBooks}}
-        <div class="card" id="author-card" style="width: 18rem;">
+        <div class="card m-2 lagoon" id="author-card" style="width: 18rem;">
           <img src="{{this.picture}}" class="card-img-top" alt="{{this.picture}}">
           <div class="card-body">
-            <h5 class="card-title">{{this.title}}</h5>
+            <h5 class="card-title title text-uppercase">{{this.title}}</h5>
             <p class="card-text" id="author-card-name">{{this.author_name}}</p>
             <a href="#" class="btn" id="fatLinks">...</a>
           </div>
@@ -55,18 +84,16 @@
         {{/each}}
       </div>
 
-    <hr>
       <div class="row">
-        <br>
-        <h2>BEST BOOKS</h2>
-        <div class="col-12 d-flex flex-row flex-wrap">
+        <div><h5 class="text-center" id="best">BEST BOOKS ACCORDING TO OUR READERS</h5></div>
+        <div class="col-12 d-flex flex-row flex-wrap justify-content-around">
           {{#each booksRead}}
-          <div class="card" id="author-card" style="width: 18rem;">
+          <div class="card m-2 lagoon" id="author-card" style="width: 15rem;">
             {{!-- <img src="{{this.picture}}" class="card-img-top" alt="{{this.picture}}"> --}}
             <div class="card-body">
-              <h5 class="card-title">{{this.title}}</h5>
-              <p class="card-text" id="author-card-name">{{this.author_name}}</p>
-              <p class="card-text" id="author-card-name">{{this.rating}} / 5</p>
+              <h5 class="card-title title text-uppercase mb-5">{{this.title}}</h5>
+              <p class="card-text author mt-3">{{this.author_name}}</p>
+              <p class="card-text rating">{{this.rating}} / 5</p>
               <a href="/oneBook/{{this.key}}" class="btn" id="fatLinks"> ...</a>
             </div>
           </div>
@@ -74,87 +101,20 @@
         </div>
       </div>
     </div>
-    <hr>
-    {{!-- <div class="row"> --}}
-      {{!-- <h2>MOST COMMENTED BOOKS</h2>
-      <div class="col-12 d-flex flex-row flex-wrap">
-        {{#each booksRead}}
-        <div class="card" id="author-card" style="width: 18rem;">
-          {{!-- <img src="{{this.picture}}" class="card-img-top" alt="{{this.picture}}">
-          {{!-- <div class="card-body">
-            <h5 class="card-title">{{this.title}}</h5>
-            <p class="card-text" id="author-card-name">{{this.author_name}}</p>
-            <p class="card-text" id="author-card-name">{{this.rating}}</p>
-            <a href="/oneBook/{{this._title}}" class="btn btn-primary">Learn more</a>
-          </div>
-        </div>
-        {{/each}}
-      </div>
-    </div> --}}
-    {{!--
-  </div> --}}
-  </div>
-  </div>
-
-  <div class="row flex-row flex-wrap">
-
-    {{!-- <div class="row text-white mt-2 h-5" id="contest">
-      <h4 class="col-12 text-center p-5"><a href="#">PARTICIPATE TO OUR REVIEWS CONTEST</a></h4>
-    </div>
-  </div> --}}
-
-  {{!-- <div class="row">
-    {{!-- {{#if isLoggedOut}} --}}
-    {{!-- <form id="form" action="signup" method="POST" enctype="multipart/form-data">
-      <label for="username">Username</label><br>
-      <input type="text" name="username" placeholder="Your username"><br>
-      <label for="password">Password</label><br>
-      <input type="password" name="password" placeholder="********"><br>
-      <label for="picture" class="label"> <i class="icon fas fa-cloud-upload-alt fa-1x"> Choose a picture </i>
-      </label>
-      <input type="file" name="image" />
-      <button type="submit">Create account</button>
-    </form>
-
-
-    {{#if errorMessage}}
-    <div>{{ errorMessage }}</div>
-    {{/if}}
-  </div> --}}
-
-  {{!-- {{#if isLoggedOut}}
-  <div class="row">
-    <form id="form" action="/login" method="POST">
-      <label for="username">Username</label>
-      <input type="text" name="username" placeholder="Your username" value="gladys"><br>
-      <label for="password">Password</label>
-      <input type="password" name="password" placeholder="********" value="Ngatchani1"><br>
-      {{#if errorMessage }}
-      <div>{{ errorMessage }}</div>
-      {{/if}}
-      <button type="submit">Login</button>
-    </form>
-  </div>
-  {{/if}}
-
 
 </div>
-
-{{#if isLoggedOut}} --}}
-
-
-
-{{!-- {{/if}} --}}
-
-<div class="col-sm-3">
- <img src="./images/Concours (1483 × 550 px).png" style="width: 1483px; height: 550px;" alt="">
-
-
 </div>
 
 
   
 
-   
+
+<div class="row">
+<div class="col-md">
+  <div>
+    <img class="img-fluid" alt="bookwarm" src="../images/Concours (1483 × 550 px).png" />
+  </div>
 </div>
 </div>
+
+

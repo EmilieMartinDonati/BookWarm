@@ -1,11 +1,20 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
   background-color:#FFCE6D;
 }
 
 a {
   text-decoration: none;
+}
+
+
+#booksdisplayed {
+  background-color: #C3CAD4;
+}
+
+#browse {
+  background-color: #4B7E6B;
 }
 
 #fatLinks {
@@ -28,9 +37,11 @@ a {
 }
 
 .wishcol {
-  color: #ED5B2D;
-  font-size: x-large;
+  color: #5A735D;
   text-decoration: none;
+  border: 2px dotted #3D485A;
+  padding: 0.8em;
+  margin-top: 5rem;
 }
 
 .hidden {
@@ -50,7 +61,7 @@ visibility: hidden;
 #reviewBtn {
   margin: 1rem;
   padding: 1rem;
-  background-color: white;
+  background-color: #3D485A;
   color: #291B25;
 }
 
@@ -62,4 +73,226 @@ visibility: hidden;
 
 #footer {
   margin: 0;
+}
+
+#signup {
+  padding: 1rem;
+  width: 100%;
+  background-image: url("../images/signup.jpg");
+  background-size: cover;
+}
+
+#signup-form {
+  margin: 20%;
+  transform: translateY(-20%);
+  background-color: #035471;
+  /* border: ridge #C05F59 3px; */
+  border-radius: 2%;
+  padding: 5em;
+  opacity: 0.8;
+}
+
+#yellow {
+  color: #DBB564;
+  text-decoration: none;
+}
+
+#signup-button {
+  background-color: #DBB564;
+  color: #C05F59;
+}
+
+.grey {
+  color: grey;
+}
+
+#already {
+  border-radius: 3%;
+  border: dotted #C05F59 3px;
+  padding: 3%;
+}
+
+#already-2 {
+  border-radius: 3%;
+  border: dotted #C05F59 3px;
+  padding: 3%;
+}
+
+#login {
+  padding: 1rem;
+  width: 100%;
+  height: 100vh;
+  background-image: url("../images/login2.jpg");
+  background-size: cover;
+}
+
+#login-form {
+  margin: 20%;
+  transform: translateY(-20%);
+  background-color: #283E6F;
+  color: #B7705A;
+  /* border: ridge #C05F59 3px; */
+  border-radius: 2%;
+  padding: 5em;
+  opacity: 0.9;
+}
+
+
+#login-button {
+  background-color: #B7705A;
+  color: #7A2113;
+}
+
+#link-signup {
+  color: #B7705A;
+  text-decoration: none;
+}
+
+
+.lagoon {
+  background-color: #7F9E92;
+}
+
+#author-card {
+  background-color: #93b2a7;
+  border-radius: 2%;
+  padding: 2%;
+  border: dotted #a9c2b9 5px;
+  /* width: calc(92% /3) */
+}
+
+#author-card:hover {
+  background-color: #b4cac2;
+  font-size: 1.2em;
+  /* padding: 1%; */
+}
+
+#background-index {
+  background-color: lightgray;
+}
+
+.title {
+  color: #283E6F;
+}
+
+.author {
+  color: black;
+  text-align: right;
+  margin-bottom: 30%;
+}
+
+.rating {
+  color: white;
+  text-align: center;
+}
+
+#best {
+  /* display: inline-block; */
+  /* margin-left: 10%; */
+  background-color: #879fd4;
+  padding: 3%;
+  border: dotted #7993cf 3px;
+  color: #6D2D21;
+  border-radius: 3%;
+}
+
+#search {
+  /* background-color:  #6D2D21; */
+  padding: 3%;
+  /* border: dotted 3px; */
+  color: #EBB2A3;
+  border-radius: 2%;
+}
+
+#yoursearch {
+  background-color: #283E6F;
+  padding: 3%;
+  border: dotted #233661 3px;
+  color: #c5543f;
+  border-radius: 3%;
+}
+
+#categories {
+  /* background-color:  #6D2D21; */
+  padding: 3%;
+  /* border: dotted 3px; */
+  color:#719a8b;
+  border-radius: 2%;
+  text-align: right;
+}
+
+
+#search-btn {
+  border: solid #283E6F 1px;
+  color: #879fd4;
+  margin-left: 70%;
+  padding: 3%;
+  background-color: #C3CAD4!important;
+}
+
+#search-btn:hover {
+  border: solid #879fd4 1px;
+  color: #283E6F;
+
+}
+
+.cat {
+  background-color: #DCC9C3 !important;
+  border-radius: 2%;
+  color: #7D2C29 !important;
+}
+
+.cat:hover {
+  padding: 4px;
+}
+
+#account {
+  /* background-image: url(../images/booktea.jpg);
+  background-size: contain; */
+  background-color:  #DECCCA;
+
+}
+#last-books {
+  padding-top: 2%;
+  background-color:  #DECCCA;
+  opacity: 0.8;
+}
+
+#your-reviews {
+  padding-top: 2%;
+  background-color: #3D485A;
+  opacity: 0.8;
+}
+
+#personal {
+  background-color: #C19E88
+}
+
+.green {
+  color: #5A735D;
+}
+
+#review-card {
+  background-color: #DECCCA;
+  color:  #9B5B73;
+  border-radius: 2%;
+  padding: 2%;
+  border: dotted #d6c0be 3px;
+}
+
+#review-card:hover {
+  background-color: #d6c0be;
+}
+
+
+#red-card {
+  background-color: #3D485A;
+  color: #DECCCA;
+  border: dotted #3D485A 3px;
+
+}
+
+#upload {
+  background-color: #9B5B73;
+  color: white;
 }

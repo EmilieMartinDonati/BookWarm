@@ -1,38 +1,55 @@
+<div id="personal">
 
-
-<div class="row p-3 m-1">
-  <div class="col-8">
-    <h3 class="text-uppercase" id="personalspace">YOUR PROFILE</h3>
-    <img class="img-fluid" src="./images/Orange Minimal Book Store Logo (1).png" style="width: 1400px; height: 700px;"
-  alt="">
-
-  </div>
-  <div class="col-4">
-    <div class="row">
-      <div class="col-6">
-        <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-          aria-expanded="false" aria-controls="collapseExample" id="reviewBtn">
-          <h4>UPDATE YOUR PICTURE</h4>
-        </button>
-
-        <div class="collapse" id="collapseExample">
-          <div class="card card-body" id="form">
-            <div class="text-center pt-4">
-              <form action="/uploadimage" method="post" enctype="multipart/form-data">
-                <hr>
-                <input type='file' name='image' />
-                <hr>
-                <button class="btn btn-info" type="submit">Upload your image</button>
-              </form>
+  <div class="row mx-1">
+    <div class="col-10">
+      <div class="row">
+        <div class="col-6 p-3" id="last-books">
+          <h5 class="text-center green">LAST BOOKS YOU READ</h5>
+          {{#unless red}}
+          <img class="img-fluid" src="./images/Orange Minimal Book Store Logo (1).png"
+            style="width: 800px; height: 500px;" alt="">
+          {{/unless}}
+          <div class="row flex-wrap  justify-content-around">
+            {{#each red}}
+            <div class="card" id="red-card" style="width: 15rem;">
+              {{#if this.image}}
+              <img src="{{this.image}}" class="card-img-top p-3" alt="...">
+              {{/if}}
+              <div class="card-body">
+                <h6 class="card-title">{{this.title}}</h6>
+                <p class="card-text" id="author-card-name">{{this.author_name}}</p>
+              </div>
+              <div><a href="/oneBook/{{this.key}}" class="fatlinks">...</a></div>
             </div>
+            {{/each}}
+          </div>
+
+        </div>
+
+        <div class="col-6 p-3" id="your-reviews">
+          <h5 class="text-center green">YOUR REVIEWS</h5>
+          <div class="d-flex flex-wrap  justify-content-around">
+            {{#each reviews}}
+            <div class="card m-1" id="review-card" style="width: 15rem;">
+              <div class="card-body">
+                <h6 class="card-title">{{this.bookTitle}}</h6>
+                <p class="card-text" id="author-card-name">{{this.review}}</p>
+                <div><a href="/oneBook/{{this.key}}" class="fatlinks">...</a></div>
+              </div>
+            </div>
+            {{/each}}
           </div>
         </div>
-        <hr>
-
       </div>
+       <div class="row p-3 m-3">
+      <div class="col-9"><a href="/personalbooks" class="wishcol text-left">See the books you add to our collection</a></div>
+      <div class="col-3"><a href="/oneBook/wishlist" class="wishcol text-right">See your wishlist</a></div>
+    </div>
+    </div>
 
 
-    <div class="col-6">
+
+    <div class="col-2 p-3" id="account">
       <div class="row p-3 m-1 flex-wrap">
         <div class="card" style="width: 18rem;">
           <img src={{newPic.image}} class="card-img-top" alt="{{newPic.image}}">
@@ -41,72 +58,22 @@
       <div class="row p-3 m-1 flex-wrap">
         <h4 class="text-center text-uppercase">{{username}}</h4>
       </div>
-    </div>
-  </div>
-</div>
+      <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+        aria-expanded="false" aria-controls="collapseExample" id="reviewBtn">
+        <h6>UPDATE YOUR PICTURE</h6>
+      </button>
 
-
-<div class="col-8 flex-row">
-  <h5 class="text-uppercase">Last books you read. Don't hesitate to write a review!</h5>
-  <hr>
-  <div class="row flex-wrap">
-    {{#each red}}
-    <div class="card" id="author-card" style="width: 18rem;">
-      {{#if this.image}}
-      <img src="{{this.image}}" class="card-img-top" alt="...">
-      {{/if}}
-      <div class="card-body">
-        <h6 class="card-title">{{this.title}}</h6>
-        <p class="card-text" id="author-card-name">{{this.author_name}}</p>
-      </div>
-      <div><a href="/oneBook/{{this.key}}" class="fatlinks">...</a></div>
-    </div>
-    {{/each}}
-  </div>
-</div>
-
-<div class="col-4">
-  <h5 class="text-uppercase">Your reviews</h5>
-  <hr>
-  {{#each reviews}}
-  <div class="card" id="author-card" style="width: 18rem;">
-    {{!-- <img src="..." class="card-img-top" alt="..."> --}}
-    <div class="card-body">
-      <h6 class="card-title">{{this.bookTitle}}</h6>
-      <p class="card-text" id="author-card-name">{{this.review}}</p>
-      <div><a href="/oneBook/{{this.key}}" class="fatlinks">...</a></div>
-    </div>
-
-
-    {{!-- TESTER ET ESSAYER AVEC REVIEWED KEY SI CA S'AFFICHE QUAND MEME
-    --}}
-
-    {{!-- {{#compare booksReviewed.reviews this.user.username}}
-    <div class="row">
-      <div id="delete" class="col-6">
-        <form method="POST" action="personalspace/delete/{{this._id}}">
-          <hr>
-          <button>DELETE</button>
-        </form>
-      </div>
-      <div id="edit" class="col-6">
-        <form method="POST" action="personalspace/edit/{{this._id}}">
-          <input type="text" name="review">
-          <button>EDIT</button>
-        </form>
+      <div class="collapse" id="collapseExample">
+        <div class="card card-body" id="upload">
+          <div class="text-center pt-4">
+            <form action="/uploadimage" method="post" enctype="multipart/form-data">
+              <hr>
+              <input type='file' name='image' class="form-control"/>
+              <hr>
+              <button class="btn" id="img-upload" type="submit">Upload your image</button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-    {{/compare}} --}}
   </div>
-  {{/each}}
-
-</div>
-
-
-<div class="row p-3 m-1">
-  <div class="col-9"><a href="/personalbooks" class="wishcol">SEE THE BOOKS YOU ADDED TO OUR COLLECTION</a></div>
-  <div class="col-3"><a href="/oneBook/wishlist" class="wishcol">SEE WISHLIST</a></div>
-</div>
-
-
-</div>

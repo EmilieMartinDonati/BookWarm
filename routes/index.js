@@ -93,7 +93,7 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
     let numberOfLikes;
 
     if (likeToDisplay !== []) {
-      numberOfLikes = likeToDisplay.length > 0 ? likeToDisplay.length : 'no';
+      numberOfLikes = likeToDisplay?.length > 0 ? likeToDisplay?.length : 'no';
     }
     else {
       numberOfLikes = "no";

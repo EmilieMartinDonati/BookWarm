@@ -1,16 +1,25 @@
 
 
+<div id="signup">
 
-
-<form id="form" action="signup" method="POST">
-    <label for="username">Username</label><br>
-    <input type="text" name="username" placeholder="Your username"><br>
-
-    <label for="password">Password</label><br>
-    <input type="password" name="password" placeholder="********"><br>
-
-    <button type="submit">Create account</button>
+<form id="signup-form" action="signup" method="POST">
+  <div class="row align-items-center g-3">
+        <div class="col-auto">
+    <label for="username" class="visually-hidden">Username</label>
+    <input type="text" name="username" placeholder="Your username" class="form-control" >
+    </div>
+<div class="col-auto">
+    <label for="password" class="visually-hidden">Password</label>
+    <input type="password" name="password" placeholder="********" class="form-control" >
+    </div>
+<div class="col-auto">
+    <button type="submit" class="btn p-3 text-uppercase" id="signup-button">Create</button>
+    </div>
 </form>
+<div>
+  <p class="text-center" id="already"> <span class="grey">Already have an account ? <a href="/login" class="text-uppercase" id="yellow"> Sign in</a></p>
+</div>
+</div>
 
 
 

@@ -2,64 +2,80 @@
 <html lang="en">
 
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <title>{{title}}</title>
-   <link rel="stylesheet" href="/stylesheets/style.css" />
-   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-   
-   
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>{{title}}</title>
+  <link rel="stylesheet" href="/stylesheets/style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
+
 </head>
 
-{{!-- <body> --}}
+{{!--
 
-   <header id="header-main">
-     
+<body> --}}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light"  style="width: 1483px; height: 50px;">
-  <a class="navbar-brand" href="#">  BOOKWARM</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-       {{#if isLoggedIn}}
-      <li class="nav-item active">
-        <a class="nav-link" href="/personalspace">Your profile<span class="sr-only">(current)</span></a>
-      </li>
-      {{/if}}
-      <li class="nav-item">
-        <a class="nav-link" href="/">Home</a>
-      </li>
-       {{#if isLoggedIn}}
-       <li class="nav-item">
-        <a class="nav-link" href="/logout">Sign out</a>
-      </li>
-      {{else}}
-       <li class="nav-item">
-        <a class="nav-link" href="/login">Sign in</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/signup">Sign up</a>
-      </li>
-      {{/if}}
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+
+        <header id="header-main">
+
+
+          <nav class="navbar navbar-expand-md navbar-light bg-light">
+            <a class="navbar-brand" href="#">BOOKWARM</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                {{#if isLoggedIn}}
+                <li class="nav-item active">
+                  <a class="nav-link" href="/personalspace">Your profile<span class="sr-only">(current)</span></a>
+                </li>
+                {{/if}}
+                <li class="nav-item">
+                  <a class="nav-link" href="/">Home</a>
+                </li>
+                {{#if isLoggedIn}}
+                <li class="nav-item">
+                  <a class="nav-link" href="/logout">Sign out</a>
+                </li>
+                {{else}}
+                <li class="nav-item">
+                  <a class="nav-link" href="/login">Sign in</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/signup">Sign up</a>
+                </li>
+                {{/if}}
+            </div>
+          </nav>
+        </header>
+      </div>
+    </div>
   </div>
-</nav>
-   </header>
 
 
-   {{{body}}}
+  <div class="container">
 
- <footer class="footer flexed-item" id="footer">
-    <p> Made with <i class="fas fa-heart"></i> + <i class="fas fa-coffee"></i></p>
-  </footer>
+    {{{body}}}
 
-   {{!-- {{> footer}} --}}
+  </div>
 
-   <script type="module" src="/js/script.js"></script>
-{{!-- </body> --}}
+
+    <footer id="footer" class="footer-1 p-2 footer-dark bg-dark text-white">
+      <p> Made with <i class="fas fa-heart"></i> + <i class="fas fa-coffee"></i></p>
+    </footer>
+
+
+
+
+  <script type="module" src="/js/script.js"></script>
+
 
 </html>
