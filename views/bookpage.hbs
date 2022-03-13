@@ -1,26 +1,6 @@
 <div class="container" id="one-book">
     <div class="row">
         <hr>
-        {{!-- <img src='{{image}}' />
-        <h1 class="row" id="title">{{titleFound.title}} </h1>
-        <h4 class="row" id="author">{{titleFound.author_name}}</h4>
-        <h5 class="row" id="first-sentence">{{titleFound.first_sentence}}</h5>
-        <div class="row">
-            <div class="col-9" id="subject">{{titleFound.subject}}</div>
-            <div class="col-3" id="number-of-pages">{{titleFound.number_of_pages_median}}</div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-6">
-                <i class="fas fa-heart"></i>
-                <a href="/oneBook/wishlist/{{titleFound.key}}"> <button id="add-wishlist">Add to
-                        wishlist</button></a>
-            </div>
-            <div class="col-6">
-                <a href="/oneBook/redlist/{{titleFound.key}}"> <button id="add-red">:fusée: Add to books already
-                        red</button></a>
-            </div>
-        </div> --}}
         <div class="col-8">
             <div class="card">
                 <div class="card-body">
@@ -33,24 +13,29 @@
 
 
                     {{#if isLoggedIn}}
-                    {{#compare keyForCompare booksWished.key operator="!="}}
                     <div class="row">
-                        <div class="col-6">
+                    {{#unless alreadyWished}}
+                        <div class="col-4">
                             <i class="fas fa-heart"></i>
                             <a href="/oneBook/wishlist/{{titleFound.key}}">Add to
                                 wishlist</a>
                         </div>
-                        {{/compare}}
-                        {{#compare keyForCompare booksRead.key operator="!="}}
-                        {{!-- <p>{{keyForCompare}}</p>
-                        <p>{{booksRead.key}}</p> --}}
-                        <div class="col-6">
+                        {{/unless}}
+                        {{#unless alreadyRead}}
+                        <div class="col-4">
                             <i class="fas fa-space-shuttle"><a href="/oneBook/redlist/{{titleFound.key}}">Add to
                                     books already
-                                    red</i>
+                                    red</a></i>
+                        </div>
+                        {{/unless}}
+                        <div class="col">
+                            <form method="POST" action="/oneBook/rate/{{titleFound.key}}">
+                                <input type="number" min="1" max="5" placeholder="1" class="form-control">
+                            <button><i class="fas fa-space-shuttle">Rate this book</i></button>
+                            </form>
                         </div>
                     </div>
-                    {{/compare}}
+                    
                     {{/if}}
                 </div>
             </div>

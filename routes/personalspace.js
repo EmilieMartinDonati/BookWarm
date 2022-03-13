@@ -9,21 +9,17 @@ const UserModel = require("../models/User.model");
 
 
 
-
+// Display the profile as it does include the profile pic.
 
 router.get("/personalspace/", async (req, res, next) => {
   try {
     const username = req.session.currentUser.userName;
-    console.log("🏓", username);
-    const wishlist = await bookWishlistModel.find({
-      user: req.session.currentUser._id,
-    });
-    const red = await bookRedModel
-      .find({
-        user: req.session.currentUser._id,
-      })
-      .sort({ date: -1 })
-      .limit(5);
+    
+    const foundUser = await UserModel.findById(req.session.currentUser._id).populate("read");
+
+    const read = foundUser.read;
+    console.log("this is log line 21", read);
+
     const reviews = await Review.find({
       user: req.session.currentUser._id,
     });
@@ -35,14 +31,10 @@ router.get("/personalspace/", async (req, res, next) => {
       image: 1,
     });
     console.log(picture);
-    // const profilePic = await picModel.find({
-    //   user: req.session.currentUser._id,
-    // });
-    // const profilePic = await picModel.findById(req.params.id).populate("User");
     res.render("personal.space.hbs", {
       username,
-      wishlist,
-      red,
+      // wishlist,
+      read,
       reviews,
       createdBooks,
       newPic: picture,
@@ -56,29 +48,14 @@ router.post(
   "/uploadimage",
   fileUploader.single("image"),
   async (req, res, next) => {
-    console.log(req.body, "This is reqbody");
-    // const updatedPicture = { ...req.body };
     if (!req.file) updatedPicture = undefined;
     else updatedPicture = req.file.path;
-    console.log(updatedPicture);
     try {
       const profilePic = await UserModel.findByIdAndUpdate(
         req.session.currentUser._id,
         { image: updatedPicture }
       );
       res.redirect("/personalspace");
-      // const wishlist = await bookWishlistModel.find();
-      // const red = await bookRedModel.find().sort({ date: -1 }).limit(5);
-      // const reviews = await Review.find();
-      // const createdBooks = await UsercreateModel.find();
-      // const newPic = await picModel.create(updatedPicture);
-      // res.render("personal.space.hbs", {
-      // //   newPic,
-      //   wishlist,
-      //   red,
-      //   reviews,
-      //   createdBooks,
-      // });
     } catch (err) {
       next(err);
     }

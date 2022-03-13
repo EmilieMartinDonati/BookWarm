@@ -8,13 +8,11 @@ const reviewSchema = new Schema({
     authorBook: String,
     review: String,
     user: { type: Schema.Types.ObjectId, ref: "User"},
-    book: { type: Schema.Types.ObjectId, ref: "book red"}
+    // book: { type: Schema.Types.ObjectId, ref: "book red"}
+    // Revamp model :
+    book: { type: Schema.Types.ObjectId, ref: "book"}
   });
   
-// const review = mongoose.model('Review', {
-//   title: String,
-//   bookTitle: String
-// });
 
 const Review = model("reviews", reviewSchema);
 

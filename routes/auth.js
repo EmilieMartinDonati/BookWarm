@@ -23,11 +23,6 @@ router.post("/signup", (req, res, next) => {
       errorMessage: "Please enter a username and a password",
     });
   }
-  // if (zxcvbn(password).score < 30) {
-  //     res.redirect('auth/signup',
-  //       {errorMessage: 'Your password is too weak, try again'}
-  //     );
-  //   }
   else {
     User.findOne({ userName })
       .then((user) => {
@@ -42,7 +37,7 @@ router.post("/signup", (req, res, next) => {
         const hashedPassword = bcrypt.hashSync(password, salt);
 
         User.create({ userName, password: hashedPassword })
-          .then(() => res.redirect("/"))
+          .then(() => res.redirect("/login"))
           .catch((err) =>
             res.render("auth/signup", {
               errorMessage: "Error while trying to create a new user",
@@ -50,13 +45,6 @@ router.post("/signup", (req, res, next) => {
           );
       })
       .catch((err) => next(err));
-    /*
-    
-    
-      
-       
-      })
-      */
   }
 });
 
