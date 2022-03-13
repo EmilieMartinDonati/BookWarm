@@ -17,7 +17,7 @@
       <form method="POST" action="/" class="col-12">
         <label for="name" class="visually-hidden">FIELD</label>
         <div class="row mb-3">
-        <input type="text" name="name" placeholder="enter title" class="form-control"/>
+        <input type="text" name="name" placeholder="enter title" class="form-control" required/>
         </div>
         <div class="row mb-4">
         <input type="number" name="number" max="30" min="1" value="3" class="form-control" />
@@ -93,7 +93,7 @@
             <div class="card-body">
               <h5 class="card-title title text-uppercase mb-5">{{this.title}}</h5>
               <p class="card-text author mt-3">{{this.author_name}}</p>
-              <p class="card-text rating">{{this.rating}} / 5</p>
+              <p class="card-text rating">{{this.avgRate}} / 5</p>
               <a href="/oneBook/{{this.key}}" class="btn" id="fatLinks"> ...</a>
             </div>
           </div>
@@ -115,6 +115,6 @@
     <img class="img-fluid" alt="bookwarm" src="../images/Concours (1483 × 550 px).png" />
   </div>
 </div>
-</div>
+
 
 

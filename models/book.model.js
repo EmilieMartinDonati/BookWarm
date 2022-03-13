@@ -17,9 +17,16 @@ const bookSchema = new Schema ({
     author_alternative_name: [String],
     author_key : [String],
     author_name :  [String],
-    rating: Number,
-    // I remove the review for now, it's better in the other order.
-    // reviews: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
+    totalRate: {
+        type: Number,
+        default: 0},
+    nbRates: {
+        type: Number,
+        default: 0},
+    avgRate: {
+        type: Number,
+        default: 0
+    },
     image: {
         type: String,
         default: `https://www.publishersweekly.com/images/cached/ARTICLE_PHOTO/photo/000/000/073/73607-v1-600x.JPG`},

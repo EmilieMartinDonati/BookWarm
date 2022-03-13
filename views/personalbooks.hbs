@@ -2,7 +2,11 @@
 
 <div class="row">
   <div class="col-8">
-    <div class="row p-3 m-1 flex-wrap">
+    <div class="row flex-wrap">
+      {{#unless createdBooks}}
+       <div class="col-12" id="book-tea">
+       </div>
+      {{/unless}}
      {{#each createdBooks}}
     <div class="card" style="width: 18rem;">
         <img src={{this.picture}} class="card-img-top" alt={{this.title}}>
@@ -15,10 +19,10 @@
     {{/each}}
     </div>
   </div>
-  <div class="col-4">
+  <div class="col-4 p-4">
 <h2>ADD A BOOK</h2>
 <hr>
-<form method="POST" action="/createdBooks" enctype="multipart/form-data" class="row">
+<form method="POST" action="/createdBooks" enctype="multipart/form-data" class="row my-2">
   <label for="title" class="visually-hidden">TITLE</label>
   <br>
   <input type="text" name="title" placeholder="Book's title" required class="form-control" />
@@ -39,8 +43,7 @@
   <button class="btn btn-success mt-5">ADD</button>
 </form>
 </div>
-</div>
 
 
 
-</div>
+

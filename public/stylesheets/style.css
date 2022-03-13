@@ -1,7 +1,10 @@
+
+
 body {
   padding: 50px;
   /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
   background-color:#FFCE6D;
+  /* margin: 0 !important; */
 }
 
 a {
@@ -72,7 +75,8 @@ visibility: hidden;
 }
 
 #footer {
-  margin: 0;
+  /* width: 100% !important; */
+  /* margin: 2% !important; */
 }
 
 #signup {
@@ -247,8 +251,6 @@ visibility: hidden;
 }
 
 #account {
-  /* background-image: url(../images/booktea.jpg);
-  background-size: contain; */
   background-color:  #DECCCA;
 
 }
@@ -295,4 +297,19 @@ visibility: hidden;
 #upload {
   background-color: #9B5B73;
   color: white;
+}
+
+#book-tea {
+  background-image: url(../images/booktea.jpg);
+  background-size: cover;
+  height: 100vh;
+}
+
+#book-forest {
+  background-image: url(../images/bookforest-transparent.png);
+  background-size: contain;
+  /* width: 100%; */
+  height: 100vh;
+  /* max-height: auto;
+  width: auto; */
 }

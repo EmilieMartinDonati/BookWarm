@@ -69,7 +69,7 @@ router.post("/", async (req, res, next) => {
 
   const number = Number(req.body.number);
   const personalBooks = await UsercreateModel.find({ title: req.body.name }).limit(number);
-  const bestrated = await book.find().sort({ rating: -1 }).limit(6);
+  const bestrated = await book.find().sort({ avgRate: 1 }).limit(6);
   const response = await api.get(`${req.body.name}&fields=*,availability&limit=${number}`)
   const authorsSearched = [];
   for (let i = 0; i < number; i++) {
@@ -115,7 +115,7 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
     // This is an attempt to filter thru what the user already has is their wishlist and their books already red list.
 
 
-const currentGuy = req.session.currentUser._id;
+const currentGuy = req.session.currentUser?._id;
 console.log(" 🏓this is current guy line 124", currentGuy)
 
    const currentUser = await User.findById(req.session.currentUser?._id).populate("wishlist").populate("read");
@@ -163,7 +163,7 @@ console.log(" 🏓this is current guy line 124", currentGuy)
     const keyForCompare = `works/${response2.data.docs[0].key}`;
     const titleFound = response2.data.docs[0];
     const response3 = await apiGoogle.get(`${response2.data.docs[0].title}${response2.data.docs[0].author_name[0]}&key=AIzaSyAU4_7l55akAv2nS3YqqWvQFN_fPEMfgvk`);
-    const response4 = await apiGoogleSingle.get(`${response3.data.items[0].id}?key=AIzaSyAU4_7l55akAv2nS3YqqWvQFN_fPEMfgvk`);
+    const response4 = await apiGoogleSingle.get(`${response3?.data?.items[0]?.id}?key=AIzaSyAU4_7l55akAv2nS3YqqWvQFN_fPEMfgvk`);
     let image;
     if (response4.data.volumeInfo.imageLinks) {
       if (response4.data.volumeInfo.imageLinks.medium) image = response4.data.volumeInfo.imageLinks.medium;
@@ -223,7 +223,7 @@ router.get("/oneBook/wishlist/:key", async (req, res, next) => {
   {new: true})
 
 
-  await User.findByIdAndUpdate(req.session.currentUser._id, {
+  await User.findByIdAndUpdate(req.session.currentUser?._id, {
     $push: {wishlist: thebook._id }
 }, {
   new: true
@@ -252,7 +252,7 @@ else {
   });
 
   await book.findByIdAndUpdate(createdBook._id, {
-    $push: {wishedBy: req.session.currentUser._id}},
+    $push: {wishedBy: req.session.currentUser?._id}},
     {new: true}
   )
 
@@ -260,7 +260,7 @@ else {
     subject: response2.data.docs[0].subject
   });
 
-  await User.findByIdAndUpdate(req.session.currentUser._id, {
+  await User.findByIdAndUpdate(req.session.currentUser?._id, {
     $push: {wishlist: createdBook._id }
 }, {
   new: true
@@ -270,7 +270,7 @@ else {
 
 // I give the book to the given user.
 
-const currentUser = await User.findById(req.session.currentUser._id).populate("wishlist")
+const currentUser = await User.findById(req.session.currentUser?._id).populate("wishlist")
 
 
 const addedBooks = currentUser.wishlist;
@@ -289,7 +289,7 @@ catch (err){
 
 router.post("/oneBook/wishlist/:id/delete", async (req, res, next) => {
   try {
- await User.findByIdAndUpdate(req.session.currentUser._id, {
+ await User.findByIdAndUpdate(req.session.currentUser?._id, {
      $pull: {wishlist: req.params.id }
     }, {
       new: true
@@ -332,7 +332,7 @@ router.get("/oneBook/redlist/:key", async (req, res, next) => {
   {new: true})
 
 
-  await User.findByIdAndUpdate(req.session.currentUser._id, {
+  await User.findByIdAndUpdate(req.session.currentUser?._id, {
     $push: {read: thebook._id }
 }, {
   new: true
@@ -360,7 +360,7 @@ router.get("/oneBook/redlist/:key", async (req, res, next) => {
   });
 
   await book.findByIdAndUpdate(createdBook._id, {
-    $push: {readBy: req.session.currentUser._id},
+    $push: {readBy: req.session.currentUser?._id},
   }, {new: true})
 
 
@@ -369,7 +369,7 @@ router.get("/oneBook/redlist/:key", async (req, res, next) => {
   });
 
 
-  await User.findByIdAndUpdate(req.session.currentUser._id, {
+  await User.findByIdAndUpdate(req.session.currentUser?._id, {
     $push: {read: createdBook._id }
 }, {
   new: true
@@ -391,8 +391,79 @@ catch (err) {
 
 router.post("/oneBook/rate/:key", async (req, res, next) => {
   try {
-  const {rating } = req.body;
+
+    const {rating} = req.body;
+    console.log(typeof rating);
+
+    const exists = await book.findOne({key: `works/${req.params.key}`});
+    console.log("🐤this is log line 312", exists)
+  
+    if (exists) {
+      const thebook = await book.findByIdAndUpdate(exists._id, {
+      $inc: {nbRates: 1, totalRate: Number(rating)},
+    }, 
+    {new: true});
+
+    console.log(typeof thebook.avgRate);
+
+    const avg = thebook.totalRate / thebook.nbRates;
+    console.log("🐤", avg);
+
+    const thebook2 = await book.findByIdAndUpdate(thebook._id, {
+        avgRate: avg
+    }, {new: true})
+
+  
+    await User.findByIdAndUpdate(req.session.currentUser?._id, {
+      $push: {booksRated: thebook2._id }
+  }, {
+    new: true
+  })
   }
+
+  else {
+  let number = 1;
+  const response = await apiKey.get(`/works/${req.params.key}.json`);
+  const response2 = await api.get(`${response.data.title}&fields=*,availability&limit=${number}`);
+  const response3 = await apiGoogle.get(`${response2.data.docs[0].title}${response2.data.docs[0].author_name[0]}&key=AIzaSyAU4_7l55akAv2nS3YqqWvQFN_fPEMfgvk`);
+  const response4 = await apiGoogleSingle.get(`${response3.data.items[0].id}?key=AIzaSyAU4_7l55akAv2nS3YqqWvQFN_fPEMfgvk`);
+  let image;
+  // console.log("🐤", response4.data.volumeInfo);
+  if (response4.data.volumeInfo.imageLinks) {
+    if (response4.data.volumeInfo.imageLinks.medium) image = response4.data.volumeInfo.imageLinks.medium;
+    else if (response4.data.volumeInfo.imageLinks.large) image = response4.data.volumeInfo.imageLinks.large;
+    else if (response4.data.volumeInfo.imageLinks.small) image = response4.data.volumeInfo.imageLinks.small;
+  }
+
+  const createdBook = await book.create({
+    key: response2.data.docs[0].key.slice(1).toString(),
+    title: response2.data.docs[0].title,
+    first_publish_year: response2.data.docs[0].title.first_publish_year,
+    publish_year: response2.data.docs[0].publish_year,
+    number_of_pages_median: response2.data.docs[0].number_of_pages_median,
+    isbn: response2.data.docs[0].isbn,
+    lccn: response2.data.docs[0].lccn,
+    publisher: response2.data.docs[0].publisher,
+    author_name: response2.data.docs[0].author_name,
+    subject: response2.data.docs[0].subject,
+    cover_i: response2.data.docs[0].cover_i,
+    first_sentence: response2.data.docs[0].first_sentence,
+    author_alternative_name: response2.data.docs[0].author_alternative_name,
+    author_key: response2.data.docs[0].author_key,
+    author_name: response2.data.docs[0].author_name,
+    image: image,
+    totalRate: rating,
+    nbRates: 1,
+    avgRate: rating
+  });
+
+  await User.findByIdAndUpdate(req.session.currentUser?._id, {
+    $push: {booksRated: createdBook._id }
+}, {
+  new: true
+})
+  }
+}
   catch (err) {
     next(err)
   }
