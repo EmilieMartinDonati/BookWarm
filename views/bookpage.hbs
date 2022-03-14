@@ -1,39 +1,45 @@
 <div class="container" id="one-book">
-    <div class="row">
+    <div class="row p-3" id="bg-one-book">
         <hr>
-        <div class="col-8">
+        <div class="col-md-7 col-sm-12 m-3">
             <div class="card">
                 <div class="card-body">
-                    <img class="img-card" src={{image}} alt="" />
-                    <h4 class="card-text" id="review">{{titleFound.title}}</h4>
-                    <p>{{titleFound.author_name}}</p>
+                    <div class="relative">
+                    <div>
+                    <img class="img-card absolute-img" src={{image}} alt=""/>
+                    </div>
+                    <h4 class="card-text absolute-top" id="review">{{titleFound.title}}</h4>
+                    <p class="absolute-high">{{titleFound.author_name}}</p>
                     <p>{{titleFound.first_sentence}}</p>
-                    <div class="col-3" id="number-of-pages">{{titleFound.number_of_pages_median}} PAGES</div>
+                    <div class="col-3 absolute-low" id="number-of-pages">{{titleFound.number_of_pages_median}} PAGES</div>
+                    </div>
                     <hr>
 
 
                     {{#if isLoggedIn}}
                     <div class="row">
                     {{#unless alreadyWished}}
-                        <div class="col-4">
+                        <div class="col-4 actions">
                             <i class="fas fa-heart"></i>
-                            <a href="/oneBook/wishlist/{{titleFound.key}}">Add to
+                            <a href="/oneBook/wishlist/{{titleFound.key}}"> Add to
                                 wishlist</a>
                         </div>
                         {{/unless}}
                         {{#unless alreadyRead}}
-                        <div class="col-4">
-                            <i class="fas fa-space-shuttle"><a href="/oneBook/redlist/{{titleFound.key}}">Add to
+                        <div class="col-4 actions">
+                            <i class="fas fa-space-shuttle"></i><a href="/oneBook/redlist/{{titleFound.key}}"> Add to
                                     books already
-                                    red</a></i>
+                                    red</a>
                         </div>
                         {{/unless}}
-                        <div class="col">
+                        {{#unless alreadyRated}}
+                        <div class="col actions">
                             <form method="POST" action="/oneBook/rate/{{titleFound.key}}">
                                 <input type="number" min="1" max="5" placeholder="1" name="rating" class="form-control">
-                            <button><i class="fas fa-space-shuttle">Rate this book</i></button>
+                            <button class="btn">Rate this book</button>
                             </form>
                         </div>
+                        {{/unless}}
                     </div>
                     
                     {{/if}}
@@ -42,25 +48,33 @@
         </div>
 
 
-        <div class="col-4">
+        <div class="col-md-4 col-sm-12 m-3">
+            <div class="card" id="comment-card">
+                <div class="card-body">
             <div class="row">
                 <h3 id="reviews">REVIEWS</h3>
-                <hr>
                 {{#each reviews}}
                 <div class="card">
                     <div class="card-body">
-                        <p class="card-text" id="review">{{this.review}}</p>
+
+                        <div class="row">
+                            <div class="col-8">
+                        
+                        <h5 class="card-text font-italic" id="review">"{{this.review}}"</h5>
                         <p class="card-text">By {{this.user.userName}}</p>
                         <p class="card-text">{{@root.numberOfLikes}} LIKE</p>
 
+                        </div>
 
-                        <div class="row">
+                        <div class="col-4">
+
                             <form action="/oneBook/like/{{this._id}}" method="POST">
                                 <input class="hidden" type="text" name="review" value="{{this.review}}" />
-                                <button class="btn">
+                                <button class="btn btn-danger pr-0">
                                     <i class="far fa-heart"></i>
                                 </button>
                             </form>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -71,24 +85,23 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-12">
+                            <div class="col-6">
                                 <form action="/oneBook/edit/{{this._id}}" method="POST">
                                     <label for="review"></label>
-                                    <input type="text" name="review" required />
+                                    <input type="text" name="review" required class="form-control"/>
                                     <input class="hidden" type="text" name="key" value={{this.key}}>
                                     <button class="btn">
                                         <i class="fas fa-edit">EDIT</i>
                                     </button>
                                 </form>
-                                <hr>
-                                <div class="col-6">
+                                </div>
+                                <div class="col-md-6 col-sm-12 mt-5 pt-3">
                                     <form action="/oneBook/delete/{{this._id}}" method="POST">
                                         <input class="hidden" type="text" name="key" value={{this.key}}>
                                         <button class="btn"><i class="fas fa-trash-alt">DELETE</i></p>
                                         </button>
                                     </form>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -118,9 +131,6 @@
                             <label for="author" class="form-label">Author</label>
                             <input type="title" name="authorBook" class="form-control" id="exampleFormControlInput1"
                                 value="{{titleFound.author_name}}" />
-                            <label for="rating" class="form-label">Your rating on 5</label>
-                            <input type="number" name="rating" min="1" max="5" class="form-control"
-                                id="exampleFormControlInput1">
                             <label for="exampleFormControlTextarea1" class="form-label">Review</label>
                             <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
                                 name="review">Write your description here</textarea>
@@ -131,6 +141,8 @@
                 </div>
 
                 {{/if}}
+            </div>
+            </div>
             </div>
         </div>
 

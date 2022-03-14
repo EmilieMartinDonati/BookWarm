@@ -1,12 +1,14 @@
 {{!-- <div class="row p-3 m-1 flex-wrap"> --}}
 
 <div class="row">
-  <div class="col-8">
+  <div class="col-8 p-4">
     <div class="row flex-wrap">
       {{#unless createdBooks}}
        <div class="col-12" id="book-tea">
        </div>
       {{/unless}}
+      {{#if createdBooks}}
+      <div class="col-12 d-flex flex-row flex-wrap justify-content-between p-3 mx-auto" style="background-color: grey;">
      {{#each createdBooks}}
     <div class="card" style="width: 18rem;">
         <img src={{this.picture}} class="card-img-top" alt={{this.title}}>
@@ -17,6 +19,8 @@
         </div>
     </div>
     {{/each}}
+    </div>
+    {{/if}}
     </div>
   </div>
   <div class="col-4 p-4">
@@ -40,7 +44,7 @@
   <textarea type="text" class="input" id="description" name="description" placeholder="Write your book summary here"
    class="form-control"></textarea>
   <br>
-  <button class="btn btn-success mt-5">ADD</button>
+  <button class="btn btn-outline-success mt-5">ADD</button>
 </form>
 </div>
 

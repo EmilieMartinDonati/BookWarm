@@ -5,6 +5,7 @@ const Review = require('../models/reviews-model');
 const bookRedModel = require("../models/Bookred.model");
 const UserModel = require("../models/User.model");
 const likeModel = require("../models/like.model");
+const book = require("../models/book.model");
 
 
 //POST REVIEWS NEW/CREATE - /REVIEWS/NEW
@@ -48,9 +49,9 @@ router.post("/oneBook/edit/:id", async (req, res, next) => {
 
 router.post("/oneBook/like/:id", async (req, res, next) => {
 
-  const book = await bookRedModel.findOne({id: req.params.id}, {key: 1});
-  console.log("🏓", book.key.slice(6));
-  const key = book.key.slice(6);
+  const foundBook = await book.findOne({id: req.params.id}, {key: 1});
+  console.log("🏓", foundBook.key.slice(6));
+  const key = foundBook.key.slice(6);
 
   try {
 

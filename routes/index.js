@@ -14,7 +14,7 @@ const book = require("../models/book.model");
 // Première API. Le search général. 
 
 const axios = require('axios');
-const { user } = require("pg/lib/defaults");
+// const { user } = require("pg/lib/defaults");
 
 const api = axios.create({
   baseURL: `https://openlibrary.org/search.json?q=$`
@@ -48,12 +48,17 @@ const apiCover = axios.create({
 
 /* GET home page */
 router.get("/", async (req, res, next) => {
-  // const booksRead = await bookRedModel.find().sort({ rating: -1 }).limit(6);
-  // console.log(booksRead);
-  // res.render("index", { booksRead });
   // REVAMP MODELS :
-  const bestrated = await book.find().sort({rating: -1}).limit(6);
-  res.render("index", {bestrated});
+  let categoriesArr = [];
+  const categories = await genreModel.find();
+  categories.forEach((cat) => {
+     categoriesArr.push(cat.subject[0]);
+  })
+
+let uniquifiedCat = [...new Set(categoriesArr)];
+
+  const bestrated = await book.find().sort({avgRate: -1}).limit(6);
+  res.render("index", {bestrated, uniquifiedCat});
 });
 
 
@@ -61,14 +66,11 @@ router.get("/", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
 
-
-  // I probably don't need the user create model, it's more about making sure the addition of the books already there and the API don't overlap which can be problematic.
-  // I'm not sure how to solve this for the time being.
-
   try {
 
   const number = Number(req.body.number);
-  const personalBooks = await UsercreateModel.find({ title: req.body.name }).limit(number);
+  console.log("this is log line 69", typeof req.body.name)
+  const personalBooks = await UsercreateModel.find({ title: { $in: [ req.body.name ]}}).limit(number);
   const bestrated = await book.find().sort({ avgRate: 1 }).limit(6);
   const response = await api.get(`${req.body.name}&fields=*,availability&limit=${number}`)
   const authorsSearched = [];
@@ -112,21 +114,23 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
     }
 
 
-    // This is an attempt to filter thru what the user already has is their wishlist and their books already red list.
+    // This is an attempt to filter thru what the user already has is their wishlist and their books already red list. Ibidem for the books already rated.
 
 
 const currentGuy = req.session.currentUser?._id;
 console.log(" 🏓this is current guy line 124", currentGuy)
 
-   const currentUser = await User.findById(req.session.currentUser?._id).populate("wishlist").populate("read");
+   const currentUser = await User.findById(req.session.currentUser?._id).populate("wishlist").populate("read").populate("booksRated");
    console.log(" 🏓this is current user line 124", currentUser);
 
    // Check whether the wishlist of read includes a book with the key given in the params. If the user already added the book to its wishlist or already read it. 
 
    let wishArray = [];
    let readArray = [];
+   let ratedArray = [];
    let alreadyWished = false;
    let alreadyRead = false;
+   let alreadyRated = false;
 
    if (currentUser !== null) {
 
@@ -137,11 +141,18 @@ console.log(" 🏓this is current guy line 124", currentGuy)
    })
 
    currentUser.read?.forEach((el) => {
-     console.log(el.key, req.params.key)
+    //  console.log(el.key, req.params.key)
     let keyCompare = el.key.slice(6)
      if (keyCompare === req.params.key) readArray.push(el);
      else console.log("this is line 150");
    })
+
+   currentUser.booksRated?.forEach((el) => {
+    console.log("this is log line 149", el.key, req.params.key)
+   let keyCompare = el.key.slice(6)
+    if (keyCompare === req.params.key) ratedArray.push(el);
+    else console.log("this is line 150");
+  })
   }
  
    if (wishArray.length > 0) {
@@ -152,6 +163,10 @@ console.log(" 🏓this is current guy line 124", currentGuy)
      alreadyRead = true;
    }
 
+   if (ratedArray.length > 0) {
+     alreadyRated = true;
+   }
+
 
     let number = 1;
     // Search by key.
@@ -159,7 +174,6 @@ console.log(" 🏓this is current guy line 124", currentGuy)
     // Search by title.
     const response2 = await api.get(`${response.data.title}&fields=*,availability&limit=${number}`);
     response2.data.docs[0].key = response2.data.docs[0].key.slice(7)
-    // console.log("🏓", response2.data.docs[0].key);
     const keyForCompare = `works/${response2.data.docs[0].key}`;
     const titleFound = response2.data.docs[0];
     const response3 = await apiGoogle.get(`${response2.data.docs[0].title}${response2.data.docs[0].author_name[0]}&key=AIzaSyAU4_7l55akAv2nS3YqqWvQFN_fPEMfgvk`);
@@ -177,10 +191,8 @@ console.log(" 🏓this is current guy line 124", currentGuy)
 
     // console.log(response4.data.volumeInfo.imageLinks, typeof response4);
     const user = req.session.currentUser ? req.session.currentUser.userName : "Bogus";
-    console.log("❤️‍🔥", user);
     const reviewsOneBook = await Review.find({ key: `works/${req.params.key}` });
-    // const reviewWriter = reviewsOneBook[0].user._id;
-    res.render("bookpage.hbs", { numberOfLikes, titleFound, keyForCompare, user, reviews: await Review.find({ key: `works/${req.params.key}` }).populate("user"), image, alreadyRead, alreadyWished });
+    res.render("bookpage.hbs", { numberOfLikes, titleFound, keyForCompare, user, reviews: await Review.find({ key: `works/${req.params.key}` }).populate("user"), image, alreadyRead, alreadyWished, alreadyRated });
   }
   catch (err) {
     next(err)
@@ -463,6 +475,7 @@ router.post("/oneBook/rate/:key", async (req, res, next) => {
   new: true
 })
   }
+  res.redirect(`/oneBook/works/${req.params.key}`)
 }
   catch (err) {
     next(err)

@@ -9,7 +9,7 @@ const userSchema = new Schema({
   read: [{ type: Schema.Types.ObjectId, ref: "book" }],
   comments: [{ type: Schema.Types.ObjectId, ref: "reviews" }],
   commentsLiked: [{type: Schema.Types.ObjectId, ref: "reviews"}],
-  booksRated: [{type: Schema.Types.ObjectId, ref: "reviews"}],
+  booksRated: [{type: Schema.Types.ObjectId, ref: "book"}],
   essays: [{type: Schema.Types.ObjectId, ref: "essays"}],
   followers: [{type: Schema.Types.ObjectId, ref: "User"}],
   following: [{type: Schema.Types.ObjectId, ref: "User"}],

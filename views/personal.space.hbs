@@ -1,9 +1,9 @@
 <div id="personal">
 
   <div class="row mx-1">
-    <div class="col-10">
+    <div class="col-md-10 col-sm-12">
       <div class="row">
-        <div class="col-6 p-3" id="last-books">
+        <div class="col-md-6 col-sm-12 p-3" id="last-books">
           <h5 class="text-center green">LAST BOOKS YOU READ</h5>
           {{#unless read}}
           <img class="img-fluid" src="./images/Orange Minimal Book Store Logo (1).png"
@@ -26,7 +26,7 @@
 
         </div>
 
-        <div class="col-6 p-3" id="your-reviews">
+        <div class="col-md-6 col-sm-12 p-3" id="your-reviews">
           <h5 class="text-center green">YOUR REVIEWS</h5>
           <div class="d-flex flex-wrap  justify-content-around">
             {{#each reviews}}
@@ -49,7 +49,7 @@
 
 
 
-    <div class="col-2 p-3" id="account">
+    <div class="col-md-2 row-sm p-3" id="account">
       <div class="row p-3 m-1 flex-wrap">
         <div class="card" style="width: 18rem;">
           <img src={{newPic.image}} class="card-img-top" alt="{{newPic.image}}">
