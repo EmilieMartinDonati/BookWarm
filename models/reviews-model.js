@@ -10,7 +10,13 @@ const reviewSchema = new Schema({
     user: { type: Schema.Types.ObjectId, ref: "User"},
     // book: { type: Schema.Types.ObjectId, ref: "book red"}
     // Revamp model :
-    book: { type: Schema.Types.ObjectId, ref: "book"}
+    book: { type: Schema.Types.ObjectId, ref: "book"},
+    nbLikes: {
+      type: Number,
+      default: 0},
+    likedBy: [{
+      type: Schema.Types.ObjectId, ref: "User"
+    }]
   });
   
 

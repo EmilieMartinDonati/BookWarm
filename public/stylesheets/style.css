@@ -12,13 +12,22 @@ a {
   color: inherit !important;
 }
 
+#bookwarm {
+  position: relative;
+}
+
+#searchbar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
 
 #booksdisplayed {
-  background-color: #C3CAD4;
+  background-color: #eef2f8;
 }
 
 #browse {
-  background-color: #4B7E6B;
+  background-color: #C05F59;
 }
 
 #fatLinks {
@@ -154,6 +163,7 @@ visibility: hidden;
 }
 
 #author-card {
+  background-size: cover;
   background-color: #93b2a7;
   border-radius: 2%;
   padding: 2%;
@@ -162,13 +172,16 @@ visibility: hidden;
 }
 
 #author-card:hover {
+  background-image: url("../images/capture-semi-trans.png");
   background-color: #b4cac2;
+  padding: 4%;
   font-size: 1.2em;
+  border: none;
   /* padding: 1%; */
 }
 
 #background-index {
-  background-color: lightgray;
+  background-color: rgb(237, 226, 226);
 }
 
 .title {
@@ -189,16 +202,17 @@ visibility: hidden;
 #best {
   /* display: inline-block; */
   /* margin-left: 10%; */
-  background-color: #879fd4;
+  /* background-color: #879fd4; */
+  background-color: #d6bab1;
   padding: 3%;
-  border: dotted #7993cf 3px;
+  border: dotted #eead9c 3px;
   color: #6D2D21;
   border-radius: 3%;
 }
 
 #search {
   /* background-color:  #6D2D21; */
-  padding: 3%;
+  /* padding: 3%; */
   /* border: dotted 3px; */
   color: #EBB2A3;
   border-radius: 2%;
@@ -222,9 +236,8 @@ visibility: hidden;
 
 #categories {
   /* background-color:  #6D2D21; */
-  padding: 3%;
   /* border: dotted 3px; */
-  color:#719a8b;
+  color:#DCC9C3;
   border-radius: 2%;
   text-align: right;
 }
@@ -233,9 +246,9 @@ visibility: hidden;
 #search-btn {
   border: solid #283E6F 1px;
   color: #879fd4;
-  margin-left: 70%;
-  padding: 3%;
-  background-color: #C3CAD4!important;
+  /* margin-left: 70%; */
+  padding: 1%;
+  /* background-color: #C3CAD4!important; */
 }
 
 #search-btn:hover {
@@ -314,9 +327,6 @@ visibility: hidden;
 #book-forest {
   background-image: url(../images/bookforest-transparent.png);
   background-size: contain;
-  /* width: 100%; */
-  /* max-height: auto;
-  width: auto; */
 }
 
 .relative {
@@ -324,6 +334,7 @@ visibility: hidden;
 }
 .absolute-img {
   width: 100%;
+  height: 100vh;
 }
 
 .absolute-top {
@@ -331,26 +342,28 @@ visibility: hidden;
   top: 0%;
   padding-left: 20%;
   padding-right: 2%;
-  background-color: #283E6F;
+  /* background-color: #283E6F; */
   opacity: 0.8;
   color: white;
   padding-top: 2%;
   padding-bottom: 2%;
   border-bottom-right-radius: 20%;
+  background-color: #283E6F;
 }
 
 .absolute-high {
   position: absolute;
-  bottom: 25%;
+  bottom: 0%;
   right: 0%;
   padding-right: 20%;
   padding-left: 2%;
   background-color: #035471;
   opacity: 0.8;
   color: white;
-  padding-top: 2%;
-  padding-bottom: 2%;
-  border-bottom-left-radius: 20%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  border-bottom-left-radius: 10%;
+  border-top-right-radius: 10%;
 }
 
 .absolute-low {
@@ -360,26 +373,82 @@ visibility: hidden;
   padding-right: 2%;
   padding-left: 2%;
   background-color: rgb(235, 217, 217);
+  border-right:rgb(223, 200, 200) 4px ridge;
   color: maroon;
   padding-top: 2%;
   padding-bottom: 2%;
 }
 
-#comment-card {
-  /* background-color: papayawhip; */
-}
-
 #bg-one-book {
-  background-color: slategrey;
+  background-color: #eef2f8;
 }
 
 .actions {
-  background-color: #dc3545;
+  /* background-color: #dc3545; */
   border-color: #dc3545;
-  color: white;
+  color: #dc3545;
   border-radius: 2%;
   text-decoration: none;
   margin-right: 10px;
   margin-bottom: 10px;
   padding-top: 5%;
+}
+
+#papyrus {
+  background-image: url("../images/Orange\ Minimal\ Book\ Store\ Logo\ \(1\).png");
+  background-color: #DECCCA;
+  /* border: 2px dotted rgb(211, 146, 146); */
+  background-size: cover;
+  min-height: 600px;
+  opacity: 0.8;
+  padding: 0 !important;
+  position: relative;
+}
+
+#comment-card {
+  background-color: inherit;
+  /* padding: 0 !important; */
+  margin: 0 !important;
+  border: none !important;
+}
+
+
+.carouse {
+  color: slateblue !important;
+}
+
+.violet {
+  background-color: slateblue;
+}
+
+
+.btn {
+  transition: opacity .15s ease !important;
+}
+
+.btn:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+#contest {
+  background-image: url("../images/library.jpg");
+  height: 100vh;
+  background-size: cover;
+}
+
+#link-contest {
+  position: absolute; 
+  left: 24%; 
+  top: 42.5%; 
+  width: 52.7%; 
+  height: 14.7%; 
+  opacity: 0.3; 
+  border: red 5px groove;
+}
+
+#link-contest:hover {
+  border: rgb(177, 3, 3) 5px groove;
+  background-color: rgb(189, 69, 69);
+  opacity: 0.4;
 }

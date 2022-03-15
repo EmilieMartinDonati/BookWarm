@@ -68,13 +68,11 @@ const personalspace = require("./routes/personalspace");
 app.use("/", personalspace);
 const reviews = require("./routes/review-route");
 app.use("/", reviews);
+const contest = require("./routes/contest");
+app.use("/", contest);
 // :point_d'exclamation: To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
-//API
-//Retrieving data by author.
-//REVIEWS
 app.get("/", (req, res) => {
   res.render("index", { reviews: reviews });
 });
-// Retrieving data by subject.
 module.exports = app;
