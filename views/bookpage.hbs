@@ -75,10 +75,13 @@
                 {{/if}}
                 <div class="row d-flex flex-row flex-wrap">
                     {{#each otherUsers}}
+                   
                     <div class="card col-md-3 col-sm-6 p-0">
+                         <a href="/profile/{{this._id}}">
                         <div class="card-body" style="background-image: url({{this.image}}); background-size: cover">
                             <h5 class="card-title text-danger text-white">{{this.userName}}</h5>
                         </div>
+                         </a>
                     </div>
                     {{/each}}
                     {{/if}}

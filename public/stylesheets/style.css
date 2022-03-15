@@ -432,7 +432,7 @@ visibility: hidden;
 }
 
 #contest {
-  background-image: url("../images/library.jpg");
+  background-image: url("../images/library-transparent.png");
   height: 100vh;
   background-size: cover;
 }
@@ -452,3 +452,49 @@ visibility: hidden;
   background-color: rgb(189, 69, 69);
   opacity: 0.4;
 }
+
+#profile {
+position: relative;
+width: 100%;
+background-image: url('../images/booktea.jpg');
+background-size: cover;
+height: 150vh;
+}
+
+#container-profile-image {
+  position: relative;
+}
+
+#name-over-picture {
+  position: absolute;
+  top: 0;
+  left: 88%;
+}
+
+#profile-image {
+  width: 20%;
+  height: 25vh;
+}
+
+#relative-carousel-item-1 {
+  position: relative;
+}
+
+#relative-carousel-item-2 {
+  position: relative;
+}
+
+#absolute-carousel-item {
+  position: absolute;
+  background-color: white;
+  color: black;
+  top: 30%;
+  left: 30%;
+}
+
+ #absolute-carousel-item-low {
+  position: absolute;
+  background-color: white;
+  bottom: 20%;
+  left: 30%;
+ }

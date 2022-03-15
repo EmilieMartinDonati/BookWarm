@@ -205,7 +205,6 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
     // I am going to fetch the other users that have added this book to their wishlist.
 
     const foundBook = await book.find({key: `works/${req.params.key}`});
-    console.log("this is log line 176", foundBook[0]._id)
 
      let otherUsers = [];
 
@@ -213,13 +212,17 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
 
   // console.log("this is log line 182", allUsers[0].wishlist)
 
-     allUsers?.forEach(async (user) => {
-       await user.wishlist?.forEach(async (wish) => {
-         await console.log("this is line 186", wish._id, foundBook._id, foundBook[0]._id);
-         if (wish._id.toString() === foundBook[0]._id.toString()) await otherUsers.push(user);
-         else console.log("line 187 couldn't find user who wished for this book");
-       })
-     })
+  if (foundBook.length > 0) {
+    allUsers?.forEach(async (user) => {
+      await user.wishlist?.forEach(async (wish) => {
+        await console.log("this is line 186", wish._id, foundBook?._id, foundBook[0]?._id);
+        if (wish._id.toString() === foundBook[0]?._id.toString() || wish._id.toString() === foundBook?._id?.toString()) await otherUsers.push(user);
+        else console.log("line 187 couldn't find user who wished for this book");
+      })
+    })
+  }
+
+    
 
      console.log("this is line 197", otherUsers)
 

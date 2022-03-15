@@ -70,6 +70,8 @@ const reviews = require("./routes/review-route");
 app.use("/", reviews);
 const contest = require("./routes/contest");
 app.use("/", contest);
+const profile = require("./routes/profile");
+app.use("/", profile);
 // :point_d'exclamation: To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 app.get("/", (req, res) => {

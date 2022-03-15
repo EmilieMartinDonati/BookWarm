@@ -13,10 +13,6 @@ function reviewHandler() {
 }
 
 function carouselHandler (e) {
-  // const btn = e.target;
-  // console.log(btn);
-  // const parent = btn.parentElement;
-  // console.log(parent);
   console.log('hello');
   const items = document.getElementsByClassName("carousel-item");
   console.log(items);
@@ -27,12 +23,6 @@ function carouselHandler (e) {
 }
 
 // Ok il faut absolument le faire dans l'ordre, ou faire des scripts différents selon les pages.
-
-
-
-
-
-
 
 const carouselBtn = document.getElementsByClassName("carouse");
 console.log(carouselBtn);
@@ -79,8 +69,6 @@ const likeHandler = () => {
   console.log("likeInProcess");
   console.log(parent[0].value);
 }
-
-
 likeBtn ? likeBtn.onclick = likeHandler : console.log("meh");
 
 
@@ -90,5 +78,71 @@ likeBtn ? likeBtn.onclick = likeHandler : console.log("meh");
 // }, 4000);
 
 const profileBtn = document.getElementById("pictureBtn");
-profileBtn.onclick = reviewHandler;
+profileBtn ? profileBtn.onclick = reviewHandler : console.log("meh");
+
+// Carousel pour le profile.
+
+// Il faut cette index to whoever has it active, like with a find.
+
+
+let index = 0;
+
+function carouselProfileHandler (e) {
+  console.log(e);
+  let btn = e;
+  const id = btn.getAttribute("id");
+  console.log(id);
+  if (id === "next-profile-carousel") {
+    allCarouselProfileElements[index].classList.remove('active');
+    index === allCarouselProfileElements.length - 1 ? index = 0 : index += 1;
+    allCarouselProfileElements[index].classList.add('active');
+  }
+  if (id === "prev-profile-carousel") {
+    allCarouselProfileElements[index].classList.remove('active');
+    index === 0 ? index += allCarouselProfileElements.length - 1 : index -= 1;
+    allCarouselProfileElements[index].classList.add('active');
+  }
+}
+
+let index2 = 0;
+
+function carouselProfileHandler2 (e) {
+  console.log(e);
+  let btn2 = e;
+  let id2 = btn2.getAttribute("id");
+  console.log(id2);
+  if (id2 === "next-profile-carousel-2") {
+    allCarouselProfileElements2[index2].classList.remove('active');
+    index2 === allCarouselProfileElements2.length - 1 ? index2 = 0 : index2 += 1;
+    allCarouselProfileElements2[index2].classList.add('active');
+  }
+  if (id2 === "prev-profile-carousel-2") {
+    allCarouselProfileElements2[index2].classList.remove('active');
+    index2 === 0 ? index2 += allCarouselProfileElements2.length - 1 : index2 -= 1;
+    allCarouselProfileElements2[index].classList.add('active');
+  }
+}
+
+
+// Actual active element.
+
+let allCarouselProfileElements = document.querySelectorAll("div#relative-carousel-item-1");
+allCarouselProfileElements = Array.from(allCarouselProfileElements);
+console.log("line 103", allCarouselProfileElements);
+const totalItems =  allCarouselProfileElements.length;
+
+let allCarouselProfileElements2 = document.querySelectorAll("div#relative-carousel-item-2");
+allCarouselProfileElements2 = Array.from(allCarouselProfileElements2);
+console.log("line 116", allCarouselProfileElements2);
+const totalItems2 =  allCarouselProfileElements2.length;
+
+const carouselControlsProfile = document.getElementsByClassName("carousel-profile");
+console.log(Array.from(carouselControlsProfile));
+Array.from(carouselControlsProfile).forEach((control) => control.onclick = ((e) => carouselProfileHandler(e.target)));
+
+const carouselControlsProfile2 = document.getElementsByClassName("carousel-profile2");
+console.log("those are the second controls", Array.from(carouselControlsProfile2));
+Array.from(carouselControlsProfile2).forEach((control) => control.onclick = ((e) => carouselProfileHandler2(e.target)));
+
+
 

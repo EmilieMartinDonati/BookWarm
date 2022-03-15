@@ -1,0 +1,102 @@
+<div
+  class="container bg-image p-0"
+  id="profile"
+>
+    <div class="row w-100 p-0 m-0">
+        <div class="col-4 text-light">
+              {{#compare alreadyFollowed false operator="==" }}
+              <form method="POST" action="/befriend/{{foundUser._id}}">
+              {{!-- <h4>Follow {{foundUser.userName}}</h4> --}}
+              <input class="visually-hidden" type="text" name="future-friend" value={{foundUser._id}}>
+              <button class="btn p-4 m-4 bg-success"><i class="fa-solid fa-user-plus text-white"></i></button></form>
+              {{/compare}}
+              {{#compare alreadyFollowed true operator="==" }}
+             <form method="POST" action="/unfriend/{{foundUser._id}}">
+              {{!-- <h4>Unfollow {{foundUser.userName}}</h4> --}}
+              <input class="visually-hidden" type="text" name="future-friend" value={{foundUser._id}}>
+              <button class="btn p-4 m-4 bg-danger" style="border: solid 2px red"><i class="fa-solid fa-user-minus text-white"></i></button></form>
+              {{/compare}}
+          </div>
+        <div class="col-8 text-end m-0 p-0" id="container-profile-image"><img
+            src={{foundUser.image}}
+            alt={{foundUser.userName}}
+            id="profile-image"
+            class="rounded"
+          />
+          <h5 class="text-uppercase text light" id="name-over-picture">{{foundUser.userName}}</h5>
+          </div>
+    </div>
+    <div class="row w-100">
+      <h5 class="text-light text-uppercase m-4">Their wishlist</h5>
+      <div class="col-6 h-100">
+         
+
+     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active profile" id="relative-carousel-item-1">
+      <img src="{{firstWish.image}}" class="d-block rounded" alt="{{firstWish.title}}" style="height: 50vh; width: 100%;">
+      <h4 id="absolute-carousel-item">{{firstWish.title}}</h4>
+       <a href="/oneBook/{{firstWish.key}}" id="absolute-carousel-item-low" class="p-3 btn btn-outline-success">SEE BOOK</a>
+    </div>
+    {{#each otherWishes}}
+    <div class="carousel-item profile" id="relative-carousel-item-1">
+      <img src="{{this.image}}" class="d-block rounded" alt="{{this.title}}" style="height: 50vh; width: 100%;">
+         <h4 id="absolute-carousel-item">{{this.title}}</h4>
+       <a href="/oneBook/{{this.key}}" id="absolute-carousel-item-low" class="p-3 btn btn-outline-success">SEE BOOK</a>
+    </div>
+    {{/each}}
+
+  </div>
+  <button class="carousel-control-prev btn btn-outline-success" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon carousel-profile" aria-hidden="true" id="prev-profile-carousel"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next btn btn-outline-success" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon carousel-profile" aria-hidden="true" id="next-profile-carousel"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+
+</div>
+
+
+    </div>
+    <div class="row w-100">
+      <h5 class="text-light text-end text-uppercase">Last books they rated</h5>
+      <div class="col-6 h-100"></div>
+       <div class="col-6 h-100">
+         
+
+     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active profile" id="relative-carousel-item-2">
+      <img src="{{firstRated.image}}" class="d-block rounded" alt="{{firstRated.title}}" style="height: 50vh; width: 100%;">
+      <h4 id="absolute-carousel-item">{{firstRated.title}}</h4>
+       <a href="/oneBook/{{firstRated.key}}" id="absolute-carousel-item-low" class="p-3 btn btn-outline-success">SEE BOOK</a>
+    </div>
+    {{#each otherRated}}
+    <div class="carousel-item profile" id="relative-carousel-item-2">
+      <img src="{{this.image}}" class="d-block rounded" alt="{{this.title}}" style="height: 50vh; width: 100%;">
+         <h4 id="absolute-carousel-item">{{this.title}}</h4>
+       <a href="/oneBook/{{this.key}}" id="absolute-carousel-item-low" class="p-3 btn btn-outline-success">SEE BOOK</a>
+    </div>
+    {{/each}}
+
+  </div>
+  <button class="carousel-control-prev btn btn-outline-success" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon carousel-profile2" aria-hidden="true" id="prev-profile-carousel-2"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next btn btn-outline-success" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon carousel-profile2" aria-hidden="true" id="next-profile-carousel-2"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+
+
+
+</div>
+    </div>
+</div>
