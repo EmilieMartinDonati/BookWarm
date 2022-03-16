@@ -3,7 +3,7 @@
   id="profile"
 >
     <div class="row w-100 p-0 m-0">
-        <div class="col-4 text-light">
+        <div class="col-3 text-light">
               {{#compare alreadyFollowed false operator="==" }}
               <form method="POST" action="/befriend/{{foundUser._id}}">
               {{!-- <h4>Follow {{foundUser.userName}}</h4> --}}
@@ -17,7 +17,7 @@
               <button class="btn p-4 m-4 bg-danger" style="border: solid 2px red"><i class="fa-solid fa-user-minus text-white"></i></button></form>
               {{/compare}}
           </div>
-        <div class="col-8 text-end m-0 p-0" id="container-profile-image"><img
+        <div class="col-9 text-end m-0 p-0" id="container-profile-image"><img
             src={{foundUser.image}}
             alt={{foundUser.userName}}
             id="profile-image"
@@ -26,8 +26,10 @@
           <h5 class="text-uppercase text light" id="name-over-picture">{{foundUser.userName}}</h5>
           </div>
     </div>
+
+    {{#if firstWish}}
     <div class="row w-100">
-      <h5 class="text-light text-uppercase m-4">Their wishlist</h5>
+      <h5 class="text-danger text-uppercase m-4">{{foundUser.userName}}'s' wishlist</h5>
       <div class="col-6 h-100">
          
 
@@ -63,8 +65,11 @@
 
 
     </div>
+
+    {{/if}}
+    {{#if otherRated}}
     <div class="row w-100">
-      <h5 class="text-light text-end text-uppercase">Last books they rated</h5>
+      <h5 class="text-danger text-end text-uppercase">Last books {{foundUser.userName}} rated</h5>
       <div class="col-6 h-100"></div>
        <div class="col-6 h-100">
          
@@ -99,4 +104,8 @@
 
 </div>
     </div>
+    {{/if}}
+
+
+
 </div>

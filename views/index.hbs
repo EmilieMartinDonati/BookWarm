@@ -4,23 +4,23 @@
       <img class="img-fluid" alt="bookwarm" src="../images/follow us now for more.png" />
       <div class="row" id="searchbar">
         <div class="col-md-3 col-sm-12">
-      <h5 class="text-uppercase mb-4" id="search">Search for a book ...</h5>
+          <h5 class="text-uppercase mb-4" id="search">Search for a book ...</h5>
+        </div>
+        <div class="col-md-9 col-sm-12">
+          <form method="POST" action="/">
+            <div class="row">
+              <label for="name" class="visually-hidden">FIELD</label>
+              <div class="col-md-6 col-sm-12 mb-3">
+                <input type="text" name="name" placeholder="enter title" class="form-control" required />
+              </div>
+              <div class="col-md-2 col-sm-6 mb-4">
+                <input type="number" name="number" max="30" min="1" value="3" class="form-control" />
+              </div>
+              <button class="btn col-md-2 col-sm-6 mb-4" id="search-btn">SEARCH</button>
+            </div>
+          </form>
+        </div>
       </div>
-      <div class="col-md-9 col-sm-12">
-      <form method="POST" action="/">
-      <div class="row">
-        <label for="name" class="visually-hidden">FIELD</label>
-        <div class="col-md-6 col-sm-12 mb-3">
-          <input type="text" name="name" placeholder="enter title" class="form-control" required />
-        </div>
-        <div class="col-md-2 col-sm-6 mb-4">
-          <input type="number" name="number" max="30" min="1" value="3" class="form-control" />
-        </div>
-        <button class="btn col-md-2 col-sm-6 mb-4" id="search-btn">SEARCH</button>
-        </div>
-      </form>
-      </div>
-    </div>
     </div>
   </div>
 </div>
@@ -69,7 +69,8 @@
     <div class="row mt-3">
       {{#compare mode "categories" operator="=="}}
       <div>
-        <h5 class="text-right text-uppercase"><button class="btn btn-outline-success text-body"><a href="/">Previous page</a></button></h5>
+        <h5 class="text-right text-uppercase"><button class="btn btn-outline-success text-body"><a href="/">Previous
+              page</a></button></h5>
       </div>
       {{#unless booksArr}}
       <div>
@@ -78,95 +79,125 @@
       {{/unless}}
       {{/compare}}
       {{#if booksArr}}
-     <div>
+      <div>
         <h5 class="text-center text-uppercase" id="users-suggest">All {{cat}} books</h5>
       </div>
       {{/if}}
       <div class="col-12 d-flex flex-row flex-wrap justify-content-around">
         {{#each booksArr}}
-        <div class="card m-2 lagoon" id="author-card" style="width: 18rem;">
-          <img src="{{this.picture}}" class="card-img-top" alt="{{this.picture}}">
+        <div class="card m-2 lagoon" id="author-cat-card" style="width: 18rem;">
+          <img src="{{this.image}}" alt="{{this.image}}" class="visually-hidden" value="{{this.image}}" />
           <div class="card-body">
             <h5 class="card-title title text-uppercase">{{this.title}}</h5>
             <p class="card-text" id="author-card-name">{{this.author_name}}</p>
-            <a href="/oneBook/{{this.key}}" class="btn" id="fatLinks">...</a>
+            <div class="row">
+              <div class="col-md-8">
+                <a href="/oneBook/{{this.key}}" class="btn btn-warning opacify" id="fatLinks"> ...</a>
+              </div>
+              <div class="col-md-4 col-sm-8">
+                <a href="/oneBook/wishlist/{{slicedKey}}" class="btn btn-danger opacify" id="fatLinks"><i
+                    class="fas fa-heart text-white"></i></a>
+              </div>
+            </div>
           </div>
         </div>
         {{/each}}
-      {{#if personalBooks}}
-      <div>
-        <h5 class="text-center text-uppercase" id="users-suggest">Our users' suggestions</h5>
-      </div>
-      {{/if}}
-      <div class="col-12 d-flex flex-row flex-wrap justify-content-around">
-        {{#each personalBooks}}
-        <div class="card m-2 lagoon" id="author-card" style="width: 18rem;">
-          <img src="{{this.picture}}" class="card-img-top" alt="{{this.picture}}">
-          <div class="card-body">
-            <h5 class="card-title title text-uppercase">{{this.title}}</h5>
-            <p class="card-text" id="author-card-name">{{this.author_name}}</p>
-            <a href="/oneBook/{{this.key}}" class="btn" id="fatLinks">...</a>
-          </div>
+        {{#if personalBooks}}
+        <div>
+          <h5 class="text-center text-uppercase" id="users-suggest">Our users' suggestions</h5>
         </div>
-        {{/each}}
+        {{/if}}
+        <div class="col-12 d-flex flex-row flex-wrap justify-content-around">
+          {{#each personalBooks}}
+          <div class="card m-2 lagoon" id="author-card" style="width: 18rem;">
+            <img src="{{this.picture}}" class="card-img-top" alt="{{this.picture}}">
+            <div class="card-body">
+              <h5 class="card-title title text-uppercase">{{this.title}}</h5>
+              <p class="card-text" id="author-card-name">{{this.author_name}}</p>
+              <div class="row">
+                <div class="col-md-8">
+                  <a href="/oneBook/{{this.key}}" class="btn btn-outline-warning" id="fatLinks"> ...</a>
+                </div>
+                <div class="col-md-4 col-sm-8">
+                  <a href="/oneBook/wishlist/{{this.slicedKey}}" class="btn btn-outline-danger" id="fatLinks"><i
+                      class="fas fa-heart text-white"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
       </div>
+
+
+      <div class="row mt-3">
+        {{#if authorsSearched}}
+        <div>
+          <h5 class="text-center text-uppercase" id="yoursearch">You may be interested in</h5>
+        </div>
+        {{/if}}
+        <div class="d-flex justify-content-around flex-wrap">
+          {{#each authorsSearched}}
+          <div class="card m-2 lagoon" id="author-card" style="width: 15rem;">
+            <div class="card-body">
+              <h5 class="card-title title text-uppercase">{{this.title}}</h5>
+              <p class="card-text" id="author-card-name">{{this.author_name}}</p>
+              <div class="row">
+                <div class="col-md-8">
+                  <a href="/oneBook/works/{{this.key}}" class="btn btn-outline-warning" id="fatLinks"> ...</a>
+                </div>
+                <div class="col-md-4 col-sm-8">
+                  <a href="/oneBook/wishlist/{{this.slicedKey}}" class="btn btn-outline-danger" id="fatLinks"><i
+                      class="fas fa-heart text-white"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+
+      <div class="row">
+        <div>
+          <h5 class="text-center" id="best">BEST BOOKS ACCORDING TO OUR READERS</h5>
+        </div>
+        <div class="col-12 d-flex flex-row flex-wrap justify-content-around">
+          {{#each bestrated}}
+          <div class="card m-2 lagoon" id="author-best-card" style="width: 15rem;">
+            <img src="{{this.image}}" alt="{{this.image}}" class="visually-hidden" value="{{this.image}}" />
+            <div class="card-body container">
+              <h5 class="card-title title text-uppercase mb-5">{{this.title}}</h5>
+              <p class="card-text author mt-3">{{this.author_name}}</p>
+              <p class="card-text rating">{{this.avgRate}} / 5</p>
+              <div class="row">
+                <div class="col-md-8">
+                  <a href="/oneBook/{{this.key}}" class="btn btn-outline-warning" id="fatLinks"> ...</a>
+                </div>
+                <div class="col-md-4 col-sm-8">
+                  <a href="/oneBook/wishlist/{{this.slicedKey}}" class="btn btn-outline-danger" id="fatLinks"><i
+                      class="fas fa-heart text-white"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{/each}}
+        </div>
+      </div>
+
+
     </div>
-
-
-    <div class="row mt-3">
-      {{#if authorsSearched}}
-      <div>
-        <h5 class="text-center text-uppercase" id="yoursearch">You may be interested in</h5>
-      </div>
-      {{/if}}
-      <div class="d-flex justify-content-around flex-wrap">
-        {{#each authorsSearched}}
-        <div class="card m-2 lagoon" id="author-card" style="width: 15rem;">
-          {{! <img src="..." class="card-img-top" alt="..."> }}
-          <div class="card-body">
-            <h5 class="card-title title text-uppercase">{{this.title}}</h5>
-            <p class="card-text" id="author-card-name">{{this.author_name}}</p>
-            <a href="/oneBook/works/{{this.key}}" class="btn" id="fatLinks"> ... </a>
-          </div>
-        </div>
-        {{/each}}
-      </div>
-    </div>
-
-    <div class="row">
-      <div>
-        <h5 class="text-center" id="best">BEST BOOKS ACCORDING TO OUR READERS</h5>
-      </div>
-      <div class="col-12 d-flex flex-row flex-wrap justify-content-around">
-        {{#each bestrated}}
-        <div class="card m-2 lagoon" id="author-card" style="width: 15rem;">
-          {{!-- <img src="{{this.picture}}" class="card-img-top" alt="{{this.picture}}"> --}}
-          <div class="card-body">
-            <h5 class="card-title title text-uppercase mb-5">{{this.title}}</h5>
-            <p class="card-text author mt-3">{{this.author_name}}</p>
-            <p class="card-text rating">{{this.avgRate}} / 5</p>
-            <a href="/oneBook/{{this.key}}" class="btn" id="fatLinks"> ...</a>
-            <div class="col-md-4 col-sm-8">
-                                <a href="/oneBook/wishlist/{{slicedKey}}"><i class="fas fa-heart actions"></i></a>
-                            </div>
-          </div>
-        </div>
-        {{/each}}
-      </div>
-    </div>
-
-
   </div>
-</div>
 
 
 
 
 
-<div class="row">
-  <div class="col-md">
-    <div style="position: relative">
-      <img class="img-fluid" alt="bookwarm" src="../images/Concours (1483 × 550 px).png"/>
-      <a href="/contest"><div id="link-contest"></div></a>
+  <div class="row">
+    <div class="col-md">
+      <div style="position: relative">
+        <img class="img-fluid" alt="bookwarm" src="../images/Concours (1483 × 550 px).png" />
+        <a href="/contest">
+          <div id="link-contest"></div>
+        </a>
+      </div>
     </div>
-  </div>

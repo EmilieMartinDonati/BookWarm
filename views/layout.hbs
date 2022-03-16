@@ -26,7 +26,7 @@
 
 
           <nav class="navbar navbar-expand-md navbar-light bg-light">
-            <a class="navbar-brand" href="#">BOOKWARM</a>
+            <a class="navbar-brand" href="/">BOOKWARM</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
@@ -41,13 +41,21 @@
                 <li class="nav-item">
                   <a class="nav-link" href="/">Home</a>
                 </li>
-                {{!-- <li class="nav-item">
-                  <a class="nav-link" href="/">Essays</a>
-                </li> --}}
                 {{#if isLoggedIn}}
                 <li class="nav-item">
                   <a class="nav-link" href="/logout">Sign out</a>
                 </li>
+                {{!-- <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#collapsedNav" id="navbarDropdown" role="button"
+                    data-bs-toggle="dropdown" aria-expanded="true">
+                    <img src="https://cdn.pixabay.com/photo/2020/06/29/04/48/colorful-tree-of-life-5351363_1280.png"
+                      width="40" height="40" class="rounded">
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" id="collapsedNav">
+                    <a class="dropdown-item active" href="/personalspace">Dashboard</a>
+                    <a class="dropdown-item active" href="/logout">Log Out</a>
+                  </div>
+                </li> --}}
                 {{else}}
                 <li class="nav-item">
                   <a class="nav-link" href="/login">Sign in</a>
@@ -71,9 +79,9 @@
   </div>
 
 
-    <footer id="footer" class="footer p-2 footer-dark bg-dark text-white">
-      <p> Made with <i class="fas fa-heart"></i> + <i class="fas fa-coffee"></i></p>
-    </footer>
+  <footer id="footer" class="footer p-2 footer-dark bg-dark text-white">
+    <p> Made with <i class="fas fa-heart"></i> + <i class="fas fa-coffee"></i></p>
+  </footer>
 
 
 

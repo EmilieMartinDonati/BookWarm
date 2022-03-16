@@ -12,7 +12,7 @@
                                 <h5 class="absolute-high">{{titleFound.author_name}}</h5>
                             </div>
                             <div class="carousel-item relative">
-                                <div class="d-block w-100 h-100 img-responsive text-bold text-justify" id="papyrus">
+                                <div class="d-block w-100 img-responsive bg-image text-bold text-justify" id="papyrus">
                                     <p id="first-sentence" class="visually-hidden">{{titleFound.first_sentence}}</p>
                                     <div class="absolute-high">
                                         {{titleFound.number_of_pages_median}} PAGES</div>
@@ -69,33 +69,34 @@
             </div>
             <div class="row">
                 {{#if isLoggedIn}}
-                {{#if otherUsers}}
-                <div class="col-12 p-3">
+                 <div class="col-12 p-3">
+                     {{#if otherUsers}}
                     <h4 class="bg-light">They added this book to their wishlist</h4>
-                {{/if}}
-                <div class="row d-flex flex-row flex-wrap">
-                    {{#each otherUsers}}
-                   
-                    <div class="card col-md-3 col-sm-6 p-0">
-                         <a href="/profile/{{this._id}}">
-                        <div class="card-body" style="background-image: url({{this.image}}); background-size: cover">
-                            <h5 class="card-title text-danger text-white">{{this.userName}}</h5>
-                        </div>
-                         </a>
-                    </div>
-                    {{/each}}
                     {{/if}}
+                    <div class="row d-flex flex-row flex-wrap">
+                        {{#each otherUsers}}
+                        <div class="card col-md-3 col-sm-6 p-0">
+                            <a href="/profile/{{this._id}}">
+                                <div class="card-body"
+                                    style="background-image: url({{this.image}}); background-size: cover">
+                                    <h5 class="card-title text-danger text-white">{{this.userName}}</h5>
+                                </div>
+                            </a>
+                        </div>
+                        {{/each}}
+                    </div>
                 </div>
+                {{/if}}
             </div>
         </div>
-        </div>
-
 
         <div class="col-md-4 col-sm-12 m-3">
             <div class="card m-3" id="comment-card">
                 <div class="card-body" id="cmt-body">
                     <div class="row">
+                        {{#if reviews}}
                         <h3 id="reviews" style="opacity: 0.8">REVIEWS</h3>
+                        {{/if}}
                         {{#each reviews}}
                         <div class="card m-2">
                             <div class="card-body">
@@ -106,9 +107,9 @@
                                         <p class="card-text">{{this.nbLikes}} LIKE</p>
                                     </div>
                                     <div class="col-md-4 col-sm-12">
-                                          {{#if isLoggedIn}}
+                                        {{#if isLoggedIn}}
 
-                             {{#compare this.user._id @root.currentGuy operator="!="}}
+                                        {{#compare this.user._id @root.currentGuy operator="!="}}
 
 
                                         <div class="row">
@@ -176,34 +177,36 @@
 
                     {{#if isLoggedIn}}
 
-                    <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                        aria-expanded="false" aria-controls="collapseExample" id="reviewBtn">
-                        <h5>WRITE A REVIEW</h5>
-                    </button>
+                    <div class="row">
 
-                    <div class="collapse" id="collapseExample">
-                        <div class="card card-body" id="form">
-                            <div class="text-center pt-4">
-                                <form action="/oneBook/works/{{titleFound.key}}" method="POST">
-                                    <hr>
-                                    <label for="title" class="form-label">Title</label>
-                                    <input type="title" name="bookTitle" class="form-control"
-                                        id="exampleFormControlInput1" value="{{titleFound.title}}" />
-                                    <hr>
-                                    <label for="author" class="form-label">Author</label>
-                                    <input type="title" name="authorBook" class="form-control"
-                                        id="exampleFormControlInput1" value="{{titleFound.author_name}}" />
-                                    <label for="exampleFormControlTextarea1" class="form-label">Review</label>
-                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
-                                        name="review">Write your description here</textarea>
-                                    <div class="mb-3 justify-content-center"></div>
-                                    <button class="btn btn-outline-success ">Submit</button>
-                                </form>
+                        <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                            aria-expanded="false" aria-controls="collapseExample" id="reviewBtn">
+                            <h5>WRITE A REVIEW</h5>
+                        </button>
+
+                        <div class="collapse" id="collapseExample">
+                            <div class="card card-body" id="form">
+                                <div class="text-center pt-4">
+                                    <form action="/oneBook/works/{{titleFound.key}}" method="POST">
+                                        <hr>
+                                        <label for="title" class="form-label">Title</label>
+                                        <input type="title" name="bookTitle" class="form-control"
+                                            id="exampleFormControlInput1" value="{{titleFound.title}}" />
+                                        <hr>
+                                        <label for="author" class="form-label">Author</label>
+                                        <input type="title" name="authorBook" class="form-control"
+                                            id="exampleFormControlInput1" value="{{titleFound.author_name}}" />
+                                        <label for="exampleFormControlTextarea1" class="form-label">Review</label>
+                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                                            name="review">Write your description here</textarea>
+                                        <div class="mb-3 justify-content-center"></div>
+                                        <button class="btn btn-outline-success ">Submit</button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-
-                        {{/if}}
                     </div>
+                    {{/if}}
                 </div>
             </div>
         </div>

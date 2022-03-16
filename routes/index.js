@@ -70,8 +70,8 @@ router.post("/", async (req, res, next) => {
     let mode = "discover";
     let categoriesArr = [];
     const categories = await genreModel.find();
-    categories.forEach((cat) => {
-      categoriesArr.push(cat.subject[0]);
+    categories?.forEach((cat) => {
+      categoriesArr.push(cat?.subject[0]);
     })
     let uniquifiedCat = [...new Set(categoriesArr)];
     const number = Number(req.body.number);
@@ -182,7 +182,7 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
     response2.data.docs[0].key = response2.data.docs[0].key.slice(7)
     const keyForCompare = `works/${response2.data.docs[0].key}`;
     const titleFound = response2.data.docs[0];
-    const response3 = await apiGoogle.get(`${response2.data.docs[0].title}${response2.data.docs[0].author_name[0]}&key=AIzaSyAU4_7l55akAv2nS3YqqWvQFN_fPEMfgvk`);
+    const response3 = await apiGoogle.get(`${response2?.data?.docs[0]?.title}${response2?.data?.docs[0]?.author_name[0]}&key=AIzaSyAU4_7l55akAv2nS3YqqWvQFN_fPEMfgvk`);
     const response4 = await apiGoogleSingle.get(`${response3?.data?.items[0]?.id}?key=AIzaSyAU4_7l55akAv2nS3YqqWvQFN_fPEMfgvk`);
     let image;
     if (response4.data.volumeInfo.imageLinks) {

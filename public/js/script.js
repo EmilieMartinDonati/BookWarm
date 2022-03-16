@@ -80,6 +80,42 @@ likeBtn ? likeBtn.onclick = likeHandler : console.log("meh");
 const profileBtn = document.getElementById("pictureBtn");
 profileBtn ? profileBtn.onclick = reviewHandler : console.log("meh");
 
+
+// Gérer le hover sur les cards.
+
+function backgroundHandler (card, index) {
+  console.log(index);
+  console.log(card);
+  const image = card.children[0].src;
+  console.log(image, typeof image);
+  // card.style.backgroundColor =  yellow;
+  card.classList.add("bg-image");
+  // card.classList.add("flip-2-ver-right-bck");
+  card.style.backgroundImage = `url(${image.toString()})`;
+  card.style.backgroundStyle = "cover";
+
+}
+
+function backgroundRemover(card, index) {
+  card.style.backgroundImage = "none";
+  // card.classList.remove("flip-2-ver-right-bck");
+}
+
+
+let catCard = document.querySelectorAll("#author-cat-card");
+catCard ? catCard = Array.from(catCard) : console.log('meh');
+catCard?.forEach((card, index) => card.onmouseover = (() => backgroundHandler(card, index)));
+catCard?.forEach((card, index) => card.onmouseout = (() => backgroundRemover(card, index)));
+
+let bestCard = document.querySelectorAll("#author-best-card");
+bestCard ? bestCard = Array.from(bestCard) : console.log('meh');
+// console.log(bestCard);
+bestCard?.forEach((card, index) => card.onmouseover = (() => backgroundHandler(card, index)));
+bestCard?.forEach((card, index) => card.onmouseout = (() => backgroundRemover(card, index)));
+
+
+
+
 // Carousel pour le profile.
 
 // Il faut cette index to whoever has it active, like with a find.
