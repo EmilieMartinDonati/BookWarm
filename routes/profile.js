@@ -32,8 +32,9 @@ router.get("/profile/:id", async (req, res, next) => {
      const firstWish = foundUser.wishlist[0];
      const firstRated = foundUser.booksRated[0];
      const otherWishes = foundUser.wishlist.slice(1);
-     console.log("line 35", otherWishes);
-     const otherRated = foundUser.booksRated.slice(1);
+     let otherRated = [...new Set(foundUser.booksRated)];
+     otherRated = foundUser.booksRated.slice(1);
+     console.log("line 35", otherRated.length);
      const followersLength = foundUser.following.length;
      const followingLength = foundUser.followers.length;
      res.render("profile", {foundUser, firstWish, otherWishes, firstRated, otherRated, followersLength, followingLength, alreadyFollowed});

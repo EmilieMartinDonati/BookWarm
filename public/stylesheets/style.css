@@ -176,11 +176,13 @@ visibility: hidden;
 }
 
 #author-card:hover {
-  background-image: url("../images/capture-semi-trans.png");
+  background-image: url("../images/bookforest-transparent.png");
   background-color: #b4cac2;
   padding: 4%;
   font-size: 1.2em;
   border: none;
+  transform: scale(1.2);
+  z-index: 4;
   /* padding: 1%; */
 }
 
@@ -193,6 +195,16 @@ visibility: hidden;
   /* width: calc(92% /3) */
 }
 
+#author-cat-card:hover {
+  background-size: cover;
+  background-color: #93b2a7;
+  border-radius: 2%;
+  padding: 2%;
+  border: dotted #a9c2b9 5px;
+  transform: scale(1.2);
+  z-index: 4;
+}
+
 #author-best-card {
   background-size: cover;
   background-color: #93b2a7;
@@ -200,6 +212,16 @@ visibility: hidden;
   padding: 2%;
   border: dotted #a9c2b9 5px;
   /* width: calc(92% /3) */
+}
+
+#author-best-card:hover {
+  background-size: cover;
+  background-color: #93b2a7;
+  border-radius: 2%;
+  padding: 2%;
+  /* border: dotted #a9c2b9 5px; */
+  transform: scale(1.2);
+  z-index: 4;
 }
 
 .flip-2-ver-right-bck {
@@ -282,9 +304,6 @@ visibility: hidden;
 }
 
 #search {
-  /* background-color:  #6D2D21; */
-  /* padding: 3%; */
-  /* border: dotted 3px; */
   color: #EBB2A3;
   border-radius: 2%;
 }
@@ -306,8 +325,6 @@ visibility: hidden;
 }
 
 #categories {
-  /* background-color:  #6D2D21; */
-  /* border: dotted 3px; */
   color:#DCC9C3;
   border-radius: 2%;
   text-align: right;
@@ -325,19 +342,23 @@ visibility: hidden;
 #search-btn:hover {
   border: solid #879fd4 1px;
   color: #283E6F;
-
 }
 
 .cat {
   background-color: #DCC9C3 !important;
   border-radius: 2%;
   color: #7D2C29 !important;
+  margin: 10px;
 }
 
 .cat:hover {
   background-color: #d5aea3 !important;
   color: black !important;
-  padding: 1.5rem !important;
+  transform: scale(1.5);
+}
+
+.minified {
+  transform: scale(0.8);
 }
 
 #account {
@@ -546,7 +567,7 @@ height: 150vh;
 
 #profile-image {
   width: 20%;
-  height: 25vh;
+  /* height: 25vh; */
 }
 
 #profile-image:hover {

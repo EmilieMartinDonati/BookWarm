@@ -107,7 +107,11 @@
                                         <p class="card-text">{{this.nbLikes}} LIKE</p>
                                     </div>
                                     <div class="col-md-4 col-sm-12">
-                                        {{#if isLoggedIn}}
+
+                                        {{!-- <p>{{this.user._id}}</p>
+                                        <p>{{@root.currentGuy}}< --}}
+                                        {{#if @root.isLoggedIn}}
+
 
                                         {{#compare this.user._id @root.currentGuy operator="!="}}
 

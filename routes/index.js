@@ -8,7 +8,7 @@ const UsercreateModel = require("../models/User-create-book-model.js");
 const fileUploader = require("./../config/cloudinary");
 const likeModel = require("../models/like.model");
 const book = require("../models/book.model");
-// const protectRoute = require("./../middlewares/protectRoute");
+const isLoggedIn = require("./../middlewares/loginstatus");
 
 
 // Première API. Le search général. 
@@ -81,7 +81,7 @@ router.post("/", async (req, res, next) => {
     const response = await api.get(`${req.body.name}&fields=*,availability&limit=${number}`)
     const authorsSearched = [];
     for (let i = 0; i < number; i++) {
-      response.data.docs[i].key = response.data.docs[i].key.slice(7);
+      response.data.docs[i].key = response?.data?.docs[i]?.key?.slice(7);
       authorsSearched.push(response.data.docs[i]);
     }
     res.render("index", { authorsSearched, personalBooks, bestrated, mode, uniquifiedCat })
@@ -125,7 +125,7 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
 
     // This is an attempt to filter thru what the user already has is their wishlist and their books already red list. Ibidem for the books already rated.
     const currentGuy = req.session.currentUser?._id;
-    console.log(" 🏓this is current guy line 124", currentGuy)
+    console.log(" 🏓this is current guy line 124", isLoggedIn)
 
     const currentUser = await User.findById(req.session.currentUser?._id).populate("wishlist").populate("read").populate("booksRated");
     console.log(" 🏓this is current user line 124", currentUser);
