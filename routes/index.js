@@ -8,7 +8,7 @@ const UsercreateModel = require("../models/User-create-book-model.js");
 const fileUploader = require("./../config/cloudinary");
 const likeModel = require("../models/like.model");
 const book = require("../models/book.model");
-const isLoggedIn = require("./../middlewares/loginstatus");
+// const isLoggedIn = require("./../middlewares/loginstatus");
 
 
 // Première API. Le search général. 
@@ -70,7 +70,7 @@ router.post("/", async (req, res, next) => {
     let mode = "discover";
     let categoriesArr = [];
     const categories = await genreModel.find();
-    categories?.forEach((cat) => {
+    categories.forEach((cat) => {
       categoriesArr.push(cat?.subject[0]);
     })
     let uniquifiedCat = [...new Set(categoriesArr)];
