@@ -71,7 +71,7 @@ router.post("/", async (req, res, next) => {
     let categoriesArr = [];
     const categories = await genreModel.find();
     categories.forEach((cat) => {
-      categoriesArr.push(cat?.subject[0]);
+      categoriesArr.push(cat.subject[0]);
     })
     let uniquifiedCat = [...new Set(categoriesArr)];
     const number = Number(req.body.number);
