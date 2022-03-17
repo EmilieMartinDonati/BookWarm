@@ -62,7 +62,7 @@
           {{/unless}}
           <div class="row flex-wrap justify-content-around">
             {{#each read}}
-            <div class="card m-2 col-lg-2 col-md-4 col-sm-6 col-xs-12" id="red-card">
+            {{!-- <div class="card m-2 col-lg-2 col-md-4 col-sm-6 col-xs-12" id="red-card">
               {{#if this.image}}
               <img src="{{this.image}}" class="card-img-top p-3" alt="...">
               {{/if}}
@@ -71,7 +71,14 @@
                 <p class="card-text" id="author-card-name">{{this.author_name}}</p>
               </div>
               <div><a href="/oneBook/{{this.key}}" class="fatlinks">...</a></div>
-            </div>
+            </div> --}}
+               <div class="card rounded m-3 col-lg-3 col-md-4 col-sm-5 col-xs-12" id="wishlist-card">
+        <img src={{this.image}} class="card-img-top rounded" alt={{this.title}} style="height: 35vh;">
+        <div class="card-body">
+            <a href="/oneBook/{{this.key}}"><p class="card-text rounded" id="wishlist-title">{{this.title}}</p></a>
+            <p class="card-text rounded" id="wishlist-name">{{this.author_name}}</p>
+        </div>
+    </div>
             {{/each}}
           </div>
         </div>
