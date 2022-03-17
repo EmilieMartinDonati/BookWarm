@@ -37,7 +37,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-      mongoUrl: "mongodb://127.0.0.1/test-API",
+      mongoUrl: "mongodb+srv://Emilie:Sufjan@cluster0.qettv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
       ttl: 1000 * 60 * 60 * 6,
     }),
   })
