@@ -9,14 +9,14 @@ const book = require("../models/book.model");
 
 //POST REVIEWS NEW/CREATE - /REVIEWS/NEW
 router.post("/oneBook/works/:key", async (req, res, next) => {
-  const { bookTitle, authorBook, review, rating } = { ...req.body };
+  const { bookTitle, authorBook, review} = { ...req.body };
   const key = `works/${req.params.key}`;
   try {
     const bookOnDisplay = await book.findOne(
       { key: key }
     );
 
-    await Review.create({ bookTitle, authorBook, review, key, user: req.session.currentUser._id, book: bookOnDisplay._id });
+    await Review.create({ bookTitle, authorBook, review, key, user: req.session.currentUser._id, book: bookOnDisplay?._id });
     res.redirect(`/oneBook/works/${req.params.key}`);
   }
   catch (err) {

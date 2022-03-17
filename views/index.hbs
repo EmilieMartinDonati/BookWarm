@@ -33,28 +33,8 @@
       <h5 class="col-12 text-uppercase mb-4 mt-3" id="categories">... Or browse by categories</h5>
     </div>
     <div class="d-flex justify-content-around flex-wrap mb-1">
-      {{!-- {{#unless uniquifiedCat}}
-      <form class="mb-2">
-        <button class="btn btn-outline-danger p-3 m-1 cat">Drama</button>
-      </form>
-      <form class="mb-2">
-        <button class="btn btn-outline-warning p-3 m-1 cat">Theater</button>
-      </form>
-      <form class="mb-2">
-        <button class="btn btn-outline-success p-3 m-1 cat">Gore</button>
-      </form>
-      <form class="mb-2">
-        <button class="btn btn-outline-info p-3 m-1 cat">History</button>
-      </form>
-      <form class="mb-2">
-        <button class="btn btn-outline-danger p-3 m-1 cat">Biography</button>
-      </form>
-      <form class="mb-2">
-        <button class="btn btn-outline-warning p-3 cat">MYSTERY</button>
-      </form>
-      {{/unless}} --}}
       {{#unless uniquifiedCat}}
-      <h4>You must begin to enter books into your wishlist to have categories suggestion !</h4>
+      <h6>You or other users must begin to add books to their wishlist to access categories suggestion !</h6>
       {{/unless}}
       {{#each uniquifiedCat}}
       <form class="mb-2" method="POST" action="/categories">
