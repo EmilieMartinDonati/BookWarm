@@ -16,7 +16,7 @@ router.get("/personalspace/", async (req, res, next) => {
     // const username = req.session.currentUser.userName;
     
     const foundUser = await UserModel.findById(req.session.currentUser._id).populate("read").populate("following");
-    const following = foundUser.following.splice(1);
+    const following = foundUser.following;
     console.log("line 20", following);
 
     const read = foundUser.read;
