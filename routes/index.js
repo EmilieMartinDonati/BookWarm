@@ -124,8 +124,8 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
   try {
 
     // This is an attempt to filter thru what the user already has is their wishlist and their books already red list. Ibidem for the books already rated.
-    const currentGuy = req.session.currentUser._id;
-    const currentUser = await User.findById(req.session.currentUser._id).populate("wishlist").populate("read").populate("booksRated");
+    const currentGuy = req.session.currentUser?._id;
+    const currentUser = await User.findById(req.session.currentUser?._id).populate("wishlist").populate("read").populate("booksRated");
 
     // Check whether the wishlist of read includes a book with the key given in the params. If the user already added the book to its wishlist or already read it. 
 
