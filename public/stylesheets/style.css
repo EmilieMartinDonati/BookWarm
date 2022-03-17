@@ -556,11 +556,11 @@ background-size: cover;
 }
 
 #container-personal-image {
-  position: relative;
+  /* position: relative; */
 }
 
 #row-personal-image {
-  position: relative;
+  /* position: relative; */
   min-height: 35vh;
 }
 
@@ -573,7 +573,7 @@ background-size: cover;
 }
 
 #row-upload {
-  position: relative;
+  /* position: relative; */
   min-height: 35vh;
   background-color: transparent;
   /* background-color: rgba(105, 90, 205, 0.295); */
@@ -588,7 +588,7 @@ background-size: cover;
 
 
 #your-followers {
-  position: relative;
+  /* position: relative; */
   min-height: 35vh;
   /* background-color: rgba(0, 255, 255, 0.315);
   border: 2px rgba(0, 128, 0, 0.39) groove;  */
