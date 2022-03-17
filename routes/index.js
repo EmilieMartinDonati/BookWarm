@@ -81,7 +81,7 @@ router.post("/", async (req, res, next) => {
     const response = await api.get(`${req.body.name}&fields=*,availability&limit=${number}`)
     const authorsSearched = [];
     for (let i = 0; i < number; i++) {
-      response.data.docs[i].key = response?.data?.docs[i]?.key?.slice(7);
+      response.data.docs[i].key = response.data?.docs[i].key.slice(7);
       authorsSearched.push(response.data.docs[i]);
     }
     res.render("index", { authorsSearched, personalBooks, bestrated, mode, uniquifiedCat })
