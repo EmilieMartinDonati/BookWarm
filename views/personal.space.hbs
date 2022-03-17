@@ -1,6 +1,6 @@
 
 
-  <div class="row mx-auto rounded" id="row-first-personal">
+  <div class="row mx-0 rounded g-0" id="row-first-personal">
         <div class="col-md-4 col-sm-6 text-end" id="container-personal-image">
           <h5 style="color: inherit" class="text-start text-danger text-uppercase my-4 px-4">HELLO {{foundUser.userName}}</h5>
       <div class="row text-end px-4" id="row-personal-image">
@@ -52,15 +52,15 @@
     </div>
   </div>
   
-  <div class="row mx-auto rounded">
+  <div class="row mx-0 g-0 rounded">
 
-    <div class="col-md-12 col-sm-12 rounded mt-4" id="last-books">
-          <h5 class="text-start text-grey mb-4 px-4">LAST BOOKS YOU READ</h5>
+    <div class="col-lg-12 col-md-12 col-sm-12 p-3 rounded" id="last-books">
+          <h5 class="text-start text-grey my-4 px-4">LAST BOOKS YOU READ</h5>
           {{#unless read}}
           <img class="img-fluid" src="./images/Orange Minimal Book Store Logo (1).png"
             style="width: 800px; height: 500px;" alt="">
           {{/unless}}
-          <div class="row flex-wrap  justify-content-around">
+          <div class="row flex-wrap justify-content-around">
             {{#each read}}
             <div class="card m-2 col-lg-2 col-md-4 col-sm-6 col-xs-12" id="red-card">
               {{#if this.image}}
@@ -78,9 +78,9 @@
 
         </div>
 
-        <div class="row mx-auto rounded">
+        <div class="row mx-0 g-0 rounded">
 
-        <div class="col-md-12 col-sm-12 p-3 rounded" id="your-reviews">
+        <div class="col-lg-12 col-md-12 col-sm-12 p-3 rounded" id="your-reviews">
           <h5 class="text-start my-4 px-4">YOUR REVIEWS</h5>
           <div class="d-flex flex-wrap mb-4 justify-content-around">
             {{#each reviews}}
@@ -97,10 +97,10 @@
 
         </div>
       
-      <div class="row mx-auto py-4 rounded" id="wishlist-col">
-        <div class="col-lg-9 col-md-12 rounded p-4"><a href="/personalbooks" class="wishcol rounded text-left">See the books you add to our
+      <div class="row mx-0 g-0 rounded" id="wishlist-col">
+        <div class="col-lg-9 col-md-12 col-sm-12 rounded my-4 py-4 px-4"><a href="/personalbooks" class="wishcol rounded text-left p-4">See the books you add to our
             collection</a></div>
-        <div class="col-lg-3 col-md-12 rounded p-4 text-end"><a href="/oneBook/wishlist" class="wishcol rounded text-right">See your wishlist</a></div>
+        <div class="col-lg-3 col-md-12 rounded text-end my-4 py-4 px-4"><a href="/oneBook/wishlist" class="wishcol rounded text-right p-4">See your wishlist</a></div>
       </div>
 
 

@@ -607,13 +607,13 @@ background-size: cover;
 }
 
 #last-books {
-  padding-top: 2%;
+  /* padding-top: 2%; */
   background-color:  #f8f9fa;
   border-left: 5px groove rgba(255, 0, 0, 0.384);
 }
 
 #your-reviews {
-  padding-top: 2%;
+  /* padding-top: 2%; */
   background-color: rgba(255, 218, 185, 0.493);
   border-right: 5px ridge rgba(255, 0, 0, 0.384);
   border-bottom: 2px solid #f8f9fa;
@@ -662,8 +662,8 @@ background-size: cover;
   background-color: white;
   text-decoration: none;
   border: 2px dotted #3D485A;
-  padding: 0.8em;
-  margin-top: 5rem;
+  /* padding: 0.8em;
+  margin-top: 5rem; */
 }
 
 .wishcol:hover {
@@ -677,7 +677,7 @@ background-size: cover;
 /* For the wishlist   */
 #book-forest {
   background-color: #f8f9fa;
-  background-size: contain;
+  /* background-size: contain; */
 }
 
 #wishlist-card {
