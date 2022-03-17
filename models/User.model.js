@@ -4,7 +4,9 @@ const { Schema, model } = require("mongoose");
 const userSchema = new Schema({
   userName: String,
   password: String,
-  image: String,
+  image: {
+    type: String,
+    default: "./images/profile-pics-test/diane.webp"},
   wishlist: [{ type: Schema.Types.ObjectId, ref: "book" }],
   read: [{ type: Schema.Types.ObjectId, ref: "book" }],
   comments: [{ type: Schema.Types.ObjectId, ref: "reviews" }],

@@ -13,9 +13,11 @@ const UserModel = require("../models/User.model");
 
 router.get("/personalspace/", async (req, res, next) => {
   try {
-    const username = req.session.currentUser.userName;
+    // const username = req.session.currentUser.userName;
     
-    const foundUser = await UserModel.findById(req.session.currentUser._id).populate("read");
+    const foundUser = await UserModel.findById(req.session.currentUser._id).populate("read").populate("following");
+    const following = foundUser.following.splice(1);
+    console.log("line 20", following);
 
     const read = foundUser.read;
     console.log("this is log line 21", read);
@@ -32,8 +34,8 @@ router.get("/personalspace/", async (req, res, next) => {
     });
     console.log(picture);
     res.render("personal.space.hbs", {
-      username,
-      // wishlist,
+      foundUser,
+      following,
       read,
       reviews,
       createdBooks,

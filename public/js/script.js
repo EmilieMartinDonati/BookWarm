@@ -140,8 +140,8 @@ function tagHandler (tag, index) {
 }
 
 function tagHandler2 (tag, index) {
-  // const minified = document.querySelectorAll(".minified");
-  // minified.forEach((mini) => mini.classList.remove("minified"));
+  const minified = document.querySelectorAll(".minified");
+  minified.forEach((mini) => mini.classList.remove("minified"));
   console.log("I don't want this function for now")
 
 }

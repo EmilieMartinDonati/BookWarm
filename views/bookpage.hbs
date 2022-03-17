@@ -7,7 +7,7 @@
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active relative">
-                                <img src={{image}} class="d-block w-100 img-card absolute-img" alt="cover">
+                                <img src={{image}} class="d-block w-100 h-25 img-card absolute-img" alt="cover">
                                 <h4 class="card-text absolute-top" id="review">{{titleFound.title}}</h4>
                                 <h5 class="absolute-high">{{titleFound.author_name}}</h5>
                             </div>
@@ -69,13 +69,13 @@
             </div>
             <div class="row">
                 {{#if isLoggedIn}}
-                 <div class="col-12 p-3">
+                 <div class="col-12 p-3 my-4">
                      {{#if otherUsers}}
-                    <h4 class="bg-light">They added this book to their wishlist</h4>
+                    <h4 class="bg-light py-4 px-2 rounded">They added this book to their wishlist</h4>
                     {{/if}}
-                    <div class="row d-flex flex-row flex-wrap">
+                    <div class="row d-flex flex-row flex-wrap my-4">
                         {{#each otherUsers}}
-                        <div class="card col-md-3 col-sm-6 p-0">
+                        <div class="card col-md-3 col-sm-6 mx-2">
                             <a href="/profile/{{this._id}}">
                                 <div class="card-body"
                                     style="background-image: url({{this.image}}); background-size: cover">
@@ -93,13 +93,13 @@
         <div class="col-md-4 col-sm-12 m-3">
             <div class="card m-3" id="comment-card">
                 <div class="card-body" id="cmt-body">
-                    <div class="row">
+                    <div class="row mb-4">
                         {{#if reviews}}
-                        <h3 id="reviews" style="opacity: 0.8">REVIEWS</h3>
+                        <h4 id="reviews" class="text-center mb-4">REVIEWS</h4>
                         {{/if}}
                         {{#each reviews}}
-                        <div class="card m-2">
-                            <div class="card-body">
+                        <div class="card m-0 rounded">
+                            <div class="card-body rounded">
                                 <div class="row">
                                     <div class="col-md-8 col-sm-12">
                                         <h6 class="card-text font-italic" id="review">"{{this.review}}"</h6>
@@ -181,15 +181,15 @@
 
                     {{#if isLoggedIn}}
 
-                    <div class="row">
+                    <div class="row my-4">
 
-                        <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                        <button class="btn mb-4" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
                             aria-expanded="false" aria-controls="collapseExample" id="reviewBtn">
                             <h5>WRITE A REVIEW</h5>
                         </button>
 
-                        <div class="collapse" id="collapseExample">
-                            <div class="card card-body" id="form">
+                        <div class="collapse rounded" id="collapseExample">
+                            <div class="card card-body rounded" id="form">
                                 <div class="text-center pt-4">
                                     <form action="/oneBook/works/{{titleFound.key}}" method="POST">
                                         <hr>

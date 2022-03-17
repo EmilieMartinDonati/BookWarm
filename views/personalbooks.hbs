@@ -1,17 +1,17 @@
 {{!-- <div class="row p-3 m-1 flex-wrap"> --}}
 
-<div class="row">
+<div class="row mx-auto p-4" style="background-color: rgba(255, 218, 185, 0.493);">
   <div class="col-8 p-4">
-    <div class="row flex-wrap">
+    <div class="row flex-wrap mx-4 rounded">
       {{#unless createdBooks}}
        <div class="col-12" id="book-tea">
        </div>
       {{/unless}}
       {{#if createdBooks}}
-      <div class="col-12 d-flex flex-row flex-wrap justify-content-between p-3 mx-auto" style="background-color: grey;">
+   <div class="col-12 d-flex flex-row flex-wrap justify-content-between p-3 mx-auto rounded" style="background-color: grey;">
      {{#each createdBooks}}
-    <div class="card" style="width: 18rem;">
-        <img src={{this.picture}} class="card-img-top" alt={{this.title}}>
+    <div class="card my-2 mx-2 col-lg-4 col-md-6 col-sm-12">
+        <img src={{this.picture}} class="card-img-top h-75" alt={{this.title}}>
         <div class="card-body">
             <p class="card-text" id="review">{{this.title}}</p>
             <p>{{this.author_name}}</p>
@@ -23,6 +23,7 @@
     {{/if}}
     </div>
   </div>
+
   <div class="col-4 p-4">
 <h2>ADD A BOOK</h2>
 <hr>
@@ -44,7 +45,7 @@
   <textarea type="text" class="input" id="description" name="description" placeholder="Write your book summary here"
    class="form-control"></textarea>
   <br>
-  <button class="btn btn-outline-success mt-5">ADD</button>
+  <button class="btn btn-outline-danger mt-5">ADD</button>
 </form>
 </div>
 

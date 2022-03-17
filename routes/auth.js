@@ -1,11 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const User = require("./../models/User.model");
-
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
-
 const zxcvbn = require("zxcvbn");
+
+
 
 //GET signup route
 

@@ -108,7 +108,7 @@ router.post("/categories", async (req, res, next) => {
     console.log("line 93", book.subject[0]);
     if (book.subject.includes(cat)) booksArr.push(book);
   })
-  const bestrated = await book.find().sort({ avgRate: 1 }).limit(6);
+  const bestrated = await book.find().sort({ avgRate: -1 }).limit(6);
   res.render("index", {booksArr, mode, bestrated, cat, uniquifiedCat});
   }
   catch (err) {
@@ -125,10 +125,7 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
 
     // This is an attempt to filter thru what the user already has is their wishlist and their books already red list. Ibidem for the books already rated.
     const currentGuy = req.session.currentUser?._id;
-    console.log(" 🏓this is current guy line 124", isLoggedIn)
-
     const currentUser = await User.findById(req.session.currentUser?._id).populate("wishlist").populate("read").populate("booksRated");
-    console.log(" 🏓this is current user line 124", currentUser);
 
     // Check whether the wishlist of read includes a book with the key given in the params. If the user already added the book to its wishlist or already read it. 
 
@@ -155,7 +152,6 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
       })
 
       currentUser.booksRated?.forEach((el) => {
-        console.log("this is log line 149", el.key, req.params.key)
         let keyCompare = el.key.slice(6)
         if (keyCompare === req.params.key) ratedArray.push(el);
         else console.log("this is line 150");
@@ -205,27 +201,21 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
     // I am going to fetch the other users that have added this book to their wishlist.
 
     const foundBook = await book.find({key: `works/${req.params.key}`});
-
      let otherUsers = [];
-
     const allUsers = await User.find().populate("wishlist");
 
-  // console.log("this is log line 182", allUsers[0].wishlist)
-
   if (foundBook.length > 0) {
-    allUsers?.forEach(async (user) => {
-      await user.wishlist?.forEach(async (wish) => {
-        await console.log("this is line 186", wish._id, foundBook?._id, foundBook[0]?._id);
-        if (wish._id.toString() === foundBook[0]?._id.toString() || wish._id.toString() === foundBook?._id?.toString()) await otherUsers.push(user);
+    allUsers?.forEach( (user) => {
+      user.wishlist?.forEach(async (wish) => {
+         console.log("this is line 186", wish._id, foundBook?._id, foundBook[0]?._id);
+        if (wish._id.toString() === foundBook[0]?._id.toString() || wish._id.toString() === foundBook?._id?.toString()) otherUsers.push(user);
         else console.log("line 187 couldn't find user who wished for this book");
       })
     })
   }
-
-    
-
-     console.log("this is line 197", otherUsers)
-
+  otherUsers = otherUsers.filter((user) => user?._id.toString() !== currentGuy?.toString());
+  console.log("line 221", currentGuy)
+  otherUsers.forEach((user) => console.log("this is line 221", user._id));
 
     res.render("bookpage.hbs", { titleFound, keyForCompare, user, reviews, image, alreadyRead, alreadyWished, alreadyRated, currentGuy, keyUrl, otherUsers});
   }
@@ -234,10 +224,7 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
   }
 })
 
-
 // The route to add to the wishlist.
-
-
 router.get("/oneBook/wishlist/:key", async (req, res, next) => {
 
   try {
@@ -371,14 +358,12 @@ router.get("/oneBook/redlist/:key", async (req, res, next) => {
 
 
     const exists = await book.findOne({ key: `works/${req.params.key}` });
-    console.log("🐤this is log line 312", exists)
 
     if (exists) {
       const thebook = await book.findByIdAndUpdate(exists._id, {
         $push: { readBy: req.session.currentUser._id }
       },
         { new: true })
-
 
       await User.findByIdAndUpdate(req.session.currentUser?._id, {
         $push: { read: thebook._id }
@@ -423,8 +408,6 @@ router.get("/oneBook/redlist/:key", async (req, res, next) => {
         new: true
       })
     }
-
-
     res.redirect("/personalspace");
 
   }
@@ -451,17 +434,11 @@ router.post("/oneBook/rate/:key", async (req, res, next) => {
         $inc: { nbRates: 1, totalRate: Number(rating) },
       },
         { new: true });
-
       console.log(typeof thebook.avgRate);
-
       const avg = thebook.totalRate / thebook.nbRates;
-      console.log("🐤", avg);
-
       const thebook2 = await book.findByIdAndUpdate(thebook._id, {
         avgRate: avg
       }, { new: true })
-
-
       await User.findByIdAndUpdate(req.session.currentUser?._id, {
         $push: { booksRated: thebook2._id }
       }, {

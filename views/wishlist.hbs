@@ -1,16 +1,15 @@
-<div class="row flex-wrap" id="book-forest">
+<div class="row mx-1 flex-wrap justify-content-around" id="book-forest">
     {{#each addedBooks}}
-    <div class="card" class="col" style="width: 18rem;">
-        <img src={{this.image}} class="card-img-top" alt={{this.title}}>
+    <div class="card rounded m-3 col-md-3 col-sm-5 col-xs-12" id="wishlist-card">
+        <img src={{this.image}} class="card-img-top rounded" alt={{this.title}} style="height: 40vh;">
         <div class="card-body">
-            <p class="card-text" id="review">{{this.title}}</p>
-            <p>{{this.author_name}}</p>
-            <p>{{this.first_sentence}}</p>
-        </div>
+            <a href="/oneBook/{{this.key}}"><p class="card-text rounded" id="wishlist-title">{{this.title}}</p></a>
+            <p class="card-text rounded" id="wishlist-name">{{this.author_name}}</p>
         <div class="card-text">
             <form method="POST" action="/oneBook/wishlist/{{this._id}}/delete">
                 <button class="btn">DELETE FROM WISHLIST</button>
             </form>
+        </div>
         </div>
     </div>
     {{/each}}

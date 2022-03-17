@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row mx-0 p-0">
   <div class="col">
     <div id="bookwarm">
       <img class="img-fluid" alt="bookwarm" src="../images/follow us now for more.png" />
@@ -26,14 +26,14 @@
 </div>
 
 
-<div class="row mx-1" id="background-index">
+<div class="row mx-0 px-0" id="background-index">
 
   <div class="col-md-4 col-sm-12 p-5" id="browse">
-    <div class="row">
+    <div class="row mx-0 px-0">
       <h5 class="col-12 text-uppercase mb-4 mt-3" id="categories">... Or browse by categories</h5>
     </div>
     <div class="d-flex justify-content-around flex-wrap mb-1">
-      {{#unless uniquifiedCat}}
+      {{!-- {{#unless uniquifiedCat}}
       <form class="mb-2">
         <button class="btn btn-outline-danger p-3 m-1 cat">Drama</button>
       </form>
@@ -52,21 +52,23 @@
       <form class="mb-2">
         <button class="btn btn-outline-warning p-3 cat">MYSTERY</button>
       </form>
+      {{/unless}} --}}
+      {{#unless uniquifiedCat}}
+      <h4>You must begin to enter books into your wishlist to have categories suggestion !</h4>
       {{/unless}}
       {{#each uniquifiedCat}}
       <form class="mb-2" method="POST" action="/categories">
         <input class="visually-hidden" name="cat" value="{{this}}" />
-        <button class="btn btn-outline-warning p-3 cat">{{this}}</button>
+        <button class="btn btn-outline-warning p-3 cat text-uppercase">{{this}}</button>
       </form>
       {{/each}}
-
     </div>
   </div>
 
 
   <div class="col-md-8 col-sm-12 p-3" id="booksdisplayed">
 
-    <div class="row mt-3">
+    <div class="row mx-0 px-0 mt-3">
       {{#compare mode "categories" operator="=="}}
       <div>
         <h5 class="text-right text-uppercase"><button class="btn btn-outline-success text-body"><a href="/">Previous
@@ -94,10 +96,10 @@
               <div class="col-md-8">
                 <a href="/oneBook/{{this.key}}" class="btn btn-warning opacify" id="fatLinks"> ...</a>
               </div>
-              <div class="col-md-4 col-sm-8">
+              {{!-- <div class="col-md-4 col-sm-8">
                 <a href="/oneBook/wishlist/{{slicedKey}}" class="btn btn-danger opacify" id="fatLinks"><i
-                    class="fas fa-heart text-white"></i></a>
-              </div>
+                    class="fas fa-heart text-white"></i>Don't click on this it doesn't work yet, go to yellow button instead</a>
+              </div> --}}
             </div>
           </div>
         </div>
@@ -118,10 +120,10 @@
                 <div class="col-md-8">
                   <a href="/oneBook/{{this.key}}" class="btn btn-warning opacify" id="fatLinks"> ...</a>
                 </div>
-                <div class="col-md-4 col-sm-8">
+                {{!-- <div class="col-md-4 col-sm-8">
                   <a href="/oneBook/wishlist/{{this.slicedKey}}" class="btn btn-danger opacify" id="fatLinks"><i
                       class="fas fa-heart text-white"></i></a>
-                </div>
+                </div> --}}
               </div>
             </div>
           </div>
@@ -146,15 +148,17 @@
                 <div class="col-md-8">
                   <a href="/oneBook/works/{{this.key}}" class="btn btn-warning opacify" id="fatLinks"> ...</a>
                 </div>
-                <div class="col-md-4 col-sm-8">
+                {{!-- <div class="col-md-4 col-sm-8">
                   <a href="/oneBook/wishlist/{{this.slicedKey}}" class="btn btn-danger opacify" id="fatLinks"><i
                       class="fas fa-heart text-white"></i></a>
-                </div>
+                </div> --}}
               </div>
             </div>
           </div>
           {{/each}}
         </div>
+      </div>
+
       </div>
 
       <div class="row">
@@ -173,10 +177,10 @@
                 <div class="col-md-8">
                   <a href="/oneBook/{{this.key}}" class="btn btn-warning opacify" id="fatLinks"> ...</a>
                 </div>
-                <div class="col-md-4 col-sm-8">
+                {{!-- <div class="col-md-4 col-sm-8">
                   <a href="/oneBook/wishlist/{{this.slicedKey}}" class="btn btn-danger opacify" id="fatLinks"><i
                       class="fas fa-heart text-white"></i></a>
-                </div>
+                </div> --}}
               </div>
             </div>
           </div>
@@ -192,7 +196,7 @@
 
 
 
-  <div class="row">
+  <div class="row mx-0 px-0">
     <div class="col-md">
       <div style="position: relative">
         <img class="img-fluid" alt="bookwarm" src="../images/Concours (1483 × 550 px).png" />
