@@ -28,14 +28,14 @@ router.post("/login", async (req, res, next) => {
       return;
     }
 
-    const rightPassword = await bcrypt.compareSync(password, user.password);
-    // console.log(username, user)
+    const rightPassword = bcrypt.compareSync(password, user.password);
 
     if (rightPassword) {
       req.session.currentUser = user;
       res.redirect("/");
     } else res.render("auth/login", { errorMessage: "Incorrect password" });
-  } catch (err) {
+  }
+   catch (err) {
     next(err);
   }
 });
