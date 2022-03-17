@@ -8,7 +8,7 @@ const UsercreateModel = require("../models/User-create-book-model.js");
 const fileUploader = require("./../config/cloudinary");
 const likeModel = require("../models/like.model");
 const book = require("../models/book.model");
-// const isLoggedIn = require("./../middlewares/loginstatus");
+const isLoggedIn = require("./../middlewares/loginstatus");
 
 
 // Première API. Le search général. 
@@ -311,10 +311,7 @@ router.get("/oneBook/wishlist/:key", async (req, res, next) => {
     // I give the book to the given user.
 
     const currentUser = await User.findById(req.session.currentUser?._id).populate("wishlist")
-
-
-    const addedBooks = currentUser.wishlist;
-    console.log("log line 243 ❤️‍🔥", addedBooks)
+     const addedBooks = currentUser.wishlist;
 
 
     res.render("wishlist.hbs", { addedBooks });
