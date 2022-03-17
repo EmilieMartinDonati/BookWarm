@@ -8,35 +8,36 @@ router.get("/login", (req, res) => {
   res.render("auth/login");
 });
 
-router.post("/login", (req, res, next) => {
-  const { username, password } = req.body;
+router.post("/login", async (req, res, next) => {
+  try {
 
-  if (username === "" || password === "") {
-    res.render("auth/login", {
-      errorMessage: "Please enter username and password.",
-    });
-    return;
+    const { username, password } = req.body;
+
+    if (username === "" || password === "") {
+      res.render("auth/login", {
+        errorMessage: "Please enter username and password.",
+      });
+      return;
+    }
+
+    const user = await User.findOne({ userName: username });
+    if (!user) {
+      res.render("auth/login", {
+        errorMessage: "This username doesn't exist.",
+      });
+      return;
+    }
+
+    const rightPassword = await bcrypt.compareSync(password, user.password);
+    // console.log(username, user)
+
+    if (rightPassword) {
+      req.session.currentUser = user;
+      res.redirect("/");
+    } else res.render("auth/login", { errorMessage: "Incorrect password" });
+  } catch (err) {
+    next(err);
   }
-
-  User.findOne({ userName: username })
-    .then((user) => {
-      if (!user) {
-        res.render("auth/login", {
-          errorMessage: "This username doesn't exist.",
-        });
-        return;
-      }
-
-      const rightPassword = bcrypt.compareSync(password, user.password);
-      // console.log(username, user)
-
-      if (rightPassword) {
-        req.session.currentUser = user;
-        res.redirect("/");
-      } 
-      else res.render("auth/login", { errorMessage: "Incorrect password" });
-    })
-    .catch((error) => next(error));
 });
 
 module.exports = router;
