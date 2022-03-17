@@ -48,6 +48,7 @@ const apiCover = axios.create({
 
 /* GET home page */
 router.get("/", async (req, res, next) => {
+  try {
   // REVAMP MODELS :
   let categoriesArr = [];
   const categories = await genreModel.find();
@@ -59,6 +60,10 @@ router.get("/", async (req, res, next) => {
 
   const bestrated = await book.find().sort({ avgRate: -1 }).limit(6);
   res.render("index", { bestrated, uniquifiedCat });
+}
+catch (e) {
+  next(e);
+}
 });
 
 
@@ -181,10 +186,10 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
     const response3 = await apiGoogle.get(`${response2?.data?.docs[0]?.title}${response2?.data?.docs[0]?.author_name[0]}&key=AIzaSyAU4_7l55akAv2nS3YqqWvQFN_fPEMfgvk`);
     const response4 = await apiGoogleSingle.get(`${response3?.data?.items[0]?.id}?key=AIzaSyAU4_7l55akAv2nS3YqqWvQFN_fPEMfgvk`);
     let image;
-    if (response4.data.volumeInfo.imageLinks) {
-      if (response4.data.volumeInfo.imageLinks.medium) image = response4.data.volumeInfo.imageLinks.medium;
-      else if (response4.data.volumeInfo.imageLinks.large) image = response4.data.volumeInfo.imageLinks.large;
-      else if (response4.data.volumeInfo.imageLinks.small) image = response4.data.volumeInfo.imageLinks.small;
+    if (response4.data?.volumeInfo?.imageLinks) {
+      if (response4.data.volumeInfo.imageLinks?.medium) image = response4.data.volumeInfo.imageLinks.medium;
+      else if (response4.data.volumeInfo.imageLinks?.large) image = response4.data.volumeInfo.imageLinks.large;
+      else if (response4.data.volumeInfo.imageLinks?.small) image = response4.data.volumeInfo.imageLinks.small;
       else { image = `https://www.publishersweekly.com/images/cached/ARTICLE_PHOTO/photo/000/000/073/73607-v1-600x.JPG` }
     }
     else {
