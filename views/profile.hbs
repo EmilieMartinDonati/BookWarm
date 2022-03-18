@@ -1,6 +1,6 @@
 <div class="container bg-image p-0" id="profile">
 
-  <div class="row w-100 px-0 mx-0 pb-4" id="profile-first-row">
+  <div class="row w-100 px-0 mx-0 py-4" id="profile-first-row">
     <div class="col-3 text-light">
       {{#compare alreadyFollowed false operator="==" }}
       <form method="POST" action="/befriend/{{foundUser._id}}">
@@ -25,7 +25,7 @@
   </div>
 
 
-  <div class="row w-100 px-0 mx-0 pb-4" id="profile-row">
+  <div class="row w-100 px-0 mx-0 py-4" id="profile-row">
 
     {{#if firstWish}}
 
@@ -37,22 +37,20 @@
           <div class="carousel-inner">
             <div class="carousel-item active profile rounded" id="relative-carousel-item-1">
               <img src="{{firstWish.image}}" class="d-block rounded" alt="{{firstWish.title}}"
-                style="height: 50vh; width: 100%;">
-              <h4 id="absolute-carousel-item">{{firstWish.title}}</h4>
-              <a href="/oneBook/{{firstWish.key}}" id="absolute-carousel-item-low"
-                class="p-3 btn btn-outline-success">SEE
-                BOOK</a>
+                style="height: 75vh; width: 100%;">
+                <h4 id="absolute-carousel-item"><a href="/oneBook/{{firstWish.key}}">{{firstWish.title}}</a></h4>
+                <p id="absolute-carousel-item-low">{{firstWish.author_name}}</p>
             </div>
             {{#each otherWishes}}
             <div class="carousel-item profile" id="relative-carousel-item-1">
-              <img src="{{this.image}}" class="d-block rounded" alt="{{this.title}}" style="height: 50vh; width: 100%;">
-              <h4 id="absolute-carousel-item">{{this.title}}</h4>
-              <a href="/oneBook/{{this.key}}" id="absolute-carousel-item-low" class="p-3 btn btn-outline-success">SEE
-                BOOK</a>
+              <img src="{{this.image}}" class="d-block rounded" alt="{{this.title}}" style="height: 75vh; width: 100%;">
+              <h4 id="absolute-carousel-item"><a href="/oneBook/{{this.key}}">{{this.title}}</a></h4>
+                <p id="absolute-carousel-item-low">{{this.author_name}}</p>
             </div>
             {{/each}}
 
           </div>
+          {{#if otherWishes}}
           <button class="carousel-control-prev btn color-btn-carousel" type="button"
             data-bs-target="#carouselExampleControls" data-bs-slide="prev">
             <span class="carousel-control-prev-icon carousel-profile" aria-hidden="true"
@@ -65,6 +63,7 @@
               id="next-profile-carousel"></span>
             <span class="visually-hidden">Next</span>
           </button>
+          {{/if}}
         </div>
       </div>
 
@@ -82,22 +81,21 @@
             <div class="carousel-inner">
               <div class="carousel-item active profile" id="relative-carousel-item-2">
                 <img src="{{firstRated.image}}" class="d-block rounded" alt="{{firstRated.title}}"
-                  style="height: 50vh; width: 100%;">
-                <h4 id="absolute-carousel-item">{{firstRated.title}}</h4>
-                <a href="/oneBook/{{firstRated.key}}" id="absolute-carousel-item-low"
-                  class="p-3 btn btn-outline-success">SEE BOOK</a>
+                  style="height: 75vh; width: 100%;">
+            <h4 id="absolute-carousel-item"><a href="/oneBook/{{this.key}}">{{firstRated.title}}</a></h4>
+                <p id="absolute-carousel-item-low">{{firstRated.author_name}}</p>
               </div>
               {{#each otherRated}}
               <div class="carousel-item profile" id="relative-carousel-item-2">
                 <img src="{{this.image}}" class="d-block rounded" alt="{{this.title}}"
-                  style="height: 50vh; width: 100%;">
-                <h4 id="absolute-carousel-item">{{this.title}}</h4>
-                <a href="/oneBook/{{this.key}}" id="absolute-carousel-item-low" class="p-3 btn btn-outline-success">SEE
-                  BOOK</a>
+                  style="height: 75vh; width: 100%;">
+               <h4 id="absolute-carousel-item"><a href="/oneBook/{{this.key}}">{{this.title}}</a></h4>
+                <p id="absolute-carousel-item-low">{{this.author_name}}</p>
               </div>
               {{/each}}
 
             </div>
+            {{#if otherWishes}}
             <button class="carousel-control-prev btn color-btn-carousel" type="button" data-bs-target="#carouselExampleControls2"
               data-bs-slide="prev">
               <span class="carousel-control-prev-icon carousel-profile2" aria-hidden="true"
@@ -110,6 +108,7 @@
                 id="next-profile-carousel-2"></span>
               <span class="visually-hidden">Next</span>
             </button>
+            {{/if}}
           </div>
 
 

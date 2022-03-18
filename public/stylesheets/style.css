@@ -526,11 +526,12 @@ background-size: cover;
 }
 
 #profile-first-row {
-  background-color: rgba(192, 192, 192, 0.308);
+  /* background-color: rgba(71, 61, 139, 0.63); */
+  background-image: linear-gradient(to right bottom, #473d8b, #9a528c, #cd778c, #eca799, #ffdab9);
 }
 
 .salmon-profile {
-  color: white;
+  color: black;
 }
 
 #container-profile-image {
@@ -558,11 +559,12 @@ background-size: cover;
 }
 
 #profile-row {
-  background-color:#864877c2;
+  background-color:rgba(255, 218, 185, 0.493);
+  color: #864877c2;
 }
 
 .color-btn-carousel:hover {
-  background-color: #E9A6A6 !important;
+  background-color: #864877c2 !important;
 }
 
 /* ALL THE PERSONAL SPACE */
@@ -747,15 +749,19 @@ background-size: cover;
 
 #absolute-carousel-item {
   position: absolute;
-  background-color: white;
-  color: black;
-  top: 30%;
-  left: 30%;
+  top: 5%;
+  left: 0%;
+  background-color: #864877c2;
+  padding: 10px;
+  color: white;
 }
 
  #absolute-carousel-item-low {
   position: absolute;
-  background-color: white;
-  bottom: 20%;
-  left: 30%;
+  bottom: 30%;
+  right: 0%;  
+  padding: 10px;
+  background-color: rgba(71, 61, 139, 0.63);
+  padding: 10px;
+  color: white;
  }
