@@ -47,12 +47,15 @@ router.get("/profile/:id", async (req, res, next) => {
 router.post("/befriend/:id", async (req, res, next) => {
   try {
     const {id} = req.params;
-    console.log(id);
     const currentUserId = req.session.currentUser._id;
-     const currentUser = await User.findByIdAndUpdate(currentUserId, {
+     await User.findByIdAndUpdate(currentUserId, {
        $push: {following: id}
      }, 
      {new: true});
+      await User.findByIdAndUpdate(id, {
+       $push: {followers: currentUserId}
+     },
+       {new: true})
      res.redirect("/personalspace")
   }
   catch (e) {
@@ -65,10 +68,14 @@ router.post("/unfriend/:id", async (req, res, next) => {
     const {id} = req.params;
     console.log(id);
     const currentUserId = req.session.currentUser._id;
-     const currentUser = await User.findByIdAndUpdate(currentUserId, {
+     currentUser = await User.findByIdAndUpdate(currentUserId, {
        $pull: {following: id}
      }, 
      {new: true});
+     await User.findByIdAndUpdate(id, {
+      $pull: {followers: currentUserId}
+    },
+      {new: true})
      res.redirect("/personalspace")
   }
   catch (e) {

@@ -47,7 +47,6 @@ router.post("/oneBook/like/:keyUrl", async (req, res, next) => {
   try {
   const currentUser = req.session.currentUser._id;
   const {reviewId} = req.body;
-  console.log("🏓 line 53", reviewId);
   const foundReview = await Review.findByIdAndUpdate(reviewId, {
           $inc: {nbLikes: 1},
           $push: {likedBy: currentUser}

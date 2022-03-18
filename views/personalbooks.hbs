@@ -8,16 +8,22 @@
        </div>
       {{/unless}}
       {{#if createdBooks}}
-   <div class="col-12 d-flex flex-row flex-wrap justify-content-between p-3 mx-auto rounded" style="background-color: grey;">
+   <div class="col-12 d-flex flex-row flex-wrap justify-content-between p-3 mx-auto rounded">
      {{#each createdBooks}}
-    <div class="card my-2 mx-2 col-lg-4 col-md-6 col-sm-12">
-        <img src={{this.picture}} class="card-img-top h-75" alt={{this.title}}>
-        <div class="card-body">
-            <p class="card-text" id="review">{{this.title}}</p>
-            <p>{{this.author_name}}</p>
-            <p>{{this.first_sentence}}</p>
+    <div class="card rounded m-3 col-md-5 col-sm-5 col-xs-12" id="created-book-card">
+      <div class="card-body">
+        <img src={{this.picture}} class="bg-image rounded card-img-top" alt={{this.title}} style="height: 45vh;" id="created-book-image">
+            <a href="/oneBook/{{this.key}}"><p class="card-text rounded" id="created-book-title">{{this.title}}</p></a>
+            <p class="card-text rounded" id="created-book-name">{{this.author_name}}</p>
+        {{!-- <div class="card-text">
+            <form method="POST" action="#">
+                <button class="btn">ARCHIVE</button>
+            </form>
+        </div> --}}
         </div>
     </div>
+
+
     {{/each}}
     </div>
     {{/if}}
@@ -26,26 +32,17 @@
 
   <div class="col-4 p-4">
 <h2>ADD A BOOK</h2>
-<hr>
 <form method="POST" action="/createdBooks" enctype="multipart/form-data" class="row my-2">
   <label for="title" class="visually-hidden">TITLE</label>
-  <br>
-  <input type="text" name="title" placeholder="Book's title" required class="form-control" />
-  <hr>
+  <input type="text" name="title" placeholder="Book's title" required class="form-control rounded mb-4" />
   <label for="title" class="visually-hidden">AUTHOR NAME</label>
-  <br>
-  <input type="text" name="author_name" placeholder="Author's name" required class="form-control" />
-  <hr>
-  <label for="picture" class="label"> <i class="icon fas fa-cloud-upload-alt fa-1x">choose a picture </i> </label>
-  <br>
-  <input class="is-hidden" type="file" id="picture" name="picture" , required class="form-control" />
-  <hr>
-  <label for="summary" class="label visually-hidden">Summary</label>
-  <br>
-  <textarea type="text" class="input" id="description" name="description" placeholder="Write your book summary here"
-   class="form-control"></textarea>
-  <br>
-  <button class="btn btn-outline-danger mt-5">ADD</button>
+  <input type="text" name="author_name" placeholder="Author's name" required class="form-control rounded mb-4" />
+   <label for="summary" class="label visually-hidden">Summary</label>
+  <textarea type="text" class="input form-control rounded mb-4" id="description" name="description" placeholder="Write your book summary here"
+   ></textarea>
+  <label for="picture" class="label mb-4 text-center"> <i class="icon fas fa-cloud-upload-alt fa-1x">choose a picture </i> </label>
+  <input class="is-hidden form-control rounded mb-3" type="file" id="picture" name="picture", required />
+  <button class="btn btn-outline-danger rounded px-2">ADD</button>
 </form>
 </div>
 

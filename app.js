@@ -10,6 +10,10 @@ const express = require("express");
 // https://www.npmjs.com/package/hbs
 const hbs = require("hbs");
 require("./helpers/hbs"); // utils for hbs templates
+
+// Helpers from Github.
+const helpers = require("handlebars-helpers");
+
 const app = express();
 const path = require("path");
 app.set("views", path.join(__dirname, "views"));

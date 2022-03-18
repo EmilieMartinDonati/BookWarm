@@ -6,6 +6,8 @@ const fileUploader = require("./../config/cloudinary");
 const Review = require("../models/reviews-model");
 const UsercreateModel = require("../models/User-create-book-model");
 const UserModel = require("../models/User.model");
+// Trying to install them from Github, didn't work.
+const helpers = require('handlebars-helpers')(['math', 'comparison', 'string']);
 
 
 
@@ -13,15 +15,14 @@ const UserModel = require("../models/User.model");
 
 router.get("/personalspace/", async (req, res, next) => {
   try {
-    // const username = req.session.currentUser.userName;
-    
-    const foundUser = await UserModel.findById(req.session.currentUser._id).populate("read").populate("following");
+    const neither = helpers.neither;
+    const value = 3;
+    const foundUser = await UserModel.findById(req.session.currentUser._id).populate("read").populate({path: "following", options: {limit: 3}}).populate({path: "followers", options: {limit: 3}});
     const following = foundUser.following;
-    console.log("line 20", following);
-
+    const followers = foundUser.followers;
+    const areFollowing = following.length > 0 ? true : false;
+    const areFollowers = followers.length > 0 ? true : false;
     const read = foundUser.read;
-    console.log("this is log line 21", read);
-
     const reviews = await Review.find({
       user: req.session.currentUser._id,
     });
@@ -29,17 +30,17 @@ router.get("/personalspace/", async (req, res, next) => {
       user: req.session.currentUser._id,
     });
 
-    const picture = await UserModel.findById(req.session.currentUser._id, {
-      image: 1,
-    });
-    console.log(picture);
     res.render("personal.space.hbs", {
       foundUser,
       following,
+      followers,
       read,
       reviews,
       createdBooks,
-      newPic: picture,
+      value,
+      neither,
+      areFollowing,
+      areFollowers,
     });
   } catch (err) {
     next(err);

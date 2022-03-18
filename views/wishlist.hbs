@@ -1,4 +1,8 @@
-<div class="row mx-0 g-0 rounded flex-wrap justify-content-around" id="book-forest">
+<div class="row mx-0 g-0 rounded flex-wrap justify-content-around" style="background-color: rgba(255, 218, 185, 0.493);">
+    {{#unless addedBooks}}
+       <div class="col-12" id="book-forest">
+       </div>
+      {{/unless}}
     {{#each addedBooks}}
     <div class="card rounded m-3 col-md-3 col-sm-5 col-xs-12" id="wishlist-card">
         <img src={{this.image}} class="card-img-top rounded" alt={{this.title}} style="height: 50vh;">

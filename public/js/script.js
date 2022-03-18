@@ -183,6 +183,8 @@ Array.from(catTag).forEach((tag, index) => tag.onmouseout = (() => tagHandler2(t
 
 
 
+
+
 // Carousel pour le profile.
 
 // Il faut cette index to whoever has it active, like with a find.
@@ -245,6 +247,39 @@ const carouselControlsProfile = document.getElementsByClassName("carousel-profil
 Array.from(carouselControlsProfile).forEach((control) => control.onclick = ((e) => carouselProfileHandler(e.target)));
 
 
-// Unexpected end of script why ?
+// Use the multicollapse for the personal space.
+// To do again while accounting for the fact that they may click twice on same button, so add / remove and  if.
+
+const MulticollapseHandler1 = (e) => {
+  console.log("this is line 253", e.target);
+  e.target.classList.add('is-clicked');
+  const element2 = document.querySelector('[aria-controls="multiCollapseExample2"]');
+  element2.classList.remove("is-clicked");
+  const divsToCollapse = document.getElementById("multiCollapseExample1").children;
+  const otherDivs = document.getElementById("multiCollapseExample2").children;
+  if (e.target.classList.contains("is-clicked")) {
+    Array.from(divsToCollapse).forEach((div) => div.classList.remove("collapse"));
+    Array.from(otherDivs).forEach((div) => div.classList.add("collapse"));
+  } 
+}
+const MulticollapseHandler2 = (e) => {
+  console.log("line 251", e.target);
+  e.target.classList.add('is-clicked');
+  const element1 = document.querySelector('[aria-controls="multiCollapseExample1"]');
+  element1.classList.remove("is-clicked");
+  const divsToCollapse = document.getElementById("multiCollapseExample2").children;
+  const otherDivs = document.getElementById("multiCollapseExample1").children;
+  if (e.target.classList.contains("is-clicked")) {
+    Array.from(divsToCollapse).forEach((div) => div.classList.remove("collapse"));
+    Array.from(otherDivs).forEach((div) => div.classList.add("collapse"));
+  } 
+}
+
+const element1 = document.querySelector('[aria-controls="multiCollapseExample1"]');
+element1 ? element1.onclick = ((e) => MulticollapseHandler1(e)) : console.log('meh');
+
+const element2 = document.querySelector('[aria-controls="multiCollapseExample2"]');
+element2 ? element2.onclick = ((e) => MulticollapseHandler2(e)) : console.log("meh");
+
 
 

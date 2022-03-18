@@ -18,9 +18,9 @@
       </form>
       {{/compare}}
     </div>
-    <div class="col-9 text-end m-0 p-0" id="container-profile-image"><img src={{foundUser.image}}
-        alt={{foundUser.userName}} id="profile-image" class="rounded" />
-      <h5 class="text-uppercase text light" id="name-over-picture">{{foundUser.userName}}</h5>
+    <div class="col-9 text-end p-4" id="container-profile-image"><img src={{foundUser.image}}
+        alt={{foundUser.userName}} id="profile-image" class="bg-image rounded mx-4" />
+      <h5 class="text-uppercase text light mx-4" id="name-over-picture">{{foundUser.userName}}</h5>
     </div>
   </div>
 
@@ -66,13 +66,11 @@
           {{/if}}
         </div>
       </div>
-
-
-
     </div>
     {{/if}}
+
     <div class="col-lg-6 col-sm-12 h-100">
-      {{#if otherRated}}
+      {{#if firstRated}}
       {{!-- <div class="row w-100"> --}}
         <h5 class="text-end text-uppercase m-4 p-4 salmon-profile">Last books {{foundUser.userName}} rated</h5>
         {{!-- <div class="col-6 h-100"></div> --}}
@@ -82,7 +80,7 @@
               <div class="carousel-item active profile" id="relative-carousel-item-2">
                 <img src="{{firstRated.image}}" class="d-block rounded" alt="{{firstRated.title}}"
                   style="height: 75vh; width: 100%;">
-            <h4 id="absolute-carousel-item"><a href="/oneBook/{{this.key}}">{{firstRated.title}}</a></h4>
+            <h4 id="absolute-carousel-item"><a href="/oneBook/{{firstRated.key}}">{{firstRated.title}}</a></h4>
                 <p id="absolute-carousel-item-low">{{firstRated.author_name}}</p>
               </div>
               {{#each otherRated}}
@@ -95,7 +93,7 @@
               {{/each}}
 
             </div>
-            {{#if otherWishes}}
+            {{#if otherRated}}
             <button class="carousel-control-prev btn color-btn-carousel" type="button" data-bs-target="#carouselExampleControls2"
               data-bs-slide="prev">
               <span class="carousel-control-prev-icon carousel-profile2" aria-hidden="true"

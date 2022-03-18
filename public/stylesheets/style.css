@@ -71,12 +71,12 @@ visibility: hidden;
   background-color: #035471;
   color: white;
 }
-
+/* 
 #personalspace {
   margin: 1rem;
   padding: 1rem;
   color: #00b7ff;
-}
+} */
 
 #signup {
   padding: 1rem;
@@ -174,7 +174,7 @@ visibility: hidden;
   padding: 4%;
   font-size: 1.2em;
   border: none;
-  transform: scale(1.2);
+  transform: scale(1.1);
   z-index: 4;
   /* padding: 1%; */
 }
@@ -193,7 +193,7 @@ visibility: hidden;
   padding: 4%;
   font-size: 1.2em;
   border: none;
-  transform: scale(1.2);
+  transform: scale(1.1);
   z-index: 4;
   /* padding: 1%; */
 }
@@ -213,7 +213,7 @@ visibility: hidden;
   border-radius: 2%;
   padding: 2%;
   border: dotted #a9c2b9 5px;
-  transform: scale(1.2);
+  transform: scale(1.1);
   z-index: 4;
 }
 
@@ -232,7 +232,7 @@ visibility: hidden;
   border-radius: 2%;
   padding: 2%;
   /* border: dotted #a9c2b9 5px; */
-  transform: scale(1.2);
+  transform: scale(1.1);
   z-index: 4;
 }
 
@@ -370,7 +370,7 @@ visibility: hidden;
 }
 
 .minified {
-  transform: scale(0.8);
+  transform: scale(0.9);
 }
 
 #account {
@@ -384,19 +384,10 @@ visibility: hidden;
 }
 
 
-#book-tea {
-  background-image: url(../images/booktea.jpg);
-  background-size: cover;
-  height: 100vh;
-}
-
 .relative {
   position: relative;
 }
-.absolute-img {
-  width: 100%;
-  height: 100vh;
-}
+
 
 .absolute-top {
   position: absolute;
@@ -455,12 +446,18 @@ visibility: hidden;
   padding-top: 5%;
 }
 
+.absolute-img {
+  width: 100%;
+  height: 75vh !important;
+  background-size: cover;
+}
+
 #papyrus {
   background-image: url("../images/Orange\ Minimal\ Book\ Store\ Logo\ \(1\).png");
   background-color: #DECCCA;
   /* border: 2px dotted rgb(211, 146, 146); */
   background-size: cover;
-  min-height: 600px;
+  height: 75vh !important;  
   width: 100%;
   opacity: 0.8;
   padding: 0 !important;
@@ -540,8 +537,8 @@ background-size: cover;
 
 #name-over-picture {
   position: absolute;
-  top: 85%;
-  left: 88%;
+  top: 70%;
+  right: 10%;
   color: red;
   z-index: 8;
 }
@@ -582,7 +579,7 @@ background-size: cover;
 
 #row-personal-image {
   /* position: relative; */
-  min-height: 35vh;
+  /* min-height: 35vh; */
 }
 
 #personal-image {
@@ -604,7 +601,11 @@ background-size: cover;
 
 #upload {
   width: 50% !important;
-  background-color: transparent;
+}
+
+#upload-arco-iris {
+  background-image: linear-gradient(to right bottom, #473d8b, #9a528c, #cd778c, #eca799, #ffdab9) !important;
+  opacity: 0.8;
 }
 
 
@@ -617,7 +618,7 @@ background-size: cover;
 }
 
 .absolute-image-following {
-  width: 100%;
+  /* width: 100%; */
   height: 20vh;
 }
 
@@ -625,6 +626,22 @@ background-size: cover;
   filter: contrast(130%);
   transform: scale(1.1);
   z-index: 8 !important;
+}
+
+.follow-btns {
+  color: #eca799 !important;
+}
+
+.follow-btns:hover {
+  /* background-color: #eca799 !important; */
+  background-color: transparent !important;
+  color: crimson !important;
+}
+
+.is-clicked {
+  /* transform: scale(1.1); */
+  background-color:  #9a528c96 !important;
+  color: white !important;
 }
 
 #last-books {
@@ -689,15 +706,17 @@ background-size: cover;
 
 .wishcol:hover {
   padding: 1em;
-  background-color:  #3f33519c;
-  color: silver !important;
+  background-color:  #9a528c96;
+  color: white !important;
   border-color: red;
 }
 
 
 /* For the wishlist   */
 #book-forest {
-  background-color: #f8f9fa;
+  background-image: url("../images/books-wall-semi-trans.png");
+  background-size: cover;
+  height: 100vh;
   /* background-size: contain; */
 }
 
@@ -734,6 +753,55 @@ background-size: cover;
 }
 
 #wishlist-name:hover {
+  filter: contrast(1.2);
+}
+
+/*For the personal books */
+
+#book-tea {
+  background-image: url(../images/booktea.jpg);
+  background-size: cover;
+  height: 100vh;
+}
+
+#created-book-card {
+    border: 4px dotted black;
+    position: relative;
+
+}
+
+#created-book-image {
+  background-size: cover;
+}
+
+#created-book-card:hover {
+  transform: scale(1.2);
+  z-index: 4;
+}
+
+#created-book-title {
+  position: absolute;
+  top: 5%;
+  left: 0%;
+  background-color: rgba(220, 20, 60, 0.849);
+  padding: 10px;
+  color: white;
+}
+
+#created-book-title:hover {
+  filter: contrast(1.2);
+}
+
+#created-book-name {
+  position: absolute;
+  bottom: 30%;
+  right: 0%;
+  background-color: rgba(80, 77, 77, 0.877);
+  padding: 10px;
+  color: white;
+}
+
+#created-book-name:hover {
   filter: contrast(1.2);
 }
 

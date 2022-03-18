@@ -80,7 +80,6 @@ router.post("/", async (req, res, next) => {
     })
     let uniquifiedCat = [...new Set(categoriesArr)];
     const number = Number(req.body.number);
-    console.log("this is log line 69", typeof req.body.name)
     const personalBooks = await UsercreateModel.find({ title: { $in: [req.body.name] } }).limit(number);
     const bestrated = await book.find().sort({ avgRate: 1 }).limit(6);
     const response = await api.get(`${req.body.name}&fields=*,availability&limit=${number}`)
@@ -110,7 +109,6 @@ router.post("/categories", async (req, res, next) => {
   let mode = "categories";
   const foundBooks = await book.find();
   foundBooks.forEach((book) => {
-    console.log("line 93", book.subject[0]);
     if (book.subject.includes(cat)) booksArr.push(book);
   })
   const bestrated = await book.find().sort({ avgRate: -1 }).limit(6);
@@ -150,16 +148,14 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
       })
 
       currentUser.read?.forEach((el) => {
-        //  console.log(el.key, req.params.key)
         let keyCompare = el.key.slice(6)
         if (keyCompare === req.params.key) readArray.push(el);
-        else console.log("this is line 150");
+        // else console.log("this is line 150");
       })
 
       currentUser.booksRated?.forEach((el) => {
         let keyCompare = el.key.slice(6)
         if (keyCompare === req.params.key) ratedArray.push(el);
-        else console.log("this is line 150");
       })
     }
 
@@ -257,7 +253,6 @@ router.get("/oneBook/wishlist/:key", async (req, res, next) => {
     // I enter the book added to the wishlist into the database.
 
     const exists = await book.findOne({ key: `works/${req.params.key}` });
-    console.log("🐤this is log line 312", exists)
 
     if (exists) {
       const thebook = await book.findByIdAndUpdate(exists._id, {
@@ -355,7 +350,6 @@ router.get("/oneBook/redlist/:key", async (req, res, next) => {
     const response3 = await apiGoogle.get(`${response2.data.docs[0].title}${response2.data.docs[0].author_name[0]}&key=AIzaSyAU4_7l55akAv2nS3YqqWvQFN_fPEMfgvk`);
     const response4 = await apiGoogleSingle.get(`${response3.data.items[0].id}?key=AIzaSyAU4_7l55akAv2nS3YqqWvQFN_fPEMfgvk`);
     let image;
-    // console.log("🐤", response4.data.volumeInfo);
     if (response4.data.volumeInfo.imageLinks) {
       if (response4.data.volumeInfo.imageLinks.medium) image = response4.data.volumeInfo.imageLinks.medium;
       else if (response4.data.volumeInfo.imageLinks.large) image = response4.data.volumeInfo.imageLinks.large;
@@ -433,7 +427,6 @@ router.post("/oneBook/rate/:key", async (req, res, next) => {
     console.log(typeof rating);
 
     const exists = await book.findOne({ key: `works/${req.params.key}` });
-    console.log("🐤this is log line 312", exists)
 
     if (exists) {
       const thebook = await book.findByIdAndUpdate(exists._id, {
@@ -459,7 +452,6 @@ router.post("/oneBook/rate/:key", async (req, res, next) => {
       const response3 = await apiGoogle.get(`${response2.data.docs[0].title}${response2.data.docs[0].author_name[0]}&key=AIzaSyAU4_7l55akAv2nS3YqqWvQFN_fPEMfgvk`);
       const response4 = await apiGoogleSingle.get(`${response3.data.items[0].id}?key=AIzaSyAU4_7l55akAv2nS3YqqWvQFN_fPEMfgvk`);
       let image;
-      // console.log("🐤", response4.data.volumeInfo);
       if (response4.data.volumeInfo.imageLinks) {
         if (response4.data.volumeInfo.imageLinks.medium) image = response4.data.volumeInfo.imageLinks.medium;
         else if (response4.data.volumeInfo.imageLinks.large) image = response4.data.volumeInfo.imageLinks.large;
@@ -554,8 +546,6 @@ router.get("/oneBook/wishlist", async (req, res, next) => {
     next(err)
   }
 })
-
-
 
 module.exports = router;
 

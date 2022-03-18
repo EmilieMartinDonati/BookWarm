@@ -1,5 +1,5 @@
 <div class="row mx-0 rounded g-0" id="row-first-personal">
-  <div class="col-md-4 col-sm-6 text-end" id="container-personal-image">
+  <div class="col-md-3 col-sm-6 text-end" id="container-personal-image">
     <h5 style="color: inherit" class="text-start text-danger text-uppercase my-4 px-4">HELLO {{foundUser.userName}}</h5>
     <div class="row text-end px-4" id="row-personal-image">
       <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
@@ -11,49 +11,95 @@
   <div class="col-md-2 col-sm-6 py-2">
     <div class="row my-4 py-4" id="row-upload">
       <div class="collapse rounded mt-4" id="collapseExample" id="upload">
-        <div class="card card-body" style="background-color: inherit">
-          <div class="card-title text-center">Change your image</div>
-          <div class="text-center pt-4">
+        <div class="card card-body" id="upload-arco-iris">
+          <div class="text-center">
             <form action="/uploadimage" method="post" enctype="multipart/form-data">
               <hr>
               <input type='file' name='image' class="form-control" />
               <hr>
-              <button class="btn" id="img-upload" type="submit">Upload your image</button>
+              <button class="btn" id="img-upload" type="submit">Change your image</button>
             </form>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="col-md-6 col-sm-12 text-light px-4" id="your-followers">
-    {{#if following}}
+  <div class="col-md-7 col-sm-12 text-light px-4" id="your-followers">
+
     <div class="row my-4">
-      <div class="col-8 text-start">
-        <h5 style="color: inherit" class="text-start">YOU FOLLOW THEM</h5>
+      {{#neither areFollowers areFollowing}}
+      <div class="col-12 text-center">
+        <h5 class="text-body mx-4 px-4" style="color: rgb(255, 0, 76)">YOU ARE NOT CONNECTED TO ANYONE YET</h5>
       </div>
-      <div class="col-4 text-end">
-        <h5 class="text-end text-body">MORE</h5>
+      {{else}}
+      {{#if following}}
+      <div class="col-6 text-center">
+        <a class="follow-btns btn btn-outline-danger px-5 py-3 mx-0" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button"
+          aria-expanded="true" aria-controls="multiCollapseExample1">
+          YOU FOLLOW THEM
+        </a>
       </div>
-    </div>
-    {{/if}}
-    <div class="d-flex flex-wrap flex-row p-0 mb-4">
-      {{#each following}}
-      <div class="card col-4 p-0 m-0">
-        <div class="card-body relative rounded p-0 m-0" style="border: none">
-          <a href="/profile/{{this._id}}">
-            <img src={{this.image}} class="d-block w-100 m-0 img-card absolute-image-following rounded" alt="cover" />
-          </a>
+      {{/if}}
+      {{#if followers}}
+      <div class="col-6 text-center">
+        <a class="follow-btns btn btn-outline-danger px-5 py-3 mx-0" role="button" data-bs-toggle="collapse" href="#multiCollapseExample2"
+          aria-expanded="false" aria-controls="multiCollapseExample2">
+          THEY FOLLOW YOU
+        </a>
+      </div>
+      {{/if}}
+      {{/neither}}
+      </div>
+
+      <div class="row mb-4">
+        <div class="col-12 p-0 m-0">
+        {{#if following}}
+         <div class="d-flex flex-wrap flex-row p-0 m-0 justify-content-center">
+        <div class="multi-collapse d-flex flex-wrap flex-row m-0 p-0"  id="multiCollapseExample1">
+          {{#each following}}
+          <div class="card col-4 p-0">
+            <div class="card-body relative rounded p-0" style="border: none">
+              <a href="/profile/{{this._id}}">
+                <img src={{this.image}} class="d-block w-100 m-0 img-card absolute-image-following rounded"
+                  alt="cover" />
+              </a>
+            </div>
+          </div>
+          {{/each}}
         </div>
       </div>
-      {{/each}}
-    </div>
+      {{/if}}
+       {{#if followers}}
+      <div class="d-flex flex-wrap flex-row p-0 m-0 justify-content-center">
+        <div class="multi-collapse d-flex flex-wrap flex-row m-0 p-0" id="multiCollapseExample2">       
+          {{#each followers}}
+          <div class="card collapse col-4 p-0">
+            <div class="card-body relative rounded p-0 m-0" style="border: none">
+              <a href="/profile/{{this._id}}">
+                <img src={{this.image}} class="d-block w-100 m-0 img-card absolute-image-following rounded"
+                  alt="cover" />
+              </a>
+            </div>
+          </div>
+          {{/each}}
+          </div>
+        </div>
+      {{/if}}
+       </div>
+      </div>
+      </div>
   </div>
-</div>
+
 
 <div class="row mx-0 g-0 rounded">
 
   <div class="col-lg-12 col-md-12 col-sm-12 p-4 rounded" id="last-books">
+    {{#unless read}}
+    <h5 class="text-start text-grey my-4 px-4">YOU HAVEN'T READ ANY BOOKS YET</h5>
+    {{/unless}}
+    {{#if read}}
     <h5 class="text-start text-grey my-4 px-4">LAST BOOKS YOU READ</h5>
+    {{/if}}
     {{#unless read}}
     <img class="img-fluid" src="./images/Orange Minimal Book Store Logo (1).png" style="width: 800px; height: 500px;"
       alt="">
@@ -78,12 +124,19 @@
 <div class="row mx-0 g-0 rounded">
 
   <div class="col-lg-12 col-md-12 col-sm-12 p-4 rounded" id="your-reviews">
+    {{#unless reviews}}
+    <h5 class="text-start my-4 px-4">THERE ARE NO REVIEWS TO DISPLAY YET</h5>
+    {{/unless}}
+    {{#if reviews}}
     <h5 class="text-start my-4 px-4">YOUR REVIEWS</h5>
+    {{/if}}
     <div class="d-flex flex-wrap mb-4 justify-content-around">
       {{#each reviews}}
       <div class="card m-1 col-lg-2 col-md-3 col-sm-4 col-xs-12" id="review-card">
         <div class="card-body">
-          <a href="/oneBook/{{this.key}}" class="fatlinks"><h6 class="card-title">{{this.bookTitle}}</h6></a>
+          <a href="/oneBook/{{this.key}}" class="fatlinks">
+            <h6 class="card-title">{{this.bookTitle}}</h6>
+          </a>
           <p class="card-text" id="author-card-name" style="font-size: small;">{{this.review}}</p>
           <div class="row">
             <div class="col-12">
