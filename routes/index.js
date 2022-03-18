@@ -175,6 +175,10 @@ router.get("/oneBook/works/:key", async (req, res, next) => {
       alreadyRated = true;
     }
 
+
+    // const foundBookAlready = await UsercreateModel.findById(req.params.key);
+    // Bon la flemme mais en gros si on a foundBookAlready, on se contente de ça.
+
     let number = 1;
     // Search by key.
     const response = await apiKey.get(`/works/${req.params.key}.json`);
