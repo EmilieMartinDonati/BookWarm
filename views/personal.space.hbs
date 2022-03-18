@@ -54,10 +54,10 @@
       <div class="row mb-4">
         <div class="col-12 p-0 m-0">
         {{#if following}}
-         <div class="d-flex flex-wrap flex-row p-0 m-0 justify-content-center">
-        <div class="multi-collapse d-flex flex-wrap flex-row m-0 p-0"  id="multiCollapseExample1">
+         {{!-- <div class="d-flex flex-wrap flex-row p-0 m-0 justify-content-center"> --}}
+        <div class="multi-collapse d-flex flex-wrap flex-row m-0 p-0 justify-content-center"  id="multiCollapseExample1">
           {{#each following}}
-          <div class="card col-4 p-0">
+          <div class="card p-0" style="width: 30%">
             <div class="card-body relative rounded p-0" style="border: none">
               <a href="/profile/{{this._id}}">
                 <img src={{this.image}} class="d-block w-100 m-0 img-card absolute-image-following rounded"
@@ -66,14 +66,14 @@
             </div>
           </div>
           {{/each}}
-        </div>
+        {{!-- </div> --}}
       </div>
       {{/if}}
        {{#if followers}}
-      <div class="d-flex flex-wrap flex-row p-0 m-0 justify-content-center">
-        <div class="multi-collapse d-flex flex-wrap flex-row m-0 p-0" id="multiCollapseExample2">       
+      {{!-- <div class="d-flex flex-wrap flex-row p-0 m-0 justify-content-center"> --}}
+        <div class="multi-collapse d-flex flex-wrap flex-row m-0 p-0 justify-content-center" id="multiCollapseExample2">       
           {{#each followers}}
-          <div class="card collapse col-4 p-0">
+          <div class="card collapse p-0" style="width: 30%">
             <div class="card-body relative rounded p-0 m-0" style="border: none">
               <a href="/profile/{{this._id}}">
                 <img src={{this.image}} class="d-block w-100 m-0 img-card absolute-image-following rounded"
@@ -83,7 +83,7 @@
           </div>
           {{/each}}
           </div>
-        </div>
+        {{!-- </div> --}}
       {{/if}}
        </div>
       </div>
