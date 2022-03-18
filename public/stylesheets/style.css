@@ -49,8 +49,6 @@ a {
   color: #291B25;
 }
 
-
-
 .hidden {
 visibility: hidden;
 }
@@ -170,6 +168,25 @@ visibility: hidden;
 
 #author-card:hover {
   background-image: url("../images/Orange\ Minimal\ Book\ Store\ Logo\ \(1\).png");
+  background-color: #b4cac2;
+  padding: 4%;
+  font-size: 1.2em;
+  border: none;
+  transform: scale(1.2);
+  z-index: 4;
+  /* padding: 1%; */
+}
+
+#user-personal-card {
+  background-size: cover;
+  background-color: #93b2a7;
+  border-radius: 2%;
+  padding: 2%;
+  border: dotted #a9c2b9 5px;
+  /* width: calc(92% /3) */
+}
+
+#user-personal-card:hover {
   background-color: #b4cac2;
   padding: 4%;
   font-size: 1.2em;

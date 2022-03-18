@@ -106,6 +106,13 @@ function backgroundHandler (card, index, array) {
   });
   otherCatCards.forEach((card) => card.classList.add("minified"));
 }
+  if (array === personalCard) {
+    let otherPersonalCards = [];
+    personalCard.forEach((card, i) => {
+      if (i !== index)  otherPersonalCards.push(card);
+    });
+    otherPersonalCards.forEach((card) => card.classList.add("minified"));
+}
 }
 
 function backgroundHandlerSearch (card, index, array) {
@@ -120,6 +127,7 @@ function backgroundRemover(card, index, array) {
   card.style.backgroundImage = "none";
   const minifiedBest = document.querySelectorAll("#author-best-card + .minified");
   console.log("119", minifiedBest);
+
   if (array === bestCard) Array.from(minifiedBest).forEach((mini) => mini.classList.remove("minified"));
   const minifiedCat = document.querySelectorAll("#author-cat-card + .minified");
   
@@ -151,6 +159,12 @@ searchCard? searchCard = Array.from((searchCard)) : console.log("meh");
 searchCard?.forEach((card, index) => card.onmouseover = (() => backgroundHandlerSearch(card, index)));
 searchCard?.forEach((card, index) => card.onmouseout = (() => backgroundRemoverSearch(card, index)));
 
+let personalCard = document.querySelectorAll("#user-personal-card");
+console.log("this is line 163", personalCard);
+personalCard? personalCard = Array.from((personalCard)) : console.log("meh");
+personalCard?.forEach((card, index, array) => card.onmouseover = (() => backgroundHandler(card, index, array)));
+personalCard?.forEach((card, index, array) => card.onmouseout = (() => backgroundRemover(card, index, array)));
+
 let catCard = document.querySelectorAll("#author-cat-card");
 catCard ? catCard = Array.from(catCard) : console.log('meh');
 catCard?.forEach((card, index, array) => card.onmouseover = (() => backgroundHandler(card, index, array)));
@@ -174,7 +188,7 @@ Array.from(catTag).forEach((tag, index) => tag.onmouseout = (() => tagHandler2(t
 // Il faut cette index to whoever has it active, like with a find.
 
 
-let index = 0;
+let index0 = 0;
 
 function carouselProfileHandler (e) {
   console.log(e);
@@ -182,28 +196,28 @@ function carouselProfileHandler (e) {
   const id = btn.getAttribute("id");
   console.log(id);
   if (id === "next-profile-carousel") {
-    allCarouselProfileElements[index].classList.remove('active');
-    index === allCarouselProfileElements.length - 1 ? index = 0 : index += 1;
-    allCarouselProfileElements[index].classList.add('active');
+    allCarouselProfileElements[index0].classList.remove('active');
+    index0 === allCarouselProfileElements.length - 1 ? index0 = 0 : index0 += 1;
+    allCarouselProfileElements[index0].classList.add('active');
   }
   if (id === "prev-profile-carousel") {
-    allCarouselProfileElements[index].classList.remove('active');
-    index === 0 ? index += allCarouselProfileElements.length - 1 : index -= 1;
-    allCarouselProfileElements[index].classList.add('active');
+    allCarouselProfileElements[index0].classList.remove('active');
+    index0 === 0 ? index0 += allCarouselProfileElements.length - 1 : index0 -= 1;
+    allCarouselProfileElements[index0].classList.add('active');
   }
 }
 
 let index2 = 0;
 
-async function carouselProfileHandler2 (e) {
+function carouselProfileHandler2 (e) {
   console.log(e);
   let btn2 = e;
   let id2 = btn2.getAttribute("id");
   console.log(id2);
   if (id2 === "next-profile-carousel-2") {
-    await allCarouselProfileElements2[index2].classList.remove('active');
-   await index2 === allCarouselProfileElements2.length - 1 ? index2 = 0 : index2 += 1;
-    await allCarouselProfileElements2[index2].classList.add('active');
+    allCarouselProfileElements2[index2].classList.remove('active');
+  index2 === allCarouselProfileElements2.length - 1 ? index2 = 0 : index2 += 1;
+    allCarouselProfileElements2[index2].classList.add('active');
   }
   if (id2 === "prev-profile-carousel-2") {
     allCarouselProfileElements2[index2].classList.remove('active');
@@ -230,5 +244,7 @@ Array.from(carouselControlsProfile2).forEach((control) => control.onclick = ((e)
 const carouselControlsProfile = document.getElementsByClassName("carousel-profile");
 Array.from(carouselControlsProfile).forEach((control) => control.onclick = ((e) => carouselProfileHandler(e.target)));
 
+
+// Unexpected end of script why ?
 
 

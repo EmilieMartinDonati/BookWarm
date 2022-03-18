@@ -65,9 +65,9 @@
         <h5 class="text-center text-uppercase" id="users-suggest">All {{cat}} books</h5>
       </div>
       {{/if}}
-      <div class="col-12 d-flex flex-row flex-wrap justify-content-around">
+      <div class="col-12 d-flex flex-row flex-wrap justify-content-around g-3">
         {{#each booksArr}}
-        <div class="card m-2 lagoon" id="author-cat-card" style="width: 18rem;">
+        <div class="card m-4 lagoon" id="author-cat-card" style="width: 40%;">
           <img src="{{this.image}}" alt="{{this.image}}" class="visually-hidden" value="{{this.image}}" />
           <div class="card-body">
             <h5 class="card-title title text-uppercase">{{this.title}}</h5>
@@ -84,15 +84,19 @@
           </div>
         </div>
         {{/each}}
+        </div>
+        </div>
+
+        <div class="row mx-0 px-0 mb-3">
         {{#if personalBooks}}
         <div>
-          <h5 class="text-center text-uppercase" id="users-suggest">Our users' suggestions</h5>
+          <h5 class="text-center text-uppercase" id="users-suggest" style="width: 100%">Our users' suggestions</h5>
         </div>
         {{/if}}
-        <div class="col-12 d-flex flex-row flex-wrap justify-content-around">
+        <div class="col-12 d-flex flex-row flex-wrap justify-content-around g-3">
           {{#each personalBooks}}
-          <div class="card m-2 lagoon" id="author-card" style="width: 18rem;">
-            <img src="{{this.picture}}" class="card-img-top" alt="{{this.picture}}">
+          <div class="card m-4 lagoon" id="user-personal-card" style="width: 40%;">
+            <img src="{{this.picture}}" class=" visually-hidden" alt="{{this.picture}}">
             <div class="card-body">
               <h5 class="card-title title text-uppercase">{{this.title}}</h5>
               <p class="card-text" id="author-card-name">{{this.author_name}}</p>
@@ -100,10 +104,6 @@
                 <div class="col-md-8">
                   <a href="/oneBook/{{this.key}}" class="btn btn-warning opacify" id="fatLinks"> ...</a>
                 </div>
-                {{!-- <div class="col-md-4 col-sm-8">
-                  <a href="/oneBook/wishlist/{{this.slicedKey}}" class="btn btn-danger opacify" id="fatLinks"><i
-                      class="fas fa-heart text-white"></i></a>
-                </div> --}}
               </div>
             </div>
           </div>
@@ -112,15 +112,16 @@
       </div>
 
 
-      <div class="row mt-3">
+
+      <div class="row mx-0 px-0 mt-3">
         {{#if authorsSearched}}
         <div>
           <h5 class="text-center text-uppercase" id="yoursearch">You may be interested in</h5>
         </div>
         {{/if}}
-        <div class="d-flex justify-content-around flex-wrap">
+        <div class="d-flex justify-content-around flex-wrap g-3">
           {{#each authorsSearched}}
-          <div class="card m-2 lagoon" id="author-card" style="width: 15rem;">
+          <div class="card m-4 lagoon" id="author-card" style="width: 40%;">
             <div class="card-body">
               <h5 class="card-title title text-uppercase">{{this.title}}</h5>
               <p class="card-text" id="author-card-name">{{this.author_name}}</p>
@@ -139,15 +140,14 @@
         </div>
       </div>
 
-      </div>
 
       <div class="row">
         <div>
-          <h5 class="text-center" id="best">BEST BOOKS ACCORDING TO OUR READERS</h5>
+          <h5 class="text-center" id="users-suggest">BEST BOOKS ACCORDING TO OUR READERS</h5>
         </div>
-        <div class="col-12 d-flex flex-row flex-wrap justify-content-around">
+        <div class="col-12 d-flex flex-row flex-wrap justify-content-around g-3">
           {{#each bestrated}}
-          <div class="card m-2 lagoon" id="author-best-card" style="width: 15rem;">
+          <div class="card m-4 lagoon" id="author-best-card" style="width: 40%;">
             <img src="{{this.image}}" alt="{{this.image}}" class="visually-hidden" value="{{this.image}}" />
             <div class="card-body container">
               <h5 class="card-title title text-uppercase mb-5">{{this.title}}</h5>
