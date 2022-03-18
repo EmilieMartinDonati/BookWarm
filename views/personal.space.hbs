@@ -1,113 +1,131 @@
-
-
-  <div class="row mx-0 rounded g-0" id="row-first-personal">
-        <div class="col-md-4 col-sm-6 text-end" id="container-personal-image">
-          <h5 style="color: inherit" class="text-start text-danger text-uppercase my-4 px-4">HELLO {{foundUser.userName}}</h5>
-      <div class="row text-end px-4" id="row-personal-image">
-        <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
-          aria-expanded="false" aria-controls="collapseExample" id="pictureBtn">
-          <img src={{foundUser.image}} alt={{foundUser.userName}} class="rounded" id="personal-image" />
-        </button>
+<div class="row mx-0 rounded g-0" id="row-first-personal">
+  <div class="col-md-4 col-sm-6 text-end" id="container-personal-image">
+    <h5 style="color: inherit" class="text-start text-danger text-uppercase my-4 px-4">HELLO {{foundUser.userName}}</h5>
+    <div class="row text-end px-4" id="row-personal-image">
+      <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
+        aria-expanded="false" aria-controls="collapseExample" id="pictureBtn">
+        <img src={{foundUser.image}} alt={{foundUser.userName}} class="rounded" id="personal-image" />
+      </button>
+    </div>
+  </div>
+  <div class="col-md-2 col-sm-6 py-2">
+    <div class="row my-4 py-4" id="row-upload">
+      <div class="collapse rounded mt-4" id="collapseExample" id="upload">
+        <div class="card card-body" style="background-color: inherit">
+          <div class="card-title text-center">Change your image</div>
+          <div class="text-center pt-4">
+            <form action="/uploadimage" method="post" enctype="multipart/form-data">
+              <hr>
+              <input type='file' name='image' class="form-control" />
+              <hr>
+              <button class="btn" id="img-upload" type="submit">Upload your image</button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="col-md-2 col-sm-6 py-2">
-      <div class="row my-4 py-4" id="row-upload">
-        <div class="collapse rounded mt-4" id="collapseExample" id="upload">
-          <div class="card card-body" style="background-color: inherit">
-            <div class="card-title text-center">Change your image</div>
-            <div class="text-center pt-4">
-              <form action="/uploadimage" method="post" enctype="multipart/form-data">
-                <hr>
-                <input type='file' name='image' class="form-control" />
-                <hr>
-                <button class="btn" id="img-upload" type="submit">Upload your image</button>
+  </div>
+  <div class="col-md-6 col-sm-12 text-light px-4" id="your-followers">
+    {{#if following}}
+    <div class="row my-4">
+      <div class="col-8 text-start">
+        <h5 style="color: inherit" class="text-start">YOU FOLLOW THEM</h5>
+      </div>
+      <div class="col-4 text-end">
+        <h5 class="text-end text-body">MORE</h5>
+      </div>
+    </div>
+    {{/if}}
+    <div class="d-flex flex-wrap flex-row p-0">
+      {{#each following}}
+      <div class="card col-4 p-0 m-0">
+        <div class="card-body relative rounded p-0 m-0" style="border: none">
+          <a href="/profile/{{this._id}}">
+            <img src={{this.image}} class="d-block w-100 m-0 img-card absolute-image-following rounded" alt="cover" />
+          </a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+</div>
+
+<div class="row mx-0 g-0 rounded">
+
+  <div class="col-lg-12 col-md-12 col-sm-12 p-3 rounded" id="last-books">
+    <h5 class="text-start text-grey my-4 px-4">LAST BOOKS YOU READ</h5>
+    {{#unless read}}
+    <img class="img-fluid" src="./images/Orange Minimal Book Store Logo (1).png" style="width: 800px; height: 500px;"
+      alt="">
+    {{/unless}}
+    <div class="row flex-wrap justify-content-around">
+      {{#each read}}
+      {{!-- <div class="card m-2 col-lg-2 col-md-4 col-sm-6 col-xs-12" id="red-card">
+        {{#if this.image}}
+        <img src="{{this.image}}" class="card-img-top p-3" alt="...">
+        {{/if}}
+        <div class="card-body">
+          <h6 class="card-title">{{this.title}}</h6>
+          <p class="card-text" id="author-card-name">{{this.author_name}}</p>
+        </div>
+        <div><a href="/oneBook/{{this.key}}" class="fatlinks">...</a></div>
+      </div> --}}
+      <div class="card rounded m-3 col-lg-3 col-md-4 col-sm-5 col-xs-12" id="wishlist-card">
+        <img src={{this.image}} class="card-img-top rounded" alt={{this.title}} style="height: 42vh;">
+        <div class="card-body">
+          <a href="/oneBook/{{this.key}}">
+            <p class="card-text rounded" id="wishlist-title">{{this.title}}</p>
+          </a>
+          <p class="card-text rounded" id="wishlist-name">{{this.author_name}}</p>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>
+
+</div>
+
+<div class="row mx-0 g-0 rounded">
+
+  <div class="col-lg-12 col-md-12 col-sm-12 p-3 rounded" id="your-reviews">
+    <h5 class="text-start my-4 px-4">YOUR REVIEWS</h5>
+    <div class="d-flex flex-wrap mb-4 justify-content-around">
+      {{#each reviews}}
+      <div class="card m-1 col-lg-2 col-md-3 col-sm-4 col-xs-12" id="review-card">
+        <div class="card-body">
+          <a href="/oneBook/{{this.key}}" class="fatlinks"><h6 class="card-title">{{this.bookTitle}}</h6></a>
+          <p class="card-text" id="author-card-name" style="font-size: small;">{{this.review}}</p>
+          <div class="row">
+            <div class="col-12">
+              <form action="/oneBook/edit/{{this._id}}" method="POST">
+                <label for="review"></label>
+                <input type="text" name="review" required class="form-control" />
+                <input class="hidden" type="text" name="key" value={{this.key}}>
+                <button class="btn">
+                  <i class="fas fa-edit" style="font-size: small;">EDIT</i>
+                </button>
+              </form>
+            </div>
+            <div class="col-12">
+              <form action="/oneBook/delete/{{this._id}}" method="POST">
+                <input class="hidden" type="text" name="key" value={{this.key}}>
+                <button class="btn"><i class="fas fa-trash-alt" style="font-size: small;">DELETE</i></p>
+                </button>
               </form>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-md-6 col-sm-12 text-light px-4" id="your-followers">
-      {{#if following}}
-      <div class="row my-4">
-        <div class="col-8 text-start">
-      <h5 style="color: inherit" class="text-start">YOU FOLLOW THEM</h5>
-      </div>
-      <div class="col-4 text-end">
-      <h5 class="text-end text-body">MORE</h5>
-      </div>
-      </div>
-      {{/if}}
-      <div class="d-flex flex-wrap flex-row p-0">
-      {{#each following}}
-      <div class="card col-4 p-0 m-0">
-        <div class="card-body relative rounded p-0 m-0" style="border: none">
-          <a href="/profile/{{this._id}}">
-          <img src={{this.image}} class="d-block w-100 m-0 img-card absolute-image-following rounded" alt="cover" />
-          </a>
-        </div>
-      </div>
       {{/each}}
-      </div>
     </div>
   </div>
-  
-  <div class="row mx-0 g-0 rounded">
 
-    <div class="col-lg-12 col-md-12 col-sm-12 p-3 rounded" id="last-books">
-          <h5 class="text-start text-grey my-4 px-4">LAST BOOKS YOU READ</h5>
-          {{#unless read}}
-          <img class="img-fluid" src="./images/Orange Minimal Book Store Logo (1).png"
-            style="width: 800px; height: 500px;" alt="">
-          {{/unless}}
-          <div class="row flex-wrap justify-content-around">
-            {{#each read}}
-            {{!-- <div class="card m-2 col-lg-2 col-md-4 col-sm-6 col-xs-12" id="red-card">
-              {{#if this.image}}
-              <img src="{{this.image}}" class="card-img-top p-3" alt="...">
-              {{/if}}
-              <div class="card-body">
-                <h6 class="card-title">{{this.title}}</h6>
-                <p class="card-text" id="author-card-name">{{this.author_name}}</p>
-              </div>
-              <div><a href="/oneBook/{{this.key}}" class="fatlinks">...</a></div>
-            </div> --}}
-               <div class="card rounded m-3 col-lg-3 col-md-4 col-sm-5 col-xs-12" id="wishlist-card">
-        <img src={{this.image}} class="card-img-top rounded" alt={{this.title}} style="height: 42vh;">
-        <div class="card-body">
-            <a href="/oneBook/{{this.key}}"><p class="card-text rounded" id="wishlist-title">{{this.title}}</p></a>
-            <p class="card-text rounded" id="wishlist-name">{{this.author_name}}</p>
-        </div>
-    </div>
-            {{/each}}
-          </div>
-        </div>
+</div>
 
-        </div>
-
-        <div class="row mx-0 g-0 rounded">
-
-        <div class="col-lg-12 col-md-12 col-sm-12 p-3 rounded" id="your-reviews">
-          <h5 class="text-start my-4 px-4">YOUR REVIEWS</h5>
-          <div class="d-flex flex-wrap mb-4 justify-content-around">
-            {{#each reviews}}
-            <div class="card m-2 col-lg-2 col-md-3 col-sm-4 col-xs-12" id="review-card">
-              <div class="card-body">
-                <h6 class="card-title">{{this.bookTitle}}</h6>
-                <p class="card-text" id="author-card-name">{{this.review}}</p>
-                <div><a href="/oneBook/{{this.key}}" class="fatlinks">...</a></div>
-              </div>
-            </div>
-            {{/each}}
-          </div>
-        </div>
-
-        </div>
-      
-      <div class="row mx-0 g-0 rounded" id="wishlist-col">
-        <div class="col-lg-9 col-md-12 col-sm-12 rounded my-4 py-4 px-4"><a href="/personalbooks" class="wishcol rounded text-left p-4">See the books you add to our
-            collection</a></div>
-        <div class="col-lg-3 col-md-12 rounded text-end my-4 py-4 px-4"><a href="/oneBook/wishlist" class="wishcol rounded text-right p-4">See your wishlist</a></div>
-      </div>
-
-
+<div class="row mx-0 g-0 rounded" id="wishlist-col">
+  <div class="col-lg-9 col-md-12 col-sm-12 rounded my-4 py-4 px-4"><a href="/personalbooks"
+      class="wishcol rounded text-left p-4">See the books you add to our
+      collection</a></div>
+  <div class="col-lg-3 col-md-12 rounded text-end my-4 py-4 px-4"><a href="/oneBook/wishlist"
+      class="wishcol rounded text-right p-4">See your wishlist</a></div>
+</div>
